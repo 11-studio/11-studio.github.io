@@ -2417,6 +2417,31 @@ button.cta[disabled]:hover::before {
   padding-block: clamp(3rem, 9vh, 7rem);
 }
 
+/* IL RITRATTO NON PUÒ SFONDARE LA SCHERMATA
+   Un 4:5 prende l'altezza dalla larghezza, e la larghezza gliela
+   dà la colonna, cioè la finestra. Su una finestra larga e bassa —
+   1440×780, 1600×820 — il ritratto viene alto più della schermata
+   e si porta dietro la sezione, che sfonda di cinquanta o sessanta
+   pixel. Pochi da vedere, abbastanza da sentire: snap.js quei
+   pixel li legge come una fermata, e il primo gesto su questa
+   sezione se ne va tutto lì invece di portare a quella dopo. Da
+   fuori si legge come uno scorrimento che chiede due gesti per
+   muoversi una volta.
+
+   Si lega quindi la larghezza del ritratto anche all'altezza dello
+   schermo: al massimo quattro quinti di quel che avanza fra le due
+   fasce di margine, che è appunto la larghezza di un 4:5 alto
+   quanto lo spazio libero. A stringersi è la larghezza, non
+   l'altezza a essere tagliata: il taglio 4:5 resta quello, ed è lo
+   stesso della vetrina e dello store.
+
+   I due pixel tolti sono l'arrotondamento. Un'altezza calcolata al
+   sottopixel può tornare indietro un pixel più alta del previsto, e
+   un pixel di troppo è di nuovo una fermata. */
+.curtain .band .portrait {
+  max-width: calc((100svh - 2 * clamp(3rem, 9vh, 7rem) - 2px) * 0.8);
+}
+
 /* l'ombra fa leggere lo strato: si vede il bordo che sale */
 .curtain .band,
 .curtain .look,

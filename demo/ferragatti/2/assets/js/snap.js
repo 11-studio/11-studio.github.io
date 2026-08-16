@@ -65,6 +65,26 @@
      un tocco che ha tremato, non una strisciata. */
   var SWIPE = 40;
 
+  /* Quanto una sezione può sfondare la schermata prima che valga
+     una fermata in più — in frazione di schermata, perché a dire se
+     uno scatto si sente come uno scatto è quanta pagina muove, non
+     quanti pixel. Sotto questa misura lo sfondamento non è
+     contenuto: è un arrotondamento, o una riga che non ci sta per
+     poco. Farne una fermata significa spendere un gesto intero per
+     muovere la pagina di mezzo dito, e da fuori non si legge come
+     una fermata breve — si legge come una pagina che al primo gesto
+     non risponde.
+
+     Il taglio riguarda solo le fermate. L'aggancio resta scritto
+     sull'altezza vera, così quei pixel si vedono comunque mentre si
+     passa alla sezione dopo, e restano in vista finché la sezione
+     dopo non li copre: si rinuncia a fermarcisi, non a mostrarli.
+
+     Il minimo in pixel è per le schermate molto basse, dove il sei
+     per cento sarebbe meno di un bordo. */
+  var CRUMB = 0.06;
+  var CRUMB_MIN = 24;
+
   var stops = [];
   var marks = [];                  // { el, y }: la fermata di ogni sezione
   var index = 0;
@@ -83,6 +103,7 @@
     var nodes = document.querySelectorAll(SELECTOR);
     var vh = window.innerHeight;
     var max = Math.max(0, document.documentElement.scrollHeight - vh);
+    var crumb = Math.max(CRUMB_MIN, vh * CRUMB);
 
     function clamp(y) { return Math.max(0, Math.min(Math.round(y), max)); }
     function push(y) { if (stops.indexOf(y) === -1) stops.push(y); }
@@ -142,7 +163,7 @@
            largo non succede — le parole di un capo sono cinque righe
            di cartiglio — ma su misure strette sì, ed è lì che senza
            queste fermate il fondo del blocco resterebbe irraggiungibile. */
-        if (travel) {
+        if (travel > crumb) {
           push(clamp(b.y));
           var steps = Math.ceil(travel / vh);
           for (var j = 1; j < steps; j++) push(clamp(b.y + travel * j / steps));
@@ -162,7 +183,7 @@
       marks.push({ el: b.el, y: start });
       push(start);
 
-      var screens = Math.ceil(travel / vh);
+      var screens = travel > crumb ? Math.ceil(travel / vh) : 0;
 
       /* Fermate intermedie spaziate uguali invece che a schermate
          piene: l'ultimo passo di una divisione a schermate piene
