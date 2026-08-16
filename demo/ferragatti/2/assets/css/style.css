@@ -2456,31 +2456,18 @@ button.cta[disabled]:hover::before {
   z-index: 1;
 }
 
-/* Nella vetrina il piede prende la schermata intera. È l'ultimo
-   strato, e un ultimo strato copre: sotto di lui, a differenza
-   della home, non resta il margine vuoto di una sezione ma la
-   lastra di parole dell'ultimo capo — e mezza frase che sporge
-   sopra il piede non si legge come uno strato, si legge come un
-   guasto. Con la schermata intera l'ultima fermata mostra il
-   piede e basta. Le tre parti si distribuiscono l'altezza che
-   avanza invece di ammucchiarsi in cima.
+/* Nella vetrina il piede è alto quanto altrove, e non una
+   schermata intera. Era stato allungato per non lasciare sporgere
+   sopra di sé la lastra di parole dell'ultimo capo, ma il piede è
+   la stessa cosa su tutte le pagine e deve avere la stessa
+   misura: un piede alto il doppio degli altri si legge come una
+   pagina diversa, non come un ultimo strato. Quel che avanza
+   sopra resta l'ultimo capo, che è il posto da cui si viene.
 
-   La larghezza piena delle tre parti va ridata a mano: si tengono
-   nella misura del sito con un margine automatico, e un margine
-   automatico dentro una griglia toglie l'allungamento — senza
-   questa riga il piede si ritroverebbe le colonne rimpicciolite
-   in mezzo alla pagina. Il max-width di ciascuna resta a fare il
-   suo lavoro sugli schermi molto larghi. */
-.curtain body:has(.look) footer {
-  min-height: 100vh;
-  min-height: 100svh;
-  display: grid;
-  align-content: space-between;
-}
-
-.curtain body:has(.look) footer > * {
-  width: 100%;
-}
+   Niente da riscrivere altrove: senza questa regola il piede
+   torna al blocco della sezione PIEDE ALTO, e snap.js misura
+   l'altezza vera — l'ultima fermata cade sul fondo del documento,
+   col piede appoggiato al fondo dello schermo. */
 
 /* ============================================================
    CANTIERE — provvisorio, da togliere tutto insieme
