@@ -55,8 +55,9 @@
   /* L'unica eccezione, e serve un posto solo: la firma sotto il
      ritratto. Il perché sta nel commento della sezione LA FIRMA.
      Se compare una seconda volta in questo foglio, è un errore. */
-  --font-sign: "Iowan Old Style", "Palatino Linotype", Palatino,
-               "Book Antiqua", Georgia, "Times New Roman", serif;
+  --font-sign:
+    "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia,
+    "Times New Roman", serif;
 
   /* Le due spaziature del maiuscolo, e sono due sole. La prima è
      quella del marchio: 0,19 em, la stessa misura su cui è
@@ -66,11 +67,11 @@
      cartigli, taglie. Un valore solo per tutte: tararle una per una
      a occhio, da .08 a .19, è il gesto che fa sembrare un sito un
      esercizio di tipografia invece che un sito. */
-  --track-mark: .19em;
-  --track-caps: .08em;
+  --track-mark: 0.19em;
+  --track-caps: 0.08em;
 
   --pad: clamp(1.4rem, 5vw, 5rem);
-  --gold-lux: #C9A227;
+  --gold-lux: #c9a227;
 
   /* Ingombro della barra fissa. Sulla home non serve — l'apertura
      ci passa sotto apposta — ma le pagine interne cominciano con
@@ -96,48 +97,54 @@
    sul chiaro si scurisce, altrimenti bianco su bianco sparisce
    e la barra resta senza fondo. */
 [data-tone="dark"] {
-  --bg:   #0B0B0D;
-  --fg:   #F2F1EE;
-  --dim:  #8C8A84;
-  --gold: #C9A227;
-  --rule: rgba(242, 241, 238, .16);
-  --panel: rgba(242, 241, 238, .045);
+  --bg: #0b0b0d;
+  --fg: #f2f1ee;
+  --dim: #8c8a84;
+  --gold: #c9a227;
+  --rule: rgba(242, 241, 238, 0.16);
+  --panel: rgba(242, 241, 238, 0.045);
 
-  --glass:        rgba(16, 16, 20, .38);
-  --glass-edge:   rgba(242, 241, 238, .22);
-  --glass-sheen:  rgba(242, 241, 238, .16);
-  --glass-shade:  rgba(0, 0, 0, .42);
-  --glass-chip:   rgba(242, 241, 238, .10);
-  --glass-halo:   0 0 .8px rgba(0, 0, 0, .55), 0 1px 3px rgba(0, 0, 0, .35);
-  --glass-solid:  rgba(11, 11, 13, .93);
+  --glass: rgba(16, 16, 20, 0.38);
+  --glass-edge: rgba(242, 241, 238, 0.22);
+  --glass-sheen: rgba(242, 241, 238, 0.16);
+  --glass-shade: rgba(0, 0, 0, 0.42);
+  --glass-chip: rgba(242, 241, 238, 0.1);
+  --glass-halo: 0 0 0.8px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.35);
+  --glass-solid: rgba(11, 11, 13, 0.93);
 }
 
 [data-tone="light"] {
-  --bg:   #F4F4F2;
-  --fg:   #15161A;
-  --dim:  #6C7076;
-  --gold: #8A6A12;   /* oro scurito: su fondo chiaro serve 5.6:1 */
-  --rule: rgba(21, 22, 26, .15);
-  --panel: rgba(21, 22, 26, .035);
+  --bg: #f4f4f2;
+  --fg: #15161a;
+  --dim: #6c7076;
+  --gold: #8a6a12; /* oro scurito: su fondo chiaro serve 5.6:1 */
+  --rule: rgba(21, 22, 26, 0.15);
+  --panel: rgba(21, 22, 26, 0.035);
 
-  --glass:        rgba(248, 248, 246, .46);
-  --glass-edge:   rgba(21, 22, 26, .16);
-  --glass-sheen:  rgba(255, 255, 255, .55);
-  --glass-shade:  rgba(21, 22, 26, .16);
-  --glass-chip:   rgba(21, 22, 26, .05);
+  --glass: rgba(248, 248, 246, 0.46);
+  --glass-edge: rgba(21, 22, 26, 0.16);
+  --glass-sheen: rgba(255, 255, 255, 0.55);
+  --glass-shade: rgba(21, 22, 26, 0.16);
+  --glass-chip: rgba(21, 22, 26, 0.05);
   /* sul chiaro l'alone sta solo sotto la lettera: un bagliore
      centrato le mangerebbe i bordi e il maiuscolo piccolo, che
      è sottile, verrebbe su grigio invece che nero */
-  --glass-halo:   0 1px 2px rgba(255, 255, 255, .60);
-  --glass-solid:  rgba(244, 244, 242, .95);
+  --glass-halo: 0 1px 2px rgba(255, 255, 255, 0.6);
+  --glass-solid: rgba(244, 244, 242, 0.95);
 }
 
 /* ============================================================
    BASE
    ============================================================ */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 /* Helvetica Neue ha l'occhio medio più corto di un grottesco
    moderno (0,517 em contro 0,53): allo stesso corpo il testo
@@ -147,8 +154,8 @@ html { scroll-behavior: smooth; }
    ingrandendo, toglierebbe la finezza per cui lo si è cambiato. */
 body {
   margin: 0;
-  background: #0B0B0D;
-  color: #F2F1EE;
+  background: #0b0b0d;
+  color: #f2f1ee;
   font-family: var(--font);
   font-size: 17px;
   line-height: 1.6;
@@ -156,11 +163,20 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-img { max-width: 100%; display: block; }
+img {
+  max-width: 100%;
+  display: block;
+}
 
-::selection { background: var(--gold-lux); color: #0B0B0D; }
+::selection {
+  background: var(--gold-lux);
+  color: #0b0b0d;
+}
 
-:focus-visible { outline: 2px solid var(--gold-lux); outline-offset: 3px; }
+:focus-visible {
+  outline: 2px solid var(--gold-lux);
+  outline-offset: 3px;
+}
 
 /* ------------------------------------------------------------
    LA SCALA DELLE DICITURE
@@ -186,16 +202,22 @@ img { max-width: 100%; display: block; }
   left: -9999px;
   top: 0;
   z-index: 99;
-  background: #F2F1EE;
-  color: #0B0B0D;
-  padding: .7rem 1.1rem;
+  background: #f2f1ee;
+  color: #0b0b0d;
+  padding: 0.7rem 1.1rem;
   font-weight: 500;
-  font-size: .85rem;
+  font-size: 0.85rem;
 }
 
-.skip:focus { left: .5rem; top: .5rem; }
+.skip:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
 
-section { background: var(--bg); color: var(--fg); }
+section {
+  background: var(--bg);
+  color: var(--fg);
+}
 
 /* ============================================================
    MARCHIO A TUTTA LARGHEZZA
@@ -256,6 +278,140 @@ section { background: var(--bg); color: var(--fg); }
 }
 
 /* ============================================================
+   LETTERE A CASCATA — il passaggio del puntatore sulle parole
+
+   Le voci della barra, gli inviti e i collegamenti del piede non
+   si accendono più tutti in un colpo. Di ogni lettera ce ne sono
+   due, una sopra l'altra: quella che si legge scende e se ne va
+   dal fondo del rigo, quella che le sta sopra — fuori dal rigo,
+   quindi invisibile — scende insieme a lei e si ferma esattamente
+   dove stava la prima. È un rullo, non un salto: alla fine la
+   parola è identica a prima, ma l'ha riscritta un'altra fila di
+   lettere. Nel documento la lettera resta però una sola: la copia
+   la disegna uno pseudo-elemento, per le ragioni scritte più sotto.
+
+   Il ritardo è l'indice della lettera moltiplicato per --step, e il
+   verso è quello della lettura: la cascata parte dalla prima e
+   arriva all'ultima. Quando il puntatore se ne va il ritardo vale
+   ancora, quindi il rullo torna indietro nello stesso ordine — la
+   parola non si ricompone di scatto.
+
+   La corsa è il rigo, né più né meno. Il riquadro di ogni lettera
+   è alto quanto la riga del testo che la contiene e taglia quello
+   che ne esce: le due copie si muovono di 100%, cioè di un rigo
+   esatto, quindi nessuna delle due si vede mai fuori dalla riga —
+   né sotto, addosso a quello che viene dopo, né sopra, addosso
+   alla riga precedente. Non c'è una misura da accordare a mano:
+   l'interlinea la decide il testo, e la corsa la segue da sola.
+
+   Il colore resta dov'era, sul collegamento: l'oro arriva tutto
+   insieme e la cascata è solo il movimento, se no il passaggio del
+   puntatore diventa due effetti che si contendono la stessa parola.
+
+   Ogni lettera è un inline-block e le due copie si muovono dentro
+   di lei: niente si sposta intorno mentre il rullo gira. Il prezzo
+   è la crenatura, che fra due inline-block non si applica più: su
+   maiuscolo spaziato non si vede, ed è per questo che la spezzatura
+   vale per le diciture e non per il testo corrente.
+
+   Il contenitore .lts è aria-hidden e l'elemento porta aria-label
+   col testo intero: chi ascolta la pagina sente la parola una
+   volta sola, non le sue lettere una per una e nemmeno in doppio.
+   ============================================================ */
+.lts {
+  display: inline;
+}
+
+/* Il riquadro che taglia. L'allineamento è alto e non alla base:
+   overflow:hidden sposta la linea di base di un inline-block al suo
+   bordo inferiore, e lasciandolo fare le lettere si appoggerebbero
+   male al resto della riga — al trattino delle voci del piede, per
+   dire. Allineate in cima, e alte quanto il rigo, ricadono
+   esattamente dove cadevano da testo semplice. */
+.lt {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+/* inline-block e non block: un riquadro di blocco per lettera
+   manderebbe a capo il testo agli occhi di chi lo copia e di chi lo
+   cerca nella pagina — la voce verrebbe fuori una lettera per riga.
+   In linea il testo resta una parola sola. */
+/* La curva parte subito e atterra piano. Non è un dettaglio di
+   gusto: con una curva simmetrica, che parte lenta, la prima
+   lettera resta ferma per un decimo di secondo dopo il puntatore, e
+   quel decimo si legge come un ritardo del sito, non come un
+   movimento. Qui il rullo scatta al primo fotogramma e si prende il
+   tempo dov'è invisibile, cioè in fondo alla corsa. */
+.lt-a,
+.lt::after {
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.16, 0.84, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * var(--step, 24ms));
+}
+
+/* La seconda copia sta appoggiata sopra la prima e aspetta un rigo
+   più in alto: è lei a scrivere la parola quando il rullo ha girato.
+
+   È uno pseudo-elemento e non un secondo <span> apposta. Scritta due
+   volte nel documento, la lettera finirebbe due volte anche nel
+   testo della pagina: «Progetto» varrebbe «PPrrooggeettttoo» per il
+   copia-incolla e per il trova-nella-pagina. content: attr() disegna
+   la copia senza aggiungere niente al testo. Il divieto di selezione
+   è la cintura: qualche browser il contenuto degli pseudo lo mette
+   comunque negli appunti. */
+.lt::after {
+  content: attr(data-c);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  transform: translateY(-100%);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Il richiamo si aggancia al genitore diretto di .lts, cioè al
+   collegamento stesso, e non all'elenco delle voci: così vale da
+   solo ovunque site.js spezzi una parola, oggi e domani. */
+:hover > .lts .lt-a,
+:focus-visible > .lts .lt-a {
+  transform: translateY(100%);
+}
+
+:hover > .lts .lt::after,
+:focus-visible > .lts .lt::after {
+  transform: translateY(0);
+}
+
+/* i pulsanti dello store sono spenti finché il drop non apre:
+   restano fermi anche sotto il puntatore */
+.cta[disabled]:hover > .lts .lt-a {
+  transform: none;
+}
+.cta[disabled]:hover > .lts .lt::after {
+  transform: translateY(-100%);
+}
+
+/* Il passo per contesto: più corto dove le parole sono lunghe, se
+   no l'ultima lettera parte quando la prima ha già finito e la
+   cascata diventa una fila indiana. Il conto da tenere d'occhio è
+   l'ultima lettera: passo per numero di lettere più la durata, e
+   deve stare sotto il secondo — «VISITA LO STORE», che è la voce
+   più lunga del sito, chiude in 840 ms. */
+.nav-links a {
+  --step: 30ms;
+}
+.cta {
+  --step: 28ms;
+}
+.foot-col a {
+  --step: 24ms;
+}
+
+/* ============================================================
    INTESTAZIONE — vetro liquido, invisibile finché non si scorre
    ------------------------------------------------------------
    La forma resta quella di prima: una fascia rettangolare da
@@ -296,7 +452,7 @@ section { background: var(--bg); color: var(--fg); }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: .9rem var(--pad);
+  padding: 0.9rem var(--pad);
   isolation: isolate;
 
   background: var(--glass);
@@ -311,12 +467,13 @@ section { background: var(--bg); color: var(--fg); }
   color: var(--fg);
   text-shadow: var(--glass-halo);
 
-  transition: background .6s ease,
-              backdrop-filter .6s ease,
-              -webkit-backdrop-filter .6s ease,
-              color .6s ease,
-              box-shadow .6s ease,
-              text-shadow .6s ease;
+  transition:
+    background 0.6s ease,
+    backdrop-filter 0.6s ease,
+    -webkit-backdrop-filter 0.6s ease,
+    color 0.6s ease,
+    box-shadow 0.6s ease,
+    text-shadow 0.6s ease;
 }
 
 /* SULL'APERTURA la lastra si toglie, la barra resta.
@@ -334,7 +491,9 @@ section { background: var(--bg); color: var(--fg); }
   text-shadow: var(--glass-halo);
 }
 
-.nav.bare::before { opacity: 0; }
+.nav.bare::before {
+  opacity: 0;
+}
 
 /* la luce fissa della lastra: sta sotto al contenuto (z-index
    negativo dentro l'isolation della barra) e non intercetta il
@@ -353,28 +512,37 @@ section { background: var(--bg); color: var(--fg); }
     transparent 78%,
     color-mix(in srgb, var(--glass-sheen) 45%, transparent) 100%
   );
-  opacity: .55;
-  transition: opacity .6s ease;
+  opacity: 0.55;
+  transition: opacity 0.6s ease;
 }
 
 /* dove il vetro non c'è (Firefox senza backdrop-filter attivo,
    browser vecchi) la barra torna piena: meglio opaca che
    illeggibile. */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .nav { background: var(--glass-solid); text-shadow: none; }
-  .nav::before { opacity: .25; }
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .nav {
+    background: var(--glass-solid);
+    text-shadow: none;
+  }
+  .nav::before {
+    opacity: 0.25;
+  }
 }
 
 /* il marchio piccolo tiene la stessa spaziatura di quello grande,
    arrotondata: è la stessa insegna vista da lontano */
 .nav-mark {
   font-weight: 500;
-  font-size: .82rem;
+  font-size: 0.82rem;
   letter-spacing: var(--track-mark);
   text-indent: var(--track-mark);
   text-decoration: none;
   color: inherit;
-  transition: opacity .5s ease, visibility 0s;
+  transition:
+    opacity 0.5s ease,
+    visibility 0s;
 }
 
 /* Sull'apertura il marchio non si scrive. La parola sta già lì
@@ -391,15 +559,17 @@ section { background: var(--bg); color: var(--fg); }
 .nav.bare .nav-mark {
   opacity: 0;
   visibility: hidden;
-  transition: opacity .5s ease, visibility 0s linear .5s;
+  transition:
+    opacity 0.5s ease,
+    visibility 0s linear 0.5s;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(.9rem, 2.6vw, 2rem);
+  gap: clamp(0.9rem, 2.6vw, 2rem);
   font-weight: 500;
-  font-size: .78rem;
+  font-size: 0.78rem;
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
 }
@@ -407,11 +577,16 @@ section { background: var(--bg); color: var(--fg); }
 .nav-links a {
   color: inherit;
   text-decoration: none;
-  opacity: .78;
-  transition: opacity .25s ease, color .25s ease;
+  opacity: 0.78;
+  transition:
+    opacity 0.25s ease,
+    color 0.25s ease;
 }
 
-.nav-links a:hover { opacity: 1; color: var(--gold); }
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--gold);
+}
 
 /* La pagina in cui si è già si segna con l'oro, non con un fondo
    né con un sottolineato: la barra è squadrata e vuota, e un
@@ -422,7 +597,10 @@ section { background: var(--bg); color: var(--fg); }
    home, e un'ancora non è mai «la pagina in cui si è». La regola
    resta scritta per la voce, non per il pulsante, così vale da
    sola se un domani il menu tornasse a puntare a delle pagine. */
-.nav-links a[aria-current="page"] { opacity: 1; color: var(--gold); }
+.nav-links a[aria-current="page"] {
+  opacity: 1;
+  color: var(--gold);
+}
 
 /* il pulsante resta il rettangolo di prima — la barra è squadrata
    e un pulsante a pillola dentro le stonerebbe — ma prende un velo
@@ -430,13 +608,14 @@ section { background: var(--bg); color: var(--fg); }
 .nav-links a.store {
   opacity: 1;
   border: 1px solid var(--glass-edge);
-  padding: .5rem .95rem;
+  padding: 0.5rem 0.95rem;
   background: var(--glass-chip);
-  transition: background .25s ease,
-              border-color .25s ease,
-              color .25s ease,
-              opacity .5s ease,
-              visibility 0s;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    opacity 0.5s ease,
+    visibility 0s;
 }
 
 .nav-links a.store:hover {
@@ -445,15 +624,12 @@ section { background: var(--bg); color: var(--fg); }
   background: color-mix(in srgb, var(--gold) 12%, var(--glass-chip));
 }
 
-/* Stessa ragione del marchio: sull'apertura lo stesso invito è già
-   in basso, accanto alla riga del drop, ed è quello il posto in cui
-   sta. Due volte "visita lo store" nella stessa schermata non sono
-   un invito più forte: sono un invito diviso in due. */
-.nav.bare .nav-links a.store {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .5s ease, visibility 0s linear .5s;
-}
+/* Il pulsante resta scritto anche sull'apertura, al contrario del
+   marchio. Finché in basso c'era lo stesso invito si toglieva, per
+   non dirlo due volte nella stessa schermata; adesso lì sotto c'è
+   l'invito a scendere, e i due non si pestano i piedi: uno porta
+   avanti nella pagina, l'altro fuori, allo store. Chi arriva per
+   comprare non deve scorrere tutto il sipario per trovare la porta. */
 
 /* Su schermo stretto i tre collegamenti di sezione non ci stanno e
    restano marchio e store: dopo l'apertura la barra ha comunque il
@@ -461,7 +637,9 @@ section { background: var(--bg); color: var(--fg); }
    resta vuota — ma sotto c'è la schermata intera che li dice
    tutti e due, quindi non manca niente. */
 @media (max-width: 660px) {
-  .nav-links a:not(.store) { display: none; }
+  .nav-links a:not(.store) {
+    display: none;
+  }
 }
 
 /* ============================================================
@@ -477,7 +655,7 @@ section { background: var(--bg); color: var(--fg); }
   overflow: hidden;
   /* il fondo che si vede prima che il canvas disegni: già in tinta,
      se no il primo istante è un lampo grigio */
-  background: #0D0A04;
+  background: #0d0a04;
   isolation: isolate;
 }
 
@@ -501,16 +679,23 @@ section { background: var(--bg); color: var(--fg); }
    quando parte, prende il posto dello stand-in in dissolvenza */
 .hero-media video {
   opacity: 0;
-  transition: opacity .9s ease;
+  transition: opacity 0.9s ease;
 }
 
-.hero-media video.ready { opacity: 1; }
-.hero-media canvas.stood-down { opacity: 0; transition: opacity .9s ease; }
+.hero-media video.ready {
+  opacity: 1;
+}
+.hero-media canvas.stood-down {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
 
 /* micro-parallasse: solo quando c'è il montato vero */
 .hero.has-video .hero-media video {
   transform: scale(1.06) translate(var(--px, 0px), var(--py, 0px));
-  transition: opacity .9s ease, transform .9s cubic-bezier(.16, 1, .3, 1);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Velo: tiene il testo leggibile senza spegnere la clip.
@@ -522,10 +707,12 @@ section { background: var(--bg); color: var(--fg); }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg,
-    rgba(13, 10, 4, .55) 0%,
-    rgba(13, 10, 4, .12) 34%,
-    rgba(13, 10, 4, .82) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(13, 10, 4, 0.55) 0%,
+    rgba(13, 10, 4, 0.12) 34%,
+    rgba(13, 10, 4, 0.82) 100%
+  );
   pointer-events: none;
 }
 
@@ -539,92 +726,210 @@ section { background: var(--bg); color: var(--fg); }
   pointer-events: none;
   opacity: 0;
   mix-blend-mode: screen;
-  transition: opacity .8s ease;
-  background: radial-gradient(34rem 34rem at var(--mx, 50%) var(--my, 42%),
-    rgba(201, 162, 39, .17),
-    rgba(201, 162, 39, .05) 42%,
-    transparent 68%);
+  transition: opacity 0.8s ease;
+  background: radial-gradient(
+    34rem 34rem at var(--mx, 50%) var(--my, 42%),
+    rgba(201, 162, 39, 0.17),
+    rgba(201, 162, 39, 0.05) 42%,
+    transparent 68%
+  );
 }
 
-.hero.has-video .hero-light { opacity: 1; }
+.hero.has-video .hero-light {
+  opacity: 1;
+}
 
 .hero-mark {
   padding: 0 var(--pad);
-  color: #F7F6F3;
+  color: #f7f6f3;
   align-self: end;
 }
 
-.hero-mark .bigmark text { fill: #F7F6F3; }
-
-.hero-foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 2rem;
-  /* il riquadro del marchio ora finisce sulla base delle lettere:
-     l'aria sotto la parola la mette questo margine, non l'SVG */
-  padding: 2rem var(--pad) 2.2rem;
+.hero-mark .bigmark text {
+  fill: #f7f6f3;
 }
 
+/* La riga in basso ha un inquilino solo, e sta in mezzo: sotto un
+   marchio a tutta larghezza il centro è l'unico punto che non
+   sembra una scelta. Il padding laterale resta anche se ora non
+   allinea niente — serve al segno per non toccare i bordi quando
+   la finestra si stringe fin quasi alla soglia del cartello. */
+.hero-foot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* il riquadro del marchio ora finisce sulla base delle lettere:
+     l'aria sotto la parola la mette questo margine, non l'SVG */
+  padding: 1.4rem var(--pad) 2rem;
+}
+
+/* Occhiello sopra il marchio. Sta dentro .hero-mark e non fuori:
+   così prende lo stesso padding laterale della parola grande e i
+   due attacchi cadono sulla stessa verticale, senza doverne
+   ripetere la misura. Il margine sotto è l'aria fra la riga e le
+   maiuscole — piccolo apposta, perché le due cose si leggano come
+   un blocco solo e non come due righe capitate vicine. */
 .hero-line {
   font-weight: 500;
-  font-size: .74rem;
+  font-size: 0.74rem;
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
-  color: rgba(247, 246, 243, .74);
-  margin: 0;
+  color: rgba(247, 246, 243, 0.74);
+  margin: 0 0 0.9rem;
+}
+
+/* ------------------------------------------------------------
+   L'INVITO A SCENDERE
+
+   Tre V impilate, senza parole e senza contorno. Non è un pulsante
+   e non deve sembrarlo: sotto una barra squadrata, un secondo
+   rettangolo in basso sarebbe un'eco.
+
+   La zona sensibile al clic è più larga del segno — il padding la
+   porta alla misura del dito e del puntatore distratto, che sono
+   due cose più grandi di venti pixel di tratto.
+   ------------------------------------------------------------ */
+.scroll-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0.4rem 1.2rem;
+  color: rgba(247, 246, 243, 0.74);
+  transition: color 0.3s ease;
+}
+
+.scroll-cue:hover {
+  color: var(--gold-lux);
+}
+
+/* Il tratto è disegnato, non scritto: un carattere darebbe tre
+   glifi diversi su tre sistemi diversi, mentre qui la V è la
+   stessa dappertutto e resta a filo con lo spessore del resto
+   della pagina. Il colore viene dal collegamento, così basta il
+   :hover di sopra a cambiarle tutte e tre. */
+.cue-v {
+  display: block;
+  width: 18px;
+  height: 10px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  /* il respiro: ogni V scende, si accende e torna su. Il grosso
+     del giro è la pausa — la parte viva sta nel primo terzo — se
+     no le tre non finirebbero mai di muoversi tutte insieme e
+     l'effetto a cascata si perderebbe. */
+  animation: cue-breathe 2.4s ease-in-out infinite;
+}
+
+/* Il ritardo è quello che fa la cascata: prima una, poi la
+   seguente, poi l'ultima. Un ottavo di secondo l'una — sotto si
+   legge come un solo battito storto, sopra come tre segni che non
+   si parlano. */
+.cue-v:nth-child(2) {
+  animation-delay: 0.13s;
+}
+.cue-v:nth-child(3) {
+  animation-delay: 0.26s;
+}
+
+@keyframes cue-breathe {
+  0% {
+    opacity: 0.22;
+    transform: translateY(-2px);
+  }
+  16% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+  42%,
+  100% {
+    opacity: 0.22;
+    transform: translateY(-2px);
+  }
 }
 
 /* CTA discreta: contorno sottile, nessun blocco pieno sul video */
 .cta {
   display: inline-flex;
   align-items: center;
-  gap: .8rem;
-  padding: .78rem 1.4rem;
-  border: 1px solid rgba(247, 246, 243, .42);
-  color: #F7F6F3;
+  gap: 0;
+  padding: 0.78rem 1.4rem;
+  border: 1px solid rgba(247, 246, 243, 0.42);
+  color: #f7f6f3;
   text-decoration: none;
   font-weight: 500;
-  font-size: .74rem;
+  font-size: 0.74rem;
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
   background: transparent;
-  transition: border-color .3s ease, background .3s ease;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
 }
 
+/* il segno dell'invito si scrive in due tempi: a riposo c'è solo
+   la punta, un cenno; passandoci sopra le cresce dietro l'asta e
+   il cenno diventa una freccia intera. L'asta viene prima nel
+   flusso ma sta dopo la parola — l'ordine la rimette al suo posto,
+   perché ::before nasce in testa e qui serve in coda. */
+.cta::before {
+  content: "";
+  order: 1;
+  width: 0;
+  height: 1px;
+  margin-left: 0.8rem;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+/* la punta: mezzo quadrato girato di un quarto, così il vertice
+   guarda a destra e le due braccia si aprono esattamente sulla
+   mezzeria della scatola. Il margine negativo porta l'asta fin
+   dentro quella mezzeria: la linea e la punta si toccano invece
+   di restare due segni vicini. */
 .cta::after {
   content: "";
-  width: 1.4rem;
-  height: 1px;
-  background: currentColor;
-  transition: width .3s ease;
+  order: 2;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
 }
 
 .cta:hover {
   border-color: var(--gold-lux);
-  background: rgba(201, 162, 39, .10);
+  background: rgba(201, 162, 39, 0.1);
 }
 
-.cta:hover::after { width: 2.1rem; }
+.cta:hover::before {
+  width: 1.3rem;
+}
 
 /* sul chiaro l'invito si capovolge: inchiostro sulla carta, non
    carta sull'inchiostro. Il contorno e l'oro vengono dai token
    del tono, così l'elemento resta lo stesso in tutte e due le
    sezioni e cambia solo di verso. */
 [data-tone="light"] .cta {
-  border-color: rgba(21, 22, 26, .28);
+  border-color: rgba(21, 22, 26, 0.28);
   color: var(--fg);
 }
 
 [data-tone="light"] .cta:hover {
   border-color: var(--gold);
-  background: rgba(138, 106, 18, .08);
+  background: rgba(138, 106, 18, 0.08);
 }
 
 /* riga dell'invito dentro un blocco di testo: prende respiro
    sopra, e lascia alla firma il suo margine */
-.cta-row { margin: 2.1rem 0 0; }
+.cta-row {
+  margin: 2.1rem 0 0;
+}
 
 /* nota di servizio, non un'insegna: tondo minuscolo */
 .clip-note {
@@ -632,13 +937,15 @@ section { background: var(--bg); color: var(--fg); }
   left: var(--pad);
   top: 1.2rem;
   z-index: 1;
-  font-size: .75rem;
-  color: rgba(247, 246, 243, .42);
+  font-size: 0.75rem;
+  color: rgba(247, 246, 243, 0.42);
   margin: 0;
-  transition: opacity .5s ease;
+  transition: opacity 0.5s ease;
 }
 
-.clip-note.gone { opacity: 0; }
+.clip-note.gone {
+  opacity: 0;
+}
 
 /* ============================================================
    SEZIONI
@@ -662,7 +969,7 @@ h2 {
   font-weight: 400;
   font-size: clamp(2.4rem, 6.1vw, 4.7rem);
   line-height: 1.04;
-  letter-spacing: -.022em;
+  letter-spacing: -0.022em;
   margin: 0 0 1.7rem;
   max-width: 17ch;
   text-wrap: balance;
@@ -680,9 +987,15 @@ h2 em,
 .standfirst em,
 .band.pattern .lead em,
 .piece-say em,
-.drop-state em { font-style: normal; font-weight: inherit; color: var(--gold); }
+.drop-state em {
+  font-style: normal;
+  font-weight: inherit;
+  color: var(--gold);
+}
 
-.band p { max-width: 56ch; margin: 0 0 1.1rem; }
+.band p {
+  max-width: 56ch; /*margin: 0 0 1.1rem;*/
+}
 
 /* il paragrafo che porta il peso di una sezione: vale sulla home
    e sulle pagine interne allo stesso modo */
@@ -693,7 +1006,9 @@ h2 em,
   max-width: 46ch;
 }
 
-.dimtext { color: var(--dim); }
+.dimtext {
+  color: var(--dim);
+}
 
 /* --- sezione 1: ritratto + testo --- */
 .split {
@@ -705,7 +1020,9 @@ h2 em,
 }
 
 @media (min-width: 900px) {
-  .split { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+  .split {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  }
 }
 
 /* Il riquadro in attesa di una fotografia. È lo stesso oggetto in
@@ -721,7 +1038,7 @@ h2 em,
   background: var(--panel);
   display: flex;
   align-items: flex-end;
-  padding: .9rem 1rem;
+  padding: 0.9rem 1rem;
   position: relative;
   overflow: hidden;
 }
@@ -747,14 +1064,16 @@ h2 em,
 
 .portrait span,
 .plate-figure span {
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: var(--dim);
   position: relative;
   z-index: 1;
 }
 
 .portrait:has(img) span,
-.plate-figure:has(img) span { display: none; }
+.plate-figure:has(img) span {
+  display: none;
+}
 
 /* LA FIRMA — l'unica eccezione al carattere unico, e dichiarata.
 
@@ -790,12 +1109,12 @@ h2 em,
      grande: qui non si stringe niente, al contrario dei titoli */
   letter-spacing: 0;
   line-height: 1.2;
-  margin: 1.9rem 0 .35rem;
+  margin: 1.9rem 0 0.35rem;
 }
 
 /* il ruolo è una didascalia, non un'etichetta: tondo minuscolo */
 .role {
-  font-size: .88rem;
+  font-size: 0.88rem;
   color: var(--dim);
   margin: 0;
 }
@@ -819,7 +1138,7 @@ h2 em,
   z-index: 0;
   width: 100%;
   height: 100%;
-  opacity: .7;
+  opacity: 0.7;
   pointer-events: none;
 }
 
@@ -835,28 +1154,30 @@ h2 em,
 .pattern-bg .stitch {
   fill: none;
   stroke: currentColor;
-  stroke-width: .8;
+  stroke-width: 0.8;
   stroke-dasharray: 8 6;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 /* linee di costruzione: pieghe, ripieghi, posizioni */
 .pattern-bg .aux {
   fill: none;
   stroke: currentColor;
-  stroke-width: .7;
-  opacity: .55;
+  stroke-width: 0.7;
+  opacity: 0.55;
 }
 
-.pattern-bg .dot { stroke-dasharray: 2 4; }
+.pattern-bg .dot {
+  stroke-dasharray: 2 4;
+}
 
 /* tratto-punto: centro davanti, centro dietro, linea di ripiego */
 .pattern-bg .fold {
   fill: none;
   stroke: currentColor;
-  stroke-width: .8;
+  stroke-width: 0.8;
   stroke-dasharray: 18 5 3 5;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 /* tacche di montaggio: corte e nette, si devono vedere */
@@ -864,10 +1185,15 @@ h2 em,
   fill: none;
   stroke: currentColor;
   stroke-width: 1.4;
-  opacity: .85;
+  opacity: 0.85;
 }
 
-.pattern-bg .drill { fill: none; stroke: currentColor; stroke-width: .9; opacity: .7; }
+.pattern-bg .drill {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.9;
+  opacity: 0.7;
+}
 
 /* asole: tratto pieno con testa tonda, come il punto vero */
 .pattern-bg .slot {
@@ -875,30 +1201,108 @@ h2 em,
   stroke: currentColor;
   stroke-width: 2.6;
   stroke-linecap: round;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 /* dettaglio della ribattitura: i due bordi, i punti, il tessuto */
-.pattern-bg .layer { fill: none; stroke: currentColor; stroke-width: 2.2; opacity: .75; }
+.pattern-bg .layer {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  opacity: 0.75;
+}
 .pattern-bg .seam {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.4;
   stroke-dasharray: 5 3.5;
-  opacity: .7;
+  opacity: 0.7;
 }
-.pattern-bg .wash { fill: currentColor; stroke: none; opacity: .07; }
+.pattern-bg .wash {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.07;
+}
 
-.pattern-bg .dim { fill: none; stroke: currentColor; stroke-width: .7; opacity: .5; }
-.pattern-bg .frame { fill: none; stroke: currentColor; stroke-width: .9; opacity: .45; }
-.pattern-bg .fill { fill: currentColor; stroke: none; opacity: .45; }
+.pattern-bg .dim {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.7;
+  opacity: 0.5;
+}
+.pattern-bg .frame {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.9;
+  opacity: 0.45;
+}
+.pattern-bg .fill {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.45;
+}
 
-.pattern-bg .grid { fill: none; stroke: currentColor; stroke-width: .5; opacity: .1; }
-.pattern-bg .grid-major { stroke-width: .8; opacity: .16; }
+/* cimosa: è tessuto, non disegno, e va pesata come la griglia —
+   sotto la linea di taglio, sotto le diciture, appena sopra il
+   tavolo. Se si legge prima dei pezzi ha sbagliato mestiere.
+   L'orlo esterno è l'unico tratto continuo; il limite interno è
+   dove finisce l'armatura fitta e comincia il tessuto buono,
+   quindi è più tenue. I fori del telaio sono una riga sola con
+   il tratteggio a punti tondi: sessanta cerchi disegnati a mano
+   sarebbero sessanta occasioni di sbagliarne uno. */
+.pattern-bg .selv {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.9;
+  opacity: 0.3;
+}
+.pattern-bg .selv-in {
+  stroke-width: 0.7;
+  stroke-dasharray: 14 7;
+  opacity: 0.2;
+}
+.pattern-bg .selv-web {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.045;
+}
+.pattern-bg .selv-hole {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-dasharray: 0 44;
+  opacity: 0.22;
+}
+
+/* Il nome sulla cimosa è stampato sul tessuto, non tracciato al
+   plotter: sta più basso di tono di ogni altra dicitura e più
+   spaziato, che è come esce dalla macchina da tessere. */
+.pattern-bg .selv-t {
+  font-size: 8.5px;
+  letter-spacing: 0.3em;
+  opacity: 0.26;
+}
+
+.pattern-bg .grid {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.5;
+  opacity: 0.1;
+}
+.pattern-bg .grid-major {
+  stroke-width: 0.8;
+  opacity: 0.16;
+}
 
 /* l'oro segue il tono della sezione: su carta chiara quello lucido
    sparirebbe, e il drittofilo è il segno che deve restare leggibile */
-.pattern-bg .gold { fill: none; stroke: var(--gold); stroke-width: 1.1; opacity: .95; }
+.pattern-bg .gold {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.1;
+  opacity: 0.95;
+}
 
 /* Le diciture di un piazzato si tracciano al plotter in un gotico
    stretto, in maiuscolo. È l'unico posto del sito che tiene una
@@ -911,16 +1315,30 @@ h2 em,
   font-family: var(--font);
   font-weight: 500;
   font-size: 11px;
-  letter-spacing: .08em;
+  letter-spacing: 0.08em;
   fill: currentColor;
-  opacity: .78;
+  opacity: 0.78;
 }
 
-.pattern-bg .lbl-sm { font-size: 9px; letter-spacing: .1em; opacity: .62; }
-.pattern-bg .lbl-hd { font-weight: 700; letter-spacing: .11em; opacity: .9; }
-.pattern-bg .gold-t { fill: var(--gold); opacity: .85; }
+.pattern-bg .lbl-sm {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  opacity: 0.62;
+}
+.pattern-bg .lbl-hd {
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  opacity: 0.9;
+}
+.pattern-bg .gold-t {
+  fill: var(--gold);
+  opacity: 0.85;
+}
 
-.band .inner { position: relative; z-index: 1; }
+.band .inner {
+  position: relative;
+  z-index: 1;
+}
 
 .band.pattern .inner {
   max-width: 46rem;
@@ -943,7 +1361,7 @@ h2 em,
 .band.pattern .lead {
   font-size: clamp(1.4rem, 2.9vw, 2.15rem);
   font-weight: 400;
-  letter-spacing: -.012em;
+  letter-spacing: -0.012em;
   line-height: 1.28;
   max-width: 28ch;
   margin: 0;
@@ -959,7 +1377,6 @@ h2 em,
   background: var(--gold);
   margin-bottom: clamp(1.4rem, 2.6vw, 1.9rem);
 }
-
 
 /* --- sezione 3: campagna, un solo invito al centro ---
    Fondo fotografico a tutta sezione, niente testo intorno: la
@@ -983,8 +1400,8 @@ h2 em,
   z-index: -2;
   background:
     url("../img/campagna.jpg") center / cover no-repeat,
-    radial-gradient(120% 96% at 26% 14%, #33475C 0%, #1A2634 44%, #0A0E15 100%),
-    linear-gradient(202deg, rgba(150, 180, 210, .16), transparent 58%);
+    radial-gradient(120% 96% at 26% 14%, #33475c 0%, #1a2634 44%, #0a0e15 100%),
+    linear-gradient(202deg, rgba(150, 180, 210, 0.16), transparent 58%);
 }
 
 /* Velo: stessa funzione di quello dell'apertura, tinta opposta.
@@ -997,10 +1414,12 @@ h2 em,
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg,
-    rgba(6, 10, 16, .62) 0%,
-    rgba(6, 10, 16, .26) 46%,
-    rgba(6, 10, 16, .72) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(6, 10, 16, 0.62) 0%,
+    rgba(6, 10, 16, 0.26) 46%,
+    rgba(6, 10, 16, 0.72) 100%
+  );
   pointer-events: none;
 }
 
@@ -1027,13 +1446,13 @@ h2 em,
   font-size: clamp(2.7rem, 8.4vw, 6.4rem);
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
   /* la spaziatura aggiunge aria a destra dell'ultima lettera:
      senza questo il blocco centrato pende a sinistra */
-  text-indent: .02em;
-  color: #F7F6F3;
+  text-indent: 0.02em;
+  color: #f7f6f3;
   margin: 0 0 clamp(1.6rem, 4vh, 2.6rem);
-  text-shadow: 0 1px 26px rgba(6, 10, 16, .5);
+  text-shadow: 0 1px 26px rgba(6, 10, 16, 0.5);
 }
 
 /* il punto medio è una pausa, non una parola: sta più basso di
@@ -1041,16 +1460,16 @@ h2 em,
 .campaign-title .sep {
   color: var(--gold-lux);
   letter-spacing: 0;
-  margin: 0 .06em;
+  margin: 0 0.06em;
 }
 
 /* l'invito qui è l'unico elemento della sezione: prende un po'
    più di respiro di quello dell'apertura, che divide la riga
    con la dicitura del drop */
 .campaign .cta {
-  padding: .95rem 1.9rem;
-  font-size: .78rem;
-  border-color: rgba(247, 246, 243, .52);
+  padding: 0.95rem 1.9rem;
+  font-size: 0.78rem;
+  border-color: rgba(247, 246, 243, 0.52);
 }
 
 /* nota di servizio, gemella di quella della clip */
@@ -1059,8 +1478,8 @@ h2 em,
   left: var(--pad);
   top: 1.2rem;
   z-index: 1;
-  font-size: .75rem;
-  color: rgba(247, 246, 243, .42);
+  font-size: 0.75rem;
+  color: rgba(247, 246, 243, 0.42);
   margin: 0;
 }
 
@@ -1089,9 +1508,13 @@ h2 em,
    (h2 a 17ch): senza margine automatico resterebbero incollate a
    sinistra dentro un blocco centrato */
 .letter-inner h2,
-.letter-inner p { margin-inline: auto; }
+.letter-inner p {
+  margin-inline: auto;
+}
 
-.letter-inner h2 { margin-bottom: clamp(2rem, 5vh, 3rem); }
+.letter-inner h2 {
+  margin-bottom: clamp(2rem, 5vh, 3rem);
+}
 
 /* il campo è l'unica cosa che si fa qui: sta al centro e in
    misura stretta, perché un campo lungo invita a scriverci un
@@ -1102,13 +1525,15 @@ h2 em,
 }
 
 .letter .news-note,
-.letter .news-done { text-align: center; }
+.letter .news-done {
+  text-align: center;
+}
 
 /* nota di servizio, non una didascalia del campo: sta in corpo
    minore e sbiadita perché al lancio va tolta */
 .news-note.small {
-  font-size: .76rem;
-  opacity: .72;
+  font-size: 0.76rem;
+  opacity: 0.72;
 }
 
 /* ============================================================
@@ -1128,7 +1553,9 @@ footer {
 }
 
 @media (min-width: 820px) {
-  .foot-grid { grid-template-columns: 1.35fr 1fr 1fr; }
+  .foot-grid {
+    grid-template-columns: 1.35fr 1fr 1fr;
+  }
 }
 
 /* testata di colonna: qui il maiuscolo spaziato è al suo posto,
@@ -1137,7 +1564,7 @@ footer {
    posto — una voce, e sotto quello che c'è da sapere. */
 .foot-col h3,
 .info-col h3 {
-  font-size: .72rem;
+  font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
@@ -1145,16 +1572,22 @@ footer {
   margin: 0 0 1.25rem;
 }
 
-.foot-col p { margin: 0 0 .55rem; color: var(--dim); font-size: 1rem; }
+.foot-col p {
+  margin: 0 0 0.55rem;
+  color: var(--dim);
+  font-size: 1rem;
+}
 
 .foot-col a {
   color: var(--fg);
   text-decoration: none;
   border-bottom: 1px solid var(--rule);
-  transition: border-color .25s ease;
+  transition: border-color 0.25s ease;
 }
 
-.foot-col a:hover { border-color: var(--gold); }
+.foot-col a:hover {
+  border-color: var(--gold);
+}
 
 .foot-list {
   list-style: none;
@@ -1162,35 +1595,35 @@ footer {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: .55rem;
+  gap: 0.55rem;
 }
 
 .foot-list a {
   border: 0;
   display: inline-flex;
   align-items: baseline;
-  gap: .6rem;
+  gap: 0.6rem;
   font-size: 1rem;
 }
 
+/* il trattino resta fermo: sotto il puntatore la voce ha già la
+   sua cascata di lettere, e due movimenti insieme se la giocano
+   fra loro. Il segno fa il punto elenco e basta. */
 .foot-list a::before {
   content: "";
-  width: .55rem;
+  width: 0.55rem;
   height: 1px;
   background: var(--gold);
   flex: none;
-  transform: translateY(-.28em);
-  transition: width .25s ease;
+  transform: translateY(-0.28em);
 }
-
-.foot-list a:hover::before { width: 1.2rem; }
 
 /* newsletter */
 .news-field {
   display: flex;
   border-bottom: 1px solid var(--fg);
   max-width: 22rem;
-  margin-top: .4rem;
+  margin-top: 0.4rem;
 }
 
 .news-field input {
@@ -1200,56 +1633,68 @@ footer {
   background: transparent;
   color: var(--fg);
   font-size: 1rem;
-  padding: .7rem .1rem;
+  padding: 0.7rem 0.1rem;
 }
 
-.news-field input::placeholder { color: var(--dim); }
-.news-field input:focus { outline: none; }
-.news-field:focus-within { border-color: var(--gold); }
+.news-field input::placeholder {
+  color: var(--dim);
+}
+.news-field input:focus {
+  outline: none;
+}
+.news-field:focus-within {
+  border-color: var(--gold);
+}
 
 .news-field button {
   border: 0;
   background: transparent;
   color: var(--fg);
   font-weight: 500;
-  font-size: .72rem;
+  font-size: 0.72rem;
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
-  padding: 0 .1rem 0 1rem;
+  padding: 0 0.1rem 0 1rem;
   cursor: pointer;
-  transition: color .25s ease;
+  transition: color 0.25s ease;
 }
 
-.news-field button:hover { color: var(--gold); }
+.news-field button:hover {
+  color: var(--gold);
+}
 
 /* nota di servizio sotto il campo: minuscolo, altrimenti grida
    più dell'invito a iscriversi */
 .news-note {
-  font-size: .82rem;
+  font-size: 0.82rem;
   color: var(--dim);
-  margin: .85rem 0 0;
+  margin: 0.85rem 0 0;
 }
 
 .news-done {
   display: none;
   font-weight: 500;
-  font-size: .95rem;
+  font-size: 0.95rem;
   color: var(--gold);
-  margin: .9rem 0 0;
+  margin: 0.9rem 0 0;
 }
 
-form.sent { display: none; }
-form.sent ~ .news-done { display: block; }
+form.sent {
+  display: none;
+}
+form.sent ~ .news-done {
+  display: block;
+}
 
 .legal {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: .5rem 2rem;
+  gap: 0.5rem 2rem;
   max-width: 84rem;
   margin: 0 auto;
   padding-bottom: 1.6rem;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: var(--dim);
 }
 
@@ -1322,7 +1767,10 @@ main > .sheet:first-child:not(.page-head) {
   clip-path: inset(50%);
 }
 
-.sheet-inner { max-width: 84rem; margin: 0 auto; }
+.sheet-inner {
+  max-width: 84rem;
+  margin: 0 auto;
+}
 
 /* La misura del testo corrente, e :where() non è un vezzo: senza,
    questa regola peserebbe due classi e schiaccerebbe l'occhiello,
@@ -1331,7 +1779,10 @@ main > .sheet:first-child:not(.page-head) {
    elemento, quindi fa da fondo e qualunque classe la scavalca
    senza doverle correre dietro con selettori sempre più lunghi.
    Sulla home lo stesso lavoro lo fa .band p, che non si tocca. */
-:where(.sheet) p { max-width: 56ch; margin: 0 0 1.1rem; }
+:where(.sheet) p {
+  max-width: 56ch;
+  margin: 0 0 1.1rem;
+}
 
 /* --- la testata di pagina ---
    Non è una hero e non deve sembrarlo: niente immagine, niente
@@ -1356,18 +1807,17 @@ main > .sheet:first-child:not(.page-head) {
   font-weight: 400;
   font-size: clamp(3rem, 7.4vw, 5.6rem);
   line-height: 1;
-  letter-spacing: -.024em;
+  letter-spacing: -0.024em;
   margin: 0 0 1.4rem;
   max-width: 15ch;
   text-wrap: balance;
 }
 
-
 /* la dicitura sopra il titolo: qui il maiuscolo spaziato è al suo
    posto, fa da insegna esattamente come le testate di colonna */
 .kicker {
   font-weight: 500;
-  font-size: .72rem;
+  font-size: 0.72rem;
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--gold);
@@ -1379,13 +1829,12 @@ main > .sheet:first-child:not(.page-head) {
 .standfirst {
   font-weight: 400;
   font-size: clamp(1.22rem, 2.4vw, 1.7rem);
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
   line-height: 1.34;
   max-width: 36ch;
   margin: 0;
   text-wrap: pretty;
 }
-
 
 .head-meta {
   display: flex;
@@ -1396,17 +1845,24 @@ main > .sheet:first-child:not(.page-head) {
   border-top: 1px solid var(--rule);
 }
 
-.head-meta > div { display: flex; flex-direction: column; gap: .3rem; }
+.head-meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
 
 .head-meta dt {
   font-weight: 500;
-  font-size: .68rem;
+  font-size: 0.68rem;
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--dim);
 }
 
-.head-meta dd { margin: 0; font-size: .92rem; }
+.head-meta dd {
+  margin: 0;
+  font-size: 0.92rem;
+}
 
 /* --- nota di servizio in colonna ---
    Gemella di quelle della clip e della campagna, ma qui sta nel
@@ -1415,11 +1871,11 @@ main > .sheet:first-child:not(.page-head) {
    incorniciare. Ogni nota di questo tipo è roba da togliere prima
    del lancio: sono il promemoria di cosa è ancora finto. */
 .sheet-note {
-  font-size: .8rem;
+  font-size: 0.8rem;
   line-height: 1.6;
   color: var(--dim);
   border-left: 2px solid var(--gold);
-  padding-left: .95rem;
+  padding-left: 0.95rem;
   margin: 0 0 clamp(2.2rem, 5vw, 3.2rem);
   max-width: 54ch;
 }
@@ -1428,7 +1884,7 @@ main > .sheet:first-child:not(.page-head) {
    ma sopra le schede, alla scala di un h2 ridotto */
 .sheet h2.block-title {
   font-size: clamp(1.9rem, 3.6vw, 2.8rem);
-  letter-spacing: -.016em;
+  letter-spacing: -0.016em;
   margin: 0 0 clamp(1.8rem, 4vw, 2.6rem);
   max-width: 22ch;
 }
@@ -1494,11 +1950,13 @@ main > .sheet:first-child:not(.page-head) {
 .look-hold {
   position: relative;
   z-index: 1;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: var(--dim);
 }
 
-.look:has(img) .look-hold { display: none; }
+.look:has(img) .look-hold {
+  display: none;
+}
 
 /* --- le parole sotto la fotografia ---
    La riga a sinistra, le note a destra. Su schermo largo stanno
@@ -1524,7 +1982,9 @@ main > .sheet:first-child:not(.page-head) {
 }
 
 @media (min-width: 900px) {
-  .piece-word { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+  .piece-word {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  }
 }
 
 /* La frase. Corpo da sottotitolo e misura stretta: a corpo grande
@@ -1534,7 +1994,7 @@ main > .sheet:first-child:not(.page-head) {
 .piece-say {
   font-weight: 400;
   font-size: clamp(1.45rem, 3vw, 2.2rem);
-  letter-spacing: -.012em;
+  letter-spacing: -0.012em;
   line-height: 1.24;
   max-width: 26ch;
   margin: 0;
@@ -1550,30 +2010,35 @@ main > .sheet:first-child:not(.page-head) {
   margin-bottom: clamp(1.3rem, 2.4vw, 1.8rem);
 }
 
-
 /* Le note di produzione. Righe separate da un filetto e non
    riquadrate: un riquadro le farebbe sembrare un modulo da
    compilare, mentre queste sono voci di un cartiglio. La
    dicitura ha una colonna sua e fissa, così i valori si
    incolonnano e l'occhio scende dritto. */
-.piece-tech { margin: 0; }
+.piece-tech {
+  margin: 0;
+}
 
 .piece-tech > div {
   display: grid;
-  gap: .3rem 1.5rem;
-  padding: .75rem 0;
+  gap: 0.3rem 1.5rem;
+  padding: 0.75rem 0;
   border-top: 1px solid var(--rule);
 }
 
 @media (min-width: 700px) {
-  .piece-tech > div { grid-template-columns: 9rem minmax(0, 1fr); }
+  .piece-tech > div {
+    grid-template-columns: 9rem minmax(0, 1fr);
+  }
 }
 
-.piece-tech > div:last-child { border-bottom: 1px solid var(--rule); }
+.piece-tech > div:last-child {
+  border-bottom: 1px solid var(--rule);
+}
 
 .piece-tech dt {
   font-weight: 500;
-  font-size: .68rem;
+  font-size: 0.68rem;
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--dim);
@@ -1584,7 +2049,7 @@ main > .sheet:first-child:not(.page-head) {
 
 .piece-tech dd {
   margin: 0;
-  font-size: .92rem;
+  font-size: 0.92rem;
   line-height: 1.5;
 }
 
@@ -1597,23 +2062,25 @@ main > .sheet:first-child:not(.page-head) {
    .plate-figure resta però condivisa con l'apertura del giornale,
    che di una fotografia in attesa ha bisogno uguale: sta nella
    sezione SEZIONI, insieme al ritratto della home. */
-.plate-figure { margin-bottom: 1.15rem; }
+.plate-figure {
+  margin-bottom: 1.15rem;
+}
 
 .plate-num {
   font-weight: 500;
-  font-size: .68rem;
+  font-size: 0.68rem;
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--gold);
-  margin: 0 0 .45rem;
+  margin: 0 0 0.45rem;
 }
 
 .plate h3 {
   font-weight: 400;
   font-size: clamp(1.5rem, 2.4vw, 1.9rem);
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
   line-height: 1.14;
-  margin: 0 0 .6rem;
+  margin: 0 0 0.6rem;
 }
 
 /* ------------------------------------------------------------
@@ -1632,23 +2099,30 @@ main > .sheet:first-child:not(.page-head) {
 }
 
 @media (min-width: 900px) {
-  .post-lead { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+  .post-lead {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  }
 }
 
 /* la figura dell'apertura è orizzontale, non 4:5: un pezzo del
    giornale si apre con una fotografia distesa */
-.post-lead .plate-figure { aspect-ratio: 3 / 2; margin: 0; }
+.post-lead .plate-figure {
+  aspect-ratio: 3 / 2;
+  margin: 0;
+}
 
 .post-date {
   font-weight: 500;
-  font-size: .68rem;
+  font-size: 0.68rem;
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--dim);
-  margin: 0 0 .8rem;
+  margin: 0 0 0.8rem;
 }
 
-.post-date .tag { color: var(--gold); }
+.post-date .tag {
+  color: var(--gold);
+}
 
 .post-lead h2 {
   font-size: clamp(2rem, 4vw, 3.1rem);
@@ -1656,33 +2130,41 @@ main > .sheet:first-child:not(.page-head) {
   max-width: 18ch;
 }
 
-.posts { list-style: none; margin: 0; padding: 0; }
+.posts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
 .post-row {
   display: grid;
-  gap: .4rem clamp(1.6rem, 4vw, 3rem);
+  gap: 0.4rem clamp(1.6rem, 4vw, 3rem);
   padding: clamp(1.5rem, 3vw, 2.1rem) 0;
   border-top: 1px solid var(--rule);
 }
 
 @media (min-width: 900px) {
-  .post-row { grid-template-columns: 11rem minmax(0, 1fr); }
+  .post-row {
+    grid-template-columns: 11rem minmax(0, 1fr);
+  }
 }
 
-.post-row:last-child { border-bottom: 1px solid var(--rule); }
+.post-row:last-child {
+  border-bottom: 1px solid var(--rule);
+}
 
 .post-row h3 {
   font-weight: 400;
   font-size: clamp(1.35rem, 2.2vw, 1.75rem);
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
   line-height: 1.16;
-  margin: 0 0 .5rem;
+  margin: 0 0 0.5rem;
   max-width: 26ch;
-  transition: color .25s ease;
+  transition: color 0.25s ease;
 }
 
 .post-row p {
-  font-size: .95rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: var(--dim);
   margin: 0;
@@ -1701,9 +2183,13 @@ a.post-link {
 }
 
 a.post-link:hover h3,
-a.post-link:hover h2 { color: var(--gold); }
+a.post-link:hover h2 {
+  color: var(--gold);
+}
 
-.post-row .post-date { margin: 0; }
+.post-row .post-date {
+  margin: 0;
+}
 
 /* ------------------------------------------------------------
    STORE — lo stato del drop e i capi
@@ -1727,14 +2213,14 @@ a.post-link:hover h2 { color: var(--gold); }
 .drop-state {
   font-weight: 400;
   font-size: clamp(1.25rem, 2.4vw, 1.65rem);
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
   line-height: 1.2;
   margin: 0;
 }
 
 .drop-when {
   font-weight: 500;
-  font-size: .74rem;
+  font-size: 0.74rem;
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--dim);
@@ -1756,7 +2242,7 @@ a.post-link:hover h2 { color: var(--gold); }
 .plate .good-price {
   font-weight: 400;
   font-size: 1.5rem;
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
   font-variant-numeric: tabular-nums;
   line-height: 1;
   color: var(--fg);
@@ -1765,15 +2251,15 @@ a.post-link:hover h2 { color: var(--gold); }
 }
 
 .plate .good-price .vat {
-  font-size: .74rem;
+  font-size: 0.74rem;
   color: var(--dim);
-  margin-left: .55rem;
+  margin-left: 0.55rem;
 }
 
 .good-sizes {
   display: flex;
   flex-wrap: wrap;
-  gap: .4rem;
+  gap: 0.4rem;
   list-style: none;
   margin: 0 0 1.2rem;
   padding: 0;
@@ -1781,10 +2267,10 @@ a.post-link:hover h2 { color: var(--gold); }
 
 .good-sizes li {
   font-weight: 500;
-  font-size: .72rem;
+  font-size: 0.72rem;
   letter-spacing: var(--track-caps);
   border: 1px solid var(--rule);
-  padding: .34rem .62rem;
+  padding: 0.34rem 0.62rem;
   color: var(--dim);
 }
 
@@ -1800,16 +2286,21 @@ button.cta {
 
 button.cta[disabled] {
   cursor: not-allowed;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 button.cta[disabled]:hover {
-  border-color: rgba(21, 22, 26, .28);
+  border-color: rgba(21, 22, 26, 0.28);
   background: transparent;
 }
 
+/* e nemmeno la freccia si scrive: resta la punta, come a riposo */
+button.cta[disabled]:hover::before {
+  width: 0;
+}
+
 [data-tone="dark"] button.cta[disabled]:hover {
-  border-color: rgba(247, 246, 243, .42);
+  border-color: rgba(247, 246, 243, 0.42);
 }
 
 /* le tre colonne di servizio in fondo allo store: stessa lingua
@@ -1822,7 +2313,7 @@ button.cta[disabled]:hover {
 }
 
 .info-col p {
-  font-size: .95rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: var(--dim);
   margin: 0;
@@ -1896,7 +2387,9 @@ button.cta[disabled]:hover {
    altro. Con display: contents i due strati vedono la vetrina
    intera, che è la scatola giusta. Senza sipario l'articolo resta
    l'articolo. */
-.curtain article:has(> .look) { display: contents; }
+.curtain article:has(> .look) {
+  display: contents;
+}
 
 .curtain .look {
   position: sticky;
@@ -1929,7 +2422,7 @@ button.cta[disabled]:hover {
 .curtain .look,
 .curtain .piece-word,
 .curtain footer {
-  box-shadow: 0 -30px 60px -26px rgba(11, 11, 13, .55);
+  box-shadow: 0 -30px 60px -26px rgba(11, 11, 13, 0.55);
 }
 
 /* senza questo il piede finisce sotto le sezioni agganciate */
@@ -1960,7 +2453,9 @@ button.cta[disabled]:hover {
   align-content: space-between;
 }
 
-.curtain body:has(.look) footer > * { width: 100%; }
+.curtain body:has(.look) footer > * {
+  width: 100%;
+}
 
 /* ============================================================
    CANTIERE — provvisorio, da togliere tutto insieme
@@ -1982,13 +2477,17 @@ button.cta[disabled]:hover {
    Per smontarlo: via questa sezione, via il blocco .hold da
    index.html, via le due guardie nei due moduli. Non serve altro.
    ============================================================ */
-.hold { display: none; }
+.hold {
+  display: none;
+}
 
 @media (max-width: 899px) {
   .skip,
   .nav,
   main,
-  footer { display: none; }
+  footer {
+    display: none;
+  }
 
   .hold {
     display: flex;
@@ -1998,18 +2497,20 @@ button.cta[disabled]:hover {
     min-height: 100vh;
     min-height: 100svh;
     padding: clamp(2.4rem, 9vw, 4rem) var(--pad);
-    background: #0B0B0D;
-    color: #F7F6F3;
+    background: #0b0b0d;
+    color: #f7f6f3;
   }
 
   /* il marchio a tutta larghezza è il primo gesto del sito: il
      cartello non è una pagina d'errore e comincia con quello */
-  .hold .bigmark { margin-bottom: clamp(.6rem, 2vh, 1.2rem); }
+  .hold .bigmark {
+    margin-bottom: clamp(0.6rem, 2vh, 1.2rem);
+  }
 
   .hold-line {
     font-weight: 400;
     font-size: clamp(1.7rem, 8vw, 2.4rem);
-    letter-spacing: -.014em;
+    letter-spacing: -0.014em;
     line-height: 1.12;
     margin: 0;
   }
@@ -2021,33 +2522,79 @@ button.cta[disabled]:hover {
   }
 
   .hold-note {
-    font-size: .95rem;
+    font-size: 0.95rem;
     line-height: 1.6;
-    color: rgba(247, 246, 243, .62);
+    color: rgba(247, 246, 243, 0.62);
     max-width: 34ch;
     margin: 0;
   }
 
   .hold-drop {
     font-weight: 500;
-    font-size: .72rem;
+    font-size: 0.72rem;
     letter-spacing: var(--track-caps);
     text-transform: uppercase;
-    color: rgba(247, 246, 243, .42);
-    margin: clamp(.4rem, 2vh, 1rem) 0 0;
+    color: rgba(247, 246, 243, 0.42);
+    margin: clamp(0.4rem, 2vh, 1rem) 0 0;
   }
 }
 
 /* ============================================================
    RIVELAZIONI
    ============================================================ */
-.rise { opacity: 0; transition: opacity .9s cubic-bezier(.16, 1, .3, 1); }
-.rise.in { opacity: 1; }
+.rise {
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.rise.in {
+  opacity: 1;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .rise { opacity: 1; transition: none; }
-  .nav, .nav-mark, .nav-links a.store { transition: none; }
-  .cta, .cta::after, .foot-list a::before { transition: none; }
-  .hero.has-video .hero-media video { transform: scale(1.02); transition: none; }
+  html {
+    scroll-behavior: auto;
+  }
+  .rise {
+    opacity: 1;
+    transition: none;
+  }
+  .nav,
+  .nav-mark,
+  .nav-links a.store {
+    transition: none;
+  }
+  .cta,
+  .cta::before {
+    transition: none;
+  }
+  /* il rullo si spegne del tutto: senza transizione le due copie si
+     scambierebbero di scatto, che è il contrario di quello che
+     chiede chi ha chiesto meno movimento. Resta ferma la prima, e
+     la seconda resta dov'è, fuori dal rigo. */
+  .lt-a,
+  .lt::after {
+    transition: none;
+  }
+  :hover > .lts .lt-a,
+  :focus-visible > .lts .lt-a {
+    transform: none;
+  }
+  :hover > .lts .lt::after,
+  :focus-visible > .lts .lt::after {
+    transform: translateY(-100%);
+  }
+  /* le tre V restano, il respiro no: ferme e tutte alla stessa
+     intensità dicono la direzione lo stesso */
+  .scroll-cue {
+    transition: none;
+  }
+  .cue-v {
+    animation: none;
+    opacity: 0.8;
+    transform: none;
+  }
+  .hero.has-video .hero-media video {
+    transform: scale(1.02);
+    transition: none;
+  }
 }
