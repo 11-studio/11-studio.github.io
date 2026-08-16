@@ -1,0 +1,8 @@
+Qui vanno le fotografie.
+
+  cristiano.jpg   ritratto in laboratorio, taglio 4:5
+  campagna.jpg    fondo della terza sezione, orizzontale 16:9 o piu
+                  largo, toni freddi e drammatici
+  og.jpg          anteprima per i link condivisi, 1200x630
+
+Istruzioni nel README alla radice.

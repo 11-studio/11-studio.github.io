@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Store — Ferragatti</title>
+    <meta
+      name="description"
+      content="Il Drop 01 apre il 18 settembre 2026: tre pezzi in seta, una serie sola, nessun riassortimento."
+    />
+    <meta name="theme-color" content="#0B0B0D" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Store — Ferragatti" />
+    <meta
+      property="og:description"
+      content="Il Drop 01 apre il 18 settembre 2026. Tre pezzi, una serie sola."
+    />
+    <!-- <meta property="og:image" content="https://ferragatti.it/assets/img/og-store.jpg"> -->
+
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+
+  <body>
+    <a class="skip" href="#capi">Vai al contenuto</a>
+
+    <div class="hold">
+      <svg
+        class="bigmark"
+        viewBox="0 0 1000 104"
+        role="img"
+        aria-label="Ferragatti"
+      >
+        <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
+          FERRAGATTI
+        </text>
+      </svg>
+
+      <p class="hold-line">Mobile in <em>costruzione</em>.</p>
+    </div>
+
+    <header class="nav" id="nav" data-tone="dark">
+      <a class="nav-mark" href="../">FERRAGATTI</a>
+      <nav class="nav-links" aria-label="Principale">
+        <a href="../#cristiano">Chi siamo</a>
+        <a href="../#progetto">Progetto</a>
+        <a href="../#terza">Collezione</a>
+        <a class="store" href="./" aria-current="page">Visita lo store</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ==========================================================
+       I CAPI
+
+       Nessuna testata: lo store si apre sui capi, che sono la
+       ragione per cui uno ci arriva. Chi è qui sa già dov'è — ce
+       l'ha scritto nella barra, nella scheda del browser e
+       nell'indirizzo — e una schermata di presentazione prima
+       della merce è solo una schermata da scorrere.
+
+       Il titolo della pagina c'è, ma non si vede: sta in un h1
+       fuori vista, per chi naviga per titoli con un lettore di
+       schermo. Una pagina senza h1 è una pagina senza nome per
+       chi l'insegna non la vede.
+
+       Il drop non è aperto, e questo store non finge un carrello
+       che non esiste: gli inviti sono <button> con l'attributo
+       disabled — disattivati per davvero, quindi anche per chi
+       naviga da tastiera o con un lettore di schermo, non solo
+       per chi li guarda. Ogni bottone dice da sé quando apre,
+       quindi lo stato è già sulla merce e non ha bisogno di una
+       fascia che lo annunci prima.
+
+       All'apertura si sostituisce ogni <button disabled> con il
+       collegamento vero al checkout (Shopify o altro) e si toglie
+       la fascia dello stato più in basso.
+       ========================================================== -->
+      <section class="sheet" id="capi" data-tone="light">
+        <div class="sheet-inner rise">
+          <h1 class="vh">Store — Drop 01</h1>
+
+          <div class="goods">
+            <article class="plate">
+              <div class="plate-figure">
+                <span>Scatto prodotto — camicia «Bottoni Grandi»</span>
+              </div>
+
+              <p class="plate-num">01</p>
+              <h3>Camicia «Bottoni Grandi»</h3>
+              <p class="good-price">340 € <span class="vat">IVA inclusa</span></p>
+
+              <ul class="good-sizes">
+                <li>46</li>
+                <li>48</li>
+                <li>50</li>
+                <li>52</li>
+              </ul>
+
+              <button class="cta" type="button" disabled>
+                Apre il 18 settembre
+              </button>
+            </article>
+
+            <article class="plate">
+              <div class="plate-figure">
+                <span>Scatto prodotto — camicia «Pineta»</span>
+              </div>
+
+              <p class="plate-num">02</p>
+              <h3>Camicia «Pineta»</h3>
+              <p class="good-price">340 € <span class="vat">IVA inclusa</span></p>
+
+              <ul class="good-sizes">
+                <li>46</li>
+                <li>48</li>
+                <li>50</li>
+                <li>52</li>
+              </ul>
+
+              <button class="cta" type="button" disabled>
+                Apre il 18 settembre
+              </button>
+            </article>
+
+            <article class="plate">
+              <div class="plate-figure">
+                <span>Scatto prodotto — foulard «Adriatico»</span>
+              </div>
+
+              <p class="plate-num">03</p>
+              <h3>Foulard «Adriatico»</h3>
+              <p class="good-price">160 € <span class="vat">IVA inclusa</span></p>
+
+              <ul class="good-sizes">
+                <li>Taglia unica</li>
+              </ul>
+
+              <button class="cta" type="button" disabled>
+                Apre il 18 settembre
+              </button>
+            </article>
+          </div>
+
+          <!-- Lo stato del drop sta qui, dopo la merce, e non prima:
+           chi arriva vede prima cosa c'è e poi quando lo può
+           avere. Su ogni bottone la data è già scritta, quindi
+           questa fascia non informa — conclude, e porta al campo
+           che è l'unica cosa che si può fare davvero.
+
+           Il modulo non è cablato per nome: site.js gestisce ogni
+           form.news-form, quindi non ha richiesto di toccare
+           nulla, e si collegherà a un servizio vero in un punto
+           solo per tutti e due. -->
+          <div class="sheet-part">
+            <div class="drop-strip">
+              <p class="drop-state">Il Drop 01 <em>non è ancora aperto</em>.</p>
+              <p class="drop-when">Apre il 18 settembre 2026, ore 12</p>
+            </div>
+
+            <h2 class="block-title">Avvisami quando apre</h2>
+            <p class="big">
+              Una email il giorno dell'apertura. Nessun'altra, e ci si
+              cancella con un clic.
+            </p>
+
+            <form class="news-form" id="shop-news" novalidate>
+              <span class="news-field">
+                <label for="shop-email" class="skip">Indirizzo email</label>
+                <input
+                  id="shop-email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="indirizzo email"
+                  required
+                />
+                <button type="submit">Iscrivimi</button>
+              </span>
+              <p class="news-note small">
+                Anteprima — l'invio non è ancora collegato.
+              </p>
+            </form>
+            <p class="news-done">Grazie. Vi scriviamo il 18 settembre.</p>
+          </div>
+
+          <div class="sheet-part">
+            <p class="sheet-note">
+              Nota di servizio — capi, taglie, prezzi e condizioni sono
+              segnaposto plausibili, non un listino approvato. Vanno
+              confermati prima di mostrare la pagina fuori dall'atelier.
+            </p>
+
+            <div class="info-cols">
+              <div class="info-col">
+                <h3>La serie</h3>
+                <p>
+                  Numerata e non riassortita. Quando il drop chiude, chiude:
+                  non c'è una seconda serie.
+                </p>
+              </div>
+
+              <div class="info-col">
+                <h3>Spedizioni</h3>
+                <p>
+                  Italia in due giorni lavorativi, Europa in quattro. Sopra i
+                  200 € la spedizione è nostra.
+                </p>
+              </div>
+
+              <div class="info-col">
+                <h3>Resi</h3>
+                <p>
+                  Quattordici giorni per cambiare idea, capo non indossato e
+                  cartellino attaccato. Il reso lo paghiamo noi.
+                </p>
+              </div>
+
+              <div class="info-col">
+                <h3>Cura della seta</h3>
+                <p>
+                  Lavaggio a mano in acqua fredda, niente ammorbidente, stiro
+                  al rovescio. Ogni capo esce con le sue istruzioni.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contatti" data-tone="dark">
+      <div class="foot-grid rise">
+        <div class="foot-col">
+          <h3>Contatti</h3>
+          <p>
+            <a href="mailto:atelier@ferragatti.it">atelier@ferragatti.it</a>
+          </p>
+          <p>Viene dal mare<br />città di PESCARA, Italia</p>
+          <p class="dimtext">Risposta entro un giorno lavorativo.</p>
+        </div>
+
+        <div class="foot-col">
+          <h3>Pagine</h3>
+          <ul class="foot-list">
+            <li><a href="../collezione/">Collezione</a></li>
+            <li><a href="../blog/">Blog</a></li>
+            <li><a href="../shop/">Store</a></li>
+          </ul>
+        </div>
+
+        <div class="foot-col">
+          <h3>Riferimenti</h3>
+          <ul class="foot-list">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Cartella stampa</a></li>
+            <li><a href="#">Materiali e provenienze</a></li>
+            <li><a href="#">Spedizioni e resi</a></li>
+            <li><a href="#">Cura della seta</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="legal">
+        <span>© 2026 Ferragatti — Tutti i diritti riservati</span>
+        <span>P. IVA da inserire · Privacy · Cookie</span>
+      </p>
+
+      <div class="foot-mark">
+        <svg
+          class="bigmark"
+          viewBox="0 0 1000 104"
+          role="img"
+          aria-label="Ferragatti"
+        >
+          <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
+            FERRAGATTI
+          </text>
+        </svg>
+      </div>
+    </footer>
+
+    <script src="../assets/js/site.js"></script>
+  </body>
+</html>
