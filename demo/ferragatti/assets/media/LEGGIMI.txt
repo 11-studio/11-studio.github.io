@@ -1,0 +1,7 @@
+Qui va il video di apertura:
+
+  hero.mp4    (obbligatorio)
+  hero.webm   (facoltativo, piu leggero)
+
+Non serve toccare il codice: il video parte da solo.
+Specifiche e comandi ffmpeg nel README alla radice.

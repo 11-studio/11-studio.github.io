@@ -1,0 +1,25 @@
+Caratteri self-hostati. Nessuna chiamata a CDN esterni.
+
+  Archivo            casa      variabile 100-900
+                     Omnibus-Type                      — SIL Open Font License 1.1
+
+  EB Garamond        voce      variabile 400-800, romano e corsivo
+                     Georg Duffner e Octavio Pardo     — SIL Open Font License 1.1
+
+Entrambi OFL: si possono usare, incorporare e ridistribuire anche in
+un progetto commerciale. Il testo completo della licenza si trova su
+https://openfontlicense.org
+
+Archivo porta il marchio, la navigazione, il testo corrente e le
+diciture del cartamodello. EB Garamond parla solo dove parla il
+marchio in prima persona: titoli, firma, cifre.
+
+Nessun monospaziato, e non è una dimenticanza: un monospaziato serve
+a incolonnare codice. Le diciture in maiuscolo sono Archivo spaziato.
+
+Sottoinsieme: solo latino di base (U+0000-00FF). Se servono greco,
+cirillico o simboli matematici vanno riscaricati i blocchi relativi.
+
+Il corpo del marchio dipende dalle metriche di Archivo (avanzamenti,
+spalle laterali, altezza delle maiuscole): se si sostituisce il
+carattere vanno rifatti i conti in style.css, sezione MARCHIO.

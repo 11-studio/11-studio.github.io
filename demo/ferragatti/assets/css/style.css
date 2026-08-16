@@ -1,0 +1,2030 @@
+/* ============================================================
+   FERRAGATTI — foglio di stile unico
+   ------------------------------------------------------------
+   Tema unico e voluto: è un sito di marca, non un documento,
+   quindi non segue il tema chiaro/scuro del sistema operativo.
+   Ogni colore è dichiarato esplicitamente.
+
+   Ogni sezione porta i propri token (--bg, --fg, --dim, --gold,
+   --rule) e dichiara il proprio tono con data-tone; l'intestazione
+   legge il tono della sezione che le passa sotto e lo eredita.
+   ============================================================ */
+
+/* ============================================================
+   CARATTERI — self-hostati, nessun CDN
+   ------------------------------------------------------------
+   Due caratteri, due mestieri, nessun terzo.
+
+   Archivo è un grottesco di impianto americano: asse dritto,
+   terminali orizzontali, nessun vezzo. Regge il marchio in
+   maiuscolo, la navigazione e il testo corrente senza cambiare
+   registro. È il carattere della casa.
+
+   EB Garamond serve solo dove il sito parla in prima persona:
+   i titoli, la firma, le cifre. È un garaldo del Cinquecento —
+   contrasto basso, grazie piene — quindi porta autorevolezza
+   senza la lucidità da rivista patinata di un bodoniano.
+
+   Nessun monospaziato: le diciture in maiuscolo (etichette,
+   cartiglio, quote del cartamodello) sono Archivo spaziato.
+   Un monospaziato qui non avrebbe alcuna ragione tipografica —
+   serve a incolonnare codice, e qui non c'è codice da mostrare.
+
+   Entrambi variabili: un file copre tutta la scala dei pesi.
+   Licenze in assets/fonts/.
+   ============================================================ */
+@font-face {
+  font-family: "Archivo";
+  src: url("../fonts/archivo-100900-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("../fonts/eb-garamond-400800-normal.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("../fonts/eb-garamond-400800-italic.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --sans:  "Archivo", "Helvetica Neue", system-ui, -apple-system, Arial, sans-serif;
+  --serif: "EB Garamond", "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+
+  --pad: clamp(1.4rem, 5vw, 5rem);
+  --gold-lux: #C9A227;
+
+  /* Ingombro della barra fissa. Sulla home non serve — l'apertura
+     ci passa sotto apposta — ma le pagine interne cominciano con
+     del testo, e senza questa misura il titolo nascerebbe coperto.
+     È tarata sull'elemento più alto della barra, cioè il pulsante
+     store: .78rem di riga, un rem di imbottitura, il contorno. */
+  --nav-h: 4.4rem;
+
+  color-scheme: dark;
+}
+
+/* --- i due toni ---
+   Oltre ai colori del testo, ogni tono porta i propri token di
+   vetro: l'intestazione è l'unico elemento traslucido del sito e
+   deve capovolgersi per intero — fondo, taglio, luce e ombra —
+   quando le passa sotto una sezione chiara. Il testo resta
+   sempre --fg, cioè bianco sul buio e nero sul chiaro.
+
+   Attenzione a --glass-edge e --glass-sheen: sono due cose
+   diverse e nel tono chiaro vanno in direzioni opposte. La luce
+   (--sheen) resta bianca in tutti e due i toni, perché la luce è
+   luce; il taglio (--edge) è un contorno e deve staccare, quindi
+   sul chiaro si scurisce, altrimenti bianco su bianco sparisce
+   e la barra resta senza fondo. */
+[data-tone="dark"] {
+  --bg:   #0B0B0D;
+  --fg:   #F2F1EE;
+  --dim:  #8C8A84;
+  --gold: #C9A227;
+  --rule: rgba(242, 241, 238, .16);
+  --panel: rgba(242, 241, 238, .045);
+
+  --glass:        rgba(16, 16, 20, .38);
+  --glass-edge:   rgba(242, 241, 238, .22);
+  --glass-sheen:  rgba(242, 241, 238, .16);
+  --glass-shade:  rgba(0, 0, 0, .42);
+  --glass-chip:   rgba(242, 241, 238, .10);
+  --glass-halo:   0 0 .8px rgba(0, 0, 0, .55), 0 1px 3px rgba(0, 0, 0, .35);
+  --glass-solid:  rgba(11, 11, 13, .93);
+}
+
+[data-tone="light"] {
+  --bg:   #F4F4F2;
+  --fg:   #15161A;
+  --dim:  #6C7076;
+  --gold: #8A6A12;   /* oro scurito: su fondo chiaro serve 5.6:1 */
+  --rule: rgba(21, 22, 26, .15);
+  --panel: rgba(21, 22, 26, .035);
+
+  --glass:        rgba(248, 248, 246, .46);
+  --glass-edge:   rgba(21, 22, 26, .16);
+  --glass-sheen:  rgba(255, 255, 255, .55);
+  --glass-shade:  rgba(21, 22, 26, .16);
+  --glass-chip:   rgba(21, 22, 26, .05);
+  /* sul chiaro l'alone sta solo sotto la lettera: un bagliore
+     centrato le mangerebbe i bordi e il maiuscolo piccolo, che
+     è sottile, verrebbe su grigio invece che nero */
+  --glass-halo:   0 1px 2px rgba(255, 255, 255, .60);
+  --glass-solid:  rgba(244, 244, 242, .95);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+/* Archivo ha un'altezza dell'occhio medio generosa (0,53 em): a
+   17 px sta comoda anche in interlinea larga, e il testo lungo
+   della sezione 1 si legge senza doverlo ingrandire. */
+body {
+  margin: 0;
+  background: #0B0B0D;
+  color: #F2F1EE;
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+
+::selection { background: var(--gold-lux); color: #0B0B0D; }
+
+:focus-visible { outline: 2px solid var(--gold-lux); outline-offset: 3px; }
+
+/* ------------------------------------------------------------
+   LA SCALA DELLE DICITURE
+   Il maiuscolo spaziato si usa solo dove una dicitura fa da
+   insegna: navigazione, pulsanti, testate di colonna, cartiglio
+   del cartamodello. Tutto il resto — note, didascalie, ruoli,
+   legali — sta in tondo minuscolo, che è come si scrive in un
+   documento vero. Maiuscolo dappertutto è il tic da modello.
+
+   insegna   Archivo 500-600 · .70-.80rem · +.09/.14em · caps
+   corrente  Archivo 400     · .82-1rem   · 0          · tondo
+   ------------------------------------------------------------ */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 99;
+  background: #F2F1EE;
+  color: #0B0B0D;
+  padding: .7rem 1.1rem;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: .85rem;
+}
+
+.skip:focus { left: .5rem; top: .5rem; }
+
+section { background: var(--bg); color: var(--fg); }
+
+/* ============================================================
+   MARCHIO A TUTTA LARGHEZZA
+   ------------------------------------------------------------
+   Un solo componente: apre il sito e lo chiude, identico.
+   textLength forza l'ingombro, così la parola tocca i due
+   margini a qualsiasi larghezza.
+
+   Il corpo non è scelto a occhio, è la conseguenza della
+   spaziatura voluta, e i conti si fanno sull'inchiostro, non
+   sugli avanzamenti.
+
+   La F e la I portano una spalla laterale di 0,081 em ciascuna:
+   se si fa arrivare l'avanzamento al margine, l'inchiostro resta
+   dentro di quella quantità e il marchio risulta rientrato
+   rispetto alla riga sotto — a questa scala sono dieci pixel e
+   si vedono. Quindi il testo parte a −10,26 (la spalla della F
+   riportata fuori) e l'ingombro è 1020,48, cioè le mille unità
+   piene più le due spalle: così le aste della F e della I
+   toccano davvero i due margini.
+
+   In Archivo 500 le dieci lettere avanzano di 6,412 em, e i
+   nove intervalli portano il resto:
+
+       corpo = 1000 / (6,412 + 9 × spaziatura − 0,1625)
+
+   Con 0,1875 em — il respiro giusto per un'insegna in maiuscolo,
+   larga abbastanza da leggersi come marchio e non così larga da
+   sfilacciarsi — il corpo cade a 126.
+
+   L'altezza delle maiuscole di Archivo è 0,686 em, cioè 86,4
+   unità: il riquadro è alto 98 e la base sta a 92, così sopra e
+   sotto restano sei unità uguali e il blocco non porta con sé
+   spazio morto da compensare in CSS. Un maiuscolo di grottesco
+   non ha discendenti né grazie sporgenti, ed è per questo che
+   può stare in un riquadro cucito addosso alle lettere.
+   ============================================================ */
+.bigmark {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.bigmark text {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 126px;
+  fill: currentColor;
+}
+
+/* ============================================================
+   INTESTAZIONE — vetro liquido, invisibile finché non si scorre
+   ------------------------------------------------------------
+   La forma resta quella di prima: una fascia rettangolare da
+   bordo a bordo, agganciata in cima. A cambiare è la materia —
+   non è più un fondo tinto e sfocato, è una lastra di vetro, e
+   il vetro è fatto di tre strati che vanno tenuti distinti,
+   perché ognuno risponde a un fenomeno diverso:
+
+     1. rifrazione   backdrop-filter: sfoca, satura e schiarisce
+                     ciò che sta dietro. La saturazione conta
+                     quanto la sfocatura — senza, il vetro
+                     ingrigisce e sembra plastica smerigliata.
+     2. corpo        un velo di colore (--glass) che dà massa
+                     alla lastra e regge il contrasto del testo.
+     3. spessore     una luce che scende dall'alto e un filo
+                     chiaro sul taglio in basso: è il bordo del
+                     vetro che raccoglie la luce, e su una fascia
+                     tagliata da bordo a bordo il solo bordo che
+                     si vede è quello inferiore.
+
+   Nessun riflesso che insegue il puntatore: la lastra è piana e
+   ferma, quindi la luce che porta è ferma anche lei.
+
+   Il testo non ha bisogno di un tema proprio: eredita --fg, che
+   è avorio sul tono scuro e quasi-nero su quello chiaro, e porta
+   un alone (--glass-halo) del colore opposto. Su un vetro che
+   lascia passare il fondo l'alone non è un vezzo: è quello che
+   tiene la lettera leggibile quando sotto passa una zona di
+   luminanza sbagliata.
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .9rem var(--pad);
+  isolation: isolate;
+
+  background: var(--glass);
+  backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+  -webkit-backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+
+  /* filo del taglio inferiore + ombra portata sulla pagina */
+  box-shadow:
+    inset 0 -1px 0 var(--glass-edge),
+    0 10px 30px -18px var(--glass-shade);
+
+  color: var(--fg);
+  text-shadow: var(--glass-halo);
+
+  transition: background .6s ease,
+              backdrop-filter .6s ease,
+              -webkit-backdrop-filter .6s ease,
+              color .6s ease,
+              box-shadow .6s ease,
+              text-shadow .6s ease;
+}
+
+/* SULL'APERTURA la lastra si toglie, la barra resta.
+   Il vetro serve dove sotto scorre la pagina: separa due cose che
+   si somigliano. Sopra il clip non c'è niente da separare, e una
+   striscia opaca in cima taglierebbe l'immagine a tutto schermo
+   che è il primo gesto del sito. Restano le parole, appoggiate al
+   fondo come la riga e il marchio in basso; a tenerle leggibili
+   sopra un video che si muove è l'alone, non il velo. */
+.nav.bare {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  text-shadow: var(--glass-halo);
+}
+
+.nav.bare::before { opacity: 0; }
+
+/* la luce fissa della lastra: sta sotto al contenuto (z-index
+   negativo dentro l'isolation della barra) e non intercetta il
+   mouse. Scende dall'alto e si riaccende appena sopra il taglio
+   inferiore, dove il vetro ha spessore. */
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    var(--glass-sheen) 0%,
+    transparent 42%,
+    transparent 78%,
+    color-mix(in srgb, var(--glass-sheen) 45%, transparent) 100%
+  );
+  opacity: .55;
+  transition: opacity .6s ease;
+}
+
+/* dove il vetro non c'è (Firefox senza backdrop-filter attivo,
+   browser vecchi) la barra torna piena: meglio opaca che
+   illeggibile. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav { background: var(--glass-solid); text-shadow: none; }
+  .nav::before { opacity: .25; }
+}
+
+/* il marchio piccolo tiene la stessa spaziatura di quello grande,
+   arrotondata: è la stessa insegna vista da lontano */
+.nav-mark {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .82rem;
+  letter-spacing: .19em;
+  text-indent: .19em;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity .5s ease, visibility 0s;
+}
+
+/* Sull'apertura il marchio non si scrive. La parola sta già lì
+   sotto a tutta larghezza, ed è il primo gesto del sito: ripeterla
+   in piccolo sopra la sua stessa insegna toglie forza a entrambe.
+   Rientra col vetro, quando quella grande è passata e la barra
+   torna a essere l'unico posto in cui il nome è scritto.
+
+   Va via con l'opacità e non con display: il posto resta occupato,
+   così i collegamenti a destra non slittano quando rientra. La
+   visibilità stacca a dissolvenza finita — è quella a toglierlo dal
+   giro del tab e ai lettori di schermo, che altrimenti
+   annuncerebbero un collegamento che non si vede. */
+.nav.bare .nav-mark {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease, visibility 0s linear .5s;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(.9rem, 2.6vw, 2rem);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: .78rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.nav-links a {
+  color: inherit;
+  text-decoration: none;
+  opacity: .78;
+  transition: opacity .25s ease, color .25s ease;
+}
+
+.nav-links a:hover { opacity: 1; color: var(--gold); }
+
+/* La pagina in cui si è già si segna con l'oro, non con un fondo
+   né con un sottolineato: la barra è squadrata e vuota, e un
+   riquadro pieno dentro le stonerebbe.
+
+   Oggi la porta il solo pulsante store, che è l'unica voce del
+   menu a essere anche una pagina — le altre tre sono ancore della
+   home, e un'ancora non è mai «la pagina in cui si è». La regola
+   resta scritta per la voce, non per il pulsante, così vale da
+   sola se un domani il menu tornasse a puntare a delle pagine. */
+.nav-links a[aria-current="page"] { opacity: 1; color: var(--gold); }
+
+/* il pulsante resta il rettangolo di prima — la barra è squadrata
+   e un pulsante a pillola dentro le stonerebbe — ma prende un velo
+   di vetro suo, un po' più denso di quello della lastra */
+.nav-links a.store {
+  opacity: 1;
+  border: 1px solid var(--glass-edge);
+  padding: .5rem .95rem;
+  background: var(--glass-chip);
+  transition: background .25s ease,
+              border-color .25s ease,
+              color .25s ease,
+              opacity .5s ease,
+              visibility 0s;
+}
+
+.nav-links a.store:hover {
+  color: var(--gold);
+  border-color: color-mix(in srgb, var(--gold) 60%, transparent);
+  background: color-mix(in srgb, var(--gold) 12%, var(--glass-chip));
+}
+
+/* Stessa ragione del marchio: sull'apertura lo stesso invito è già
+   in basso, accanto alla riga del drop, ed è quello il posto in cui
+   sta. Due volte "visita lo store" nella stessa schermata non sono
+   un invito più forte: sono un invito diviso in due. */
+.nav.bare .nav-links a.store {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease, visibility 0s linear .5s;
+}
+
+/* Su schermo stretto i tre collegamenti di sezione non ci stanno e
+   restano marchio e store: dopo l'apertura la barra ha comunque il
+   nome e l'invito. Sull'apertura, dove entrambi tacciono, la barra
+   resta vuota — ma sotto c'è la schermata intera che li dice
+   tutti e due, quindi non manca niente. */
+@media (max-width: 660px) {
+  .nav-links a:not(.store) { display: none; }
+}
+
+/* ============================================================
+   APERTURA — clip a tutto schermo, sensibile al puntatore
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: end;
+  overflow: hidden;
+  /* il fondo che si vede prima che il canvas disegni: già in tinta,
+     se no il primo istante è un lampo grigio */
+  background: #0D0A04;
+  isolation: isolate;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero-media canvas,
+.hero-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* il video resta invisibile finché il file non c'è davvero;
+   quando parte, prende il posto dello stand-in in dissolvenza */
+.hero-media video {
+  opacity: 0;
+  transition: opacity .9s ease;
+}
+
+.hero-media video.ready { opacity: 1; }
+.hero-media canvas.stood-down { opacity: 0; transition: opacity .9s ease; }
+
+/* micro-parallasse: solo quando c'è il montato vero */
+.hero.has-video .hero-media video {
+  transform: scale(1.06) translate(var(--px, 0px), var(--py, 0px));
+  transition: opacity .9s ease, transform .9s cubic-bezier(.16, 1, .3, 1);
+}
+
+/* Velo: tiene il testo leggibile senza spegnere la clip.
+   Non è nero neutro ma nero d'oro: un velo grigio sopra un drappo
+   dorato lo slava, e sotto il marchio — dove copre all'82% — la
+   seta perderebbe la tinta proprio dove il fondo si vede di più. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg,
+    rgba(13, 10, 4, .55) 0%,
+    rgba(13, 10, 4, .12) 34%,
+    rgba(13, 10, 4, .82) 100%);
+  pointer-events: none;
+}
+
+/* alone che segue il puntatore.
+   Sullo stand-in WebGL non serve — lì è lo shader stesso a
+   spostare la luce — quindi si accende solo sopra il video. */
+.hero-light {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity .8s ease;
+  background: radial-gradient(34rem 34rem at var(--mx, 50%) var(--my, 42%),
+    rgba(201, 162, 39, .17),
+    rgba(201, 162, 39, .05) 42%,
+    transparent 68%);
+}
+
+.hero.has-video .hero-light { opacity: 1; }
+
+.hero-mark {
+  padding: 0 var(--pad);
+  color: #F7F6F3;
+  align-self: end;
+}
+
+.hero-mark .bigmark text { fill: #F7F6F3; }
+
+.hero-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  /* il riquadro del marchio ora finisce sulla base delle lettere:
+     l'aria sotto la parola la mette questo margine, non l'SVG */
+  padding: 2rem var(--pad) 2.2rem;
+}
+
+.hero-line {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: .74rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: rgba(247, 246, 243, .74);
+  margin: 0;
+}
+
+/* CTA discreta: contorno sottile, nessun blocco pieno sul video */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .78rem 1.4rem;
+  border: 1px solid rgba(247, 246, 243, .42);
+  color: #F7F6F3;
+  text-decoration: none;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: .74rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  background: transparent;
+  transition: border-color .3s ease, background .3s ease;
+}
+
+.cta::after {
+  content: "";
+  width: 1.4rem;
+  height: 1px;
+  background: currentColor;
+  transition: width .3s ease;
+}
+
+.cta:hover {
+  border-color: var(--gold-lux);
+  background: rgba(201, 162, 39, .10);
+}
+
+.cta:hover::after { width: 2.1rem; }
+
+/* sul chiaro l'invito si capovolge: inchiostro sulla carta, non
+   carta sull'inchiostro. Il contorno e l'oro vengono dai token
+   del tono, così l'elemento resta lo stesso in tutte e due le
+   sezioni e cambia solo di verso. */
+[data-tone="light"] .cta {
+  border-color: rgba(21, 22, 26, .28);
+  color: var(--fg);
+}
+
+[data-tone="light"] .cta:hover {
+  border-color: var(--gold);
+  background: rgba(138, 106, 18, .08);
+}
+
+/* riga dell'invito dentro un blocco di testo: prende respiro
+   sopra, e lascia alla firma il suo margine */
+.cta-row { margin: 2.1rem 0 0; }
+
+/* nota di servizio, non un'insegna: tondo minuscolo */
+.clip-note {
+  position: absolute;
+  left: var(--pad);
+  top: 1.2rem;
+  z-index: 1;
+  font-family: var(--sans);
+  font-size: .75rem;
+  color: rgba(247, 246, 243, .42);
+  margin: 0;
+  transition: opacity .5s ease;
+}
+
+.clip-note.gone { opacity: 0; }
+
+/* ============================================================
+   SEZIONI
+   ============================================================ */
+.band {
+  padding: clamp(4rem, 11vw, 9rem) var(--pad);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Il Garamond ha l'occhio medio corto (0,40 em contro lo 0,53
+   di Archivo): allo stesso corpo apparirebbe più piccolo di
+   quanto è, quindi il titolo sale di circa un decimo rispetto
+   alla misura che avrebbe avuto un didone. Nessuna crenatura
+   negativa: un garaldo è già spaziato per essere letto grande,
+   stringerlo gli chiude i contrappunti. */
+h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 6.1vw, 4.7rem);
+  line-height: 1.06;
+  letter-spacing: 0;
+  margin: 0 0 1.7rem;
+  max-width: 17ch;
+  text-wrap: balance;
+}
+
+/* il corsivo del Garamond è un disegno a sé, non un tondo
+   inclinato: è quello che fa il lavoro dell'accento */
+h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
+
+.band p { max-width: 56ch; margin: 0 0 1.1rem; }
+
+/* il paragrafo che porta il peso di una sezione: vale sulla home
+   e sulle pagine interne allo stesso modo */
+.band p.big,
+.sheet p.big {
+  font-size: clamp(1.06rem, 2vw, 1.22rem);
+  line-height: 1.55;
+  max-width: 46ch;
+}
+
+.dimtext { color: var(--dim); }
+
+/* --- sezione 1: ritratto + testo --- */
+.split {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  max-width: 84rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .split { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+}
+
+/* Il riquadro in attesa di una fotografia. È lo stesso oggetto in
+   tre posti — il ritratto della home, le tavole della collezione,
+   i capi dello store — quindi è scritto una volta sola: taglio
+   4:5, cornice interna, la dicitura di cosa manca. Appena dentro
+   c'è un <img> la cornice e la dicitura si tolgono da sole, senza
+   che nessuno debba ricordarsene. */
+.portrait,
+.plate-figure {
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--rule);
+  background: var(--panel);
+  display: flex;
+  align-items: flex-end;
+  padding: .9rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* cornice interna: sparisce quando c'è una foto vera */
+.portrait:not(:has(img))::after,
+.plate-figure:not(:has(img))::after {
+  content: "";
+  position: absolute;
+  inset: 1.1rem;
+  border: 1px solid var(--rule);
+  pointer-events: none;
+}
+
+.portrait img,
+.plate-figure img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portrait span,
+.plate-figure span {
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--dim);
+  position: relative;
+  z-index: 1;
+}
+
+.portrait:has(img) span,
+.plate-figure:has(img) span { display: none; }
+
+/* la firma: corsivo del Garamond, corpo da nota a margine.
+   Non imita una calligrafia — è una firma tipografica, che è
+   quello che sta in fondo a una lettera stampata. */
+.sign {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.85rem;
+  line-height: 1.2;
+  margin: 1.9rem 0 .35rem;
+}
+
+/* il ruolo è una didascalia, non un'etichetta: tondo minuscolo */
+.role {
+  font-family: var(--sans);
+  font-size: .88rem;
+  color: var(--dim);
+  margin: 0;
+}
+
+/* --- sezione 2: cartamodello ---
+   La sezione è chiara apposta: un cartamodello è inchiostro scuro
+   su carta bianca, e disegnarlo in negativo su fondo nero lo faceva
+   somigliare a un rendering. Tutto il tratto è currentColor, quindi
+   la carta e l'inchiostro escono dai token del tono senza doppioni.
+
+   Il disegno sta sotto al testo, quindi ogni classe ha un peso
+   ottico deciso a mano: la linea di taglio porta la forma ed è
+   la più marcata, le linee di servizio scendono di tono fino
+   alla griglia, che deve solo far sentire il tavolo di taglio.
+   Le classi ricalcano i segni veri del cartamodello — taglio,
+   cucitura, ripiego, tacca, foro, drittofilo — così il disegno
+   si legge come un documento e non come una decorazione. */
+.pattern-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .7;
+  pointer-events: none;
+}
+
+/* linea di taglio: il contorno vero del pezzo */
+.pattern-bg .cut {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linejoin: round;
+}
+
+/* linea di cucitura: rientrata di 10 mm dal taglio */
+.pattern-bg .stitch {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: .8;
+  stroke-dasharray: 8 6;
+  opacity: .5;
+}
+
+/* linee di costruzione: pieghe, ripieghi, posizioni */
+.pattern-bg .aux {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: .7;
+  opacity: .55;
+}
+
+.pattern-bg .dot { stroke-dasharray: 2 4; }
+
+/* tratto-punto: centro davanti, centro dietro, linea di ripiego */
+.pattern-bg .fold {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: .8;
+  stroke-dasharray: 18 5 3 5;
+  opacity: .7;
+}
+
+/* tacche di montaggio: corte e nette, si devono vedere */
+.pattern-bg .notch {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  opacity: .85;
+}
+
+.pattern-bg .drill { fill: none; stroke: currentColor; stroke-width: .9; opacity: .7; }
+
+/* asole: tratto pieno con testa tonda, come il punto vero */
+.pattern-bg .slot {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  opacity: .8;
+}
+
+/* dettaglio della ribattitura: i due bordi, i punti, il tessuto */
+.pattern-bg .layer { fill: none; stroke: currentColor; stroke-width: 2.2; opacity: .75; }
+.pattern-bg .seam {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-dasharray: 5 3.5;
+  opacity: .7;
+}
+.pattern-bg .wash { fill: currentColor; stroke: none; opacity: .07; }
+
+.pattern-bg .dim { fill: none; stroke: currentColor; stroke-width: .7; opacity: .5; }
+.pattern-bg .frame { fill: none; stroke: currentColor; stroke-width: .9; opacity: .45; }
+.pattern-bg .fill { fill: currentColor; stroke: none; opacity: .45; }
+
+.pattern-bg .grid { fill: none; stroke: currentColor; stroke-width: .5; opacity: .1; }
+.pattern-bg .grid-major { stroke-width: .8; opacity: .16; }
+
+/* l'oro segue il tono della sezione: su carta chiara quello lucido
+   sparirebbe, e il drittofilo è il segno che deve restare leggibile */
+.pattern-bg .gold { fill: none; stroke: var(--gold); stroke-width: 1.1; opacity: .95; }
+
+/* Le diciture di un piazzato si tracciano al plotter in un
+   gotico stretto, in maiuscolo: qui è il maiuscolo di Archivo,
+   spaziato quanto basta perché regga a 9 px sul fondo. */
+.pattern-bg text {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .08em;
+  fill: currentColor;
+  opacity: .78;
+}
+
+.pattern-bg .lbl-sm { font-size: 9px; letter-spacing: .1em; opacity: .62; }
+.pattern-bg .lbl-hd { font-weight: 600; letter-spacing: .11em; opacity: .9; }
+.pattern-bg .gold-t { fill: var(--gold); opacity: .85; }
+
+.band .inner { position: relative; z-index: 1; }
+
+.band.pattern .inner {
+  max-width: 46rem;
+  background: linear-gradient(90deg, var(--bg) 62%, transparent);
+  margin-left: calc(var(--pad) * -1);
+  padding-left: var(--pad);
+  padding-block: clamp(1rem, 3vw, 2rem);
+}
+
+/* Unico paragrafo della sezione, in Garamond e a un corpo da
+   sottotitolo: prosegue la voce dell'h2 invece di ripartire come
+   testo corrente, quindi non porta né la famiglia né la misura
+   del testo corrente. La misura resta stretta (28ch contro i 56
+   del testo normale): a corpo grande una riga lunga si perde nel
+   ritorno a capo, e qui deve restare dentro la sfumatura che la
+   stacca dal cartamodello.
+
+   Il filetto in oro sopra è l'unico segno aggiunto: dà l'attacco
+   al blocco senza mettere in pagina un'altra parola. */
+.band.pattern .lead {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 2.9vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1.28;
+  max-width: 28ch;
+  margin: 0;
+  padding-top: clamp(1.6rem, 3vw, 2.2rem);
+  text-wrap: pretty;
+}
+
+.band.pattern .lead::before {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: clamp(1.4rem, 2.6vw, 1.9rem);
+}
+
+.band.pattern .lead em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+/* --- sezione 3: campagna, un solo invito al centro ---
+   Fondo fotografico a tutta sezione, niente testo intorno: la
+   fotografia deve reggere la sezione da sola, e l'unica cosa
+   scritta è dove si va. */
+.campaign {
+  min-height: clamp(26rem, 72vh, 44rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+/* Due strati in una sola dichiarazione, e l'ordine è il punto:
+   sopra sta la fotografia, sotto lo stand-in dipinto. Se il file
+   non c'è il browser scarta solo il primo strato e resta lo
+   stand-in — nessun riquadro rotto, nessun controllo da fare. */
+.campaign-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    url("../img/campagna.jpg") center / cover no-repeat,
+    radial-gradient(120% 96% at 26% 14%, #33475C 0%, #1A2634 44%, #0A0E15 100%),
+    linear-gradient(202deg, rgba(150, 180, 210, .16), transparent 58%);
+}
+
+/* Velo: stessa funzione di quello dell'apertura, tinta opposta.
+   Là il fondo è dorato e il velo va sul nero caldo; qui la foto
+   è fredda, e un velo caldo le virerebbe l'azzurro sul grigio
+   proprio dove è più scura. Il centro resta il punto più aperto:
+   l'invito ci sta sopra e non deve stare in ombra. */
+.campaign::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg,
+    rgba(6, 10, 16, .62) 0%,
+    rgba(6, 10, 16, .26) 46%,
+    rgba(6, 10, 16, .72) 100%);
+  pointer-events: none;
+}
+
+.campaign-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* Il titolo della campagna: è l'unico h1 della pagina, e sta qui
+   perché è l'unico punto in cui la pagina dice cos'è il drop.
+
+   Maiuscolo dal foglio di stile, non digitato: nel testo resta
+   "Seta · Drop 1", così chi legge con la sintesi vocale sente una
+   parola e non una sigla lettera per lettera.
+
+   Il Garamond in maiuscolo va spaziato — è disegnato per il tondo
+   minuscolo e a corpo grande, tutto maiuscolo, si chiude. Un
+   ventesimo di em basta: di più e diventa un'insegna di negozio. */
+.campaign-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2.7rem, 8.4vw, 6.4rem);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  /* la spaziatura aggiunge aria a destra dell'ultima lettera:
+     senza questo il blocco centrato pende a sinistra */
+  text-indent: .05em;
+  color: #F7F6F3;
+  margin: 0 0 clamp(1.6rem, 4vh, 2.6rem);
+  text-shadow: 0 1px 26px rgba(6, 10, 16, .5);
+}
+
+/* il punto medio è una pausa, non una parola: sta più basso di
+   peso e non prende la spaziatura del maiuscolo */
+.campaign-title .sep {
+  color: var(--gold-lux);
+  letter-spacing: 0;
+  margin: 0 .06em;
+}
+
+/* l'invito qui è l'unico elemento della sezione: prende un po'
+   più di respiro di quello dell'apertura, che divide la riga
+   con la dicitura del drop */
+.campaign .cta {
+  padding: .95rem 1.9rem;
+  font-size: .78rem;
+  border-color: rgba(247, 246, 243, .52);
+}
+
+/* nota di servizio, gemella di quella della clip */
+.campaign-note {
+  position: absolute;
+  left: var(--pad);
+  top: 1.2rem;
+  z-index: 1;
+  font-family: var(--sans);
+  font-size: .75rem;
+  color: rgba(247, 246, 243, .42);
+  margin: 0;
+}
+
+/* --- sezione 4: restiamo in contatto ---
+   Un titolo e un campo, centrati e soli in mezzo alla schermata.
+   Non c'è testo di accompagnamento perché non serve: la richiesta
+   si capisce dal campo, e ogni riga in più intorno la farebbe
+   sembrare una trattativa. Le uniche due note stanno sotto, in
+   corpo minore, dove si guarda solo se si vuole sapere altro. */
+/* sotto la soglia del sipario le sezioni scorrono in fila: qui
+   serve comunque aria intorno, se no la sezione più vuota del
+   sito diventa la più stretta */
+.letter {
+  min-height: clamp(20rem, 58vh, 32rem);
+  display: flex;
+  align-items: center;
+}
+
+.letter-inner {
+  max-width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* dentro la colonna centrata cadono anche le misure ereditate
+   (h2 a 17ch): senza margine automatico resterebbero incollate a
+   sinistra dentro un blocco centrato */
+.letter-inner h2,
+.letter-inner p { margin-inline: auto; }
+
+.letter-inner h2 { margin-bottom: clamp(2rem, 5vh, 3rem); }
+
+/* il campo è l'unica cosa che si fa qui: sta al centro e in
+   misura stretta, perché un campo lungo invita a scriverci un
+   testo, non un indirizzo */
+.letter .news-field {
+  margin-inline: auto;
+  max-width: 24rem;
+}
+
+.letter .news-note,
+.letter .news-done { text-align: center; }
+
+/* nota di servizio, non una didascalia del campo: sta in corpo
+   minore e sbiadita perché al lancio va tolta */
+.news-note.small {
+  font-size: .76rem;
+  opacity: .72;
+}
+
+/* ============================================================
+   PIEDE ALTO
+   ============================================================ */
+footer {
+  background: var(--bg);
+  color: var(--fg);
+  padding: clamp(4rem, 10vw, 8rem) var(--pad) 0;
+}
+
+.foot-grid {
+  display: grid;
+  gap: clamp(2.2rem, 5vw, 4rem);
+  max-width: 84rem;
+  margin: 0 auto clamp(4rem, 9vw, 7rem);
+}
+
+@media (min-width: 820px) {
+  .foot-grid { grid-template-columns: 1.35fr 1fr 1fr; }
+}
+
+/* testata di colonna: qui il maiuscolo spaziato è al suo posto,
+   fa da insegna sopra un elenco. Vale anche per le colonne di
+   servizio dello store, che sono la stessa cosa in un altro
+   posto — una voce, e sotto quello che c'è da sapere. */
+.foot-col h3,
+.info-col h3 {
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 1.25rem;
+}
+
+.foot-col p { margin: 0 0 .55rem; color: var(--dim); font-size: 1rem; }
+
+.foot-col a {
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color .25s ease;
+}
+
+.foot-col a:hover { border-color: var(--gold); }
+
+.foot-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+}
+
+.foot-list a {
+  border: 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: .6rem;
+  font-size: 1rem;
+}
+
+.foot-list a::before {
+  content: "";
+  width: .55rem;
+  height: 1px;
+  background: var(--gold);
+  flex: none;
+  transform: translateY(-.28em);
+  transition: width .25s ease;
+}
+
+.foot-list a:hover::before { width: 1.2rem; }
+
+/* newsletter */
+.news-field {
+  display: flex;
+  border-bottom: 1px solid var(--fg);
+  max-width: 22rem;
+  margin-top: .4rem;
+}
+
+.news-field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 1rem;
+  padding: .7rem .1rem;
+}
+
+.news-field input::placeholder { color: var(--dim); }
+.news-field input:focus { outline: none; }
+.news-field:focus-within { border-color: var(--gold); }
+
+.news-field button {
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 0 .1rem 0 1rem;
+  cursor: pointer;
+  transition: color .25s ease;
+}
+
+.news-field button:hover { color: var(--gold); }
+
+/* nota di servizio sotto il campo: minuscolo, altrimenti grida
+   più dell'invito a iscriversi */
+.news-note {
+  font-family: var(--sans);
+  font-size: .82rem;
+  color: var(--dim);
+  margin: .85rem 0 0;
+}
+
+.news-done {
+  display: none;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: .95rem;
+  color: var(--gold);
+  margin: .9rem 0 0;
+}
+
+form.sent { display: none; }
+form.sent ~ .news-done { display: block; }
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .5rem 2rem;
+  max-width: 84rem;
+  margin: 0 auto;
+  padding-bottom: 1.6rem;
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--dim);
+}
+
+/* il marchio che chiude il sito, alla stessa scala dell'apertura */
+.foot-mark {
+  padding-bottom: clamp(1rem, 2.4vw, 1.9rem);
+  color: var(--fg);
+}
+
+/* ============================================================
+   PAGINE INTERNE — collezione, giornale, store
+   ------------------------------------------------------------
+   Il sito ha due andature, e vanno tenute separate.
+
+   La home è un sipario: sezioni alte una schermata, un gesto una
+   sezione, e a governarla è snap.js. Le pagine interne sono
+   documenti: si leggono dall'alto in basso, con lo scorrimento di
+   sempre. Su di loro snap.js NON va caricato — intercetta la
+   rotella e la traduce in salti fra fermate, e una pagina che di
+   fermate ne ha due è una pagina che non scorre.
+
+   Per la stessa ragione le sezioni interne non si chiamano .band
+   ma .sheet: .band è il selettore del sipario, e due cose che si
+   comportano in modo opposto non devono portare lo stesso nome.
+   Se un domani si volesse il sipario anche qui, basterebbe
+   rinominare — ma allora ogni sezione dovrà stare in una
+   schermata, che è il vincolo che questi contenuti non hanno.
+
+   Tutto il resto è in comune e non è duplicato da nessuna parte:
+   token dei toni, intestazione, piede, marchio, caratteri,
+   riquadri segnaposto, cartello del cantiere.
+   ============================================================ */
+.sheet {
+  padding: clamp(3.4rem, 8vw, 6.5rem) var(--pad);
+  position: relative;
+}
+
+/* La prima sezione di una pagina interna deve scostarsi dalla barra,
+   che è fissa: senza, il contenuto nasce sotto il vetro.
+
+   La regola guarda .sheet e non «la prima sezione», perché le tre
+   pagine partono in tre modi diversi e solo uno vuole lo scosto:
+   il giornale apre con una .page-head, che il suo se lo scrive da
+   sé poco più sotto ed è per questo esclusa; la vetrina apre con
+   una fotografia a piena schermata, che sotto la barra ci deve
+   passare apposta e infatti non è una .sheet; lo store apre con
+   la merce, e quella si scosta. */
+main > .sheet:first-child:not(.page-head) {
+  padding-top: calc(var(--nav-h) + clamp(2rem, 5vw, 3.4rem));
+}
+
+/* Fuori vista ma dentro il documento. Serve alle pagine che per
+   scelta non hanno una testata scritta — la vetrina e lo store:
+   chi naviga per titoli con un lettore di schermo altrimenti non
+   troverebbe niente, e una pagina senza h1 è una pagina senza
+   nome per chi l'insegna non la vede.
+
+   Non è .skip: quella riappare quando prende il fuoco, ed è
+   giusto perché è un collegamento da usare. Un titolo il fuoco
+   non lo prende mai, quindi qui non deve riapparire nulla. */
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.sheet-inner { max-width: 84rem; margin: 0 auto; }
+
+/* La misura del testo corrente, e :where() non è un vezzo: senza,
+   questa regola peserebbe due classi e schiaccerebbe l'occhiello,
+   la dicitura, il prezzo — tutte cose che di classe ne hanno una
+   sola. Dentro :where() la regola vale quanto un selettore di
+   elemento, quindi fa da fondo e qualunque classe la scavalca
+   senza doverle correre dietro con selettori sempre più lunghi.
+   Sulla home lo stesso lavoro lo fa .band p, che non si tocca. */
+:where(.sheet) p { max-width: 56ch; margin: 0 0 1.1rem; }
+
+/* --- la testata di pagina ---
+   Non è una hero e non deve sembrarlo: niente immagine, niente
+   schermata piena, nessun invito. È l'intestazione di un
+   documento — dicitura, titolo, occhiello — e sotto un filetto la
+   riga dei dati, che sono le stesse voci del cartiglio del
+   cartamodello: dire di che documento si tratta senza scrivere
+   una frase.
+
+   L'aria in cima non è estetica: la barra è fissa, e senza quella
+   misura il titolo nascerebbe sotto il vetro. */
+.page-head {
+  padding-top: calc(var(--nav-h) + clamp(2.4rem, 6vw, 4.6rem));
+  padding-bottom: clamp(2.6rem, 6vw, 4.4rem);
+}
+
+/* Il titolo di pagina è l'h1: uno per pagina, ed è il nome della
+   pagina. Sale di corpo rispetto agli h2 della home perché lì il
+   titolo divide la schermata con un'immagine o un cartamodello,
+   qui regge la testata da solo. */
+.page-head h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(3rem, 7.4vw, 5.6rem);
+  line-height: 1.02;
+  letter-spacing: 0;
+  margin: 0 0 1.4rem;
+  max-width: 15ch;
+  text-wrap: balance;
+}
+
+.page-head h1 em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+/* la dicitura sopra il titolo: qui il maiuscolo spaziato è al suo
+   posto, fa da insegna esattamente come le testate di colonna */
+.kicker {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 1.3rem;
+}
+
+/* l'occhiello prosegue la voce del titolo, quindi resta in
+   Garamond e in misura stretta: è una frase sola, non un testo */
+.standfirst {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.22rem, 2.4vw, 1.7rem);
+  line-height: 1.34;
+  max-width: 36ch;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.standfirst em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+.head-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem clamp(2rem, 5vw, 4.5rem);
+  margin: clamp(2.4rem, 5vw, 3.4rem) 0 0;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.head-meta > div { display: flex; flex-direction: column; gap: .3rem; }
+
+.head-meta dt {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.head-meta dd { margin: 0; font-family: var(--sans); font-size: .92rem; }
+
+/* --- nota di servizio in colonna ---
+   Gemella di quelle della clip e della campagna, ma qui sta nel
+   flusso e non in un angolo, perché riguarda il contenuto che le
+   sta sotto. Il filetto d'oro a sinistra la stacca senza doverla
+   incorniciare. Ogni nota di questo tipo è roba da togliere prima
+   del lancio: sono il promemoria di cosa è ancora finto. */
+.sheet-note {
+  font-family: var(--sans);
+  font-size: .8rem;
+  line-height: 1.6;
+  color: var(--dim);
+  border-left: 2px solid var(--gold);
+  padding-left: .95rem;
+  margin: 0 0 clamp(2.2rem, 5vw, 3.2rem);
+  max-width: 54ch;
+}
+
+/* testata di blocco dentro una pagina: sotto il titolo di pagina
+   ma sopra le schede, alla scala di un h2 ridotto */
+.sheet h2.block-title {
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  margin: 0 0 clamp(1.8rem, 4vw, 2.6rem);
+  max-width: 22ch;
+}
+
+/* Un secondo blocco dentro la stessa pagina, staccato da un
+   filetto e non da un cambio di fondo. L'alternanza chiaro/scuro
+   è il ritmo del sito, ma è tarata su una sezione per schermata:
+   usarla due volte dentro la stessa pagina di lettura la
+   trasformerebbe in un lampeggio. Qui basta una riga. */
+.sheet-part {
+  margin-top: clamp(3rem, 7vw, 5rem);
+  padding-top: clamp(2.6rem, 6vw, 4rem);
+  border-top: 1px solid var(--rule);
+}
+
+/* ------------------------------------------------------------
+   COLLEZIONE — la vetrina
+   ------------------------------------------------------------
+   Nessuna testata e nessuna scheda: prezzi e taglie stanno nello
+   store, che è il posto in cui uno li cerca. Qui c'è la
+   fotografia, e sotto due voci che non si somigliano.
+
+   La riga (.piece-say) è una frase sola, in Garamond, sul
+   dettaglio che quel capo è: non descrive la fotografia — quella
+   si vede — dice perché il pezzo esiste. Porta il filetto d'oro
+   dell'attacco, lo stesso della sezione «cura del dettaglio»
+   della home, perché è la stessa figura: un'affermazione.
+
+   Le note (.piece-tech) sono la prova che la regge, e parlano la
+   lingua del cartiglio del cartamodello: dicitura in maiuscolo
+   spaziato, valore in tondo, nessun aggettivo. Due registri
+   opposti a fianco a fianco — è tutto il sito in miniatura.
+
+   La fotografia non ha imbottitura laterale e va da bordo a
+   bordo; le parole sì, e rientrano nella misura del sito. Per
+   questo la sezione non è una .sheet: una .sheet ha margini
+   suoi, e qui i margini valgono per metà del contenuto.
+   ------------------------------------------------------------ */
+.look {
+  position: relative;
+  margin: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.look img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* La dicitura di cosa manca è anche la nota di servizio: quando
+   la fotografia arriva sparisce da sola, e non resta niente da
+   ricordarsi di ripulire. Stesso meccanismo del ritratto in home,
+   stessa scala delle altre note del sito — tondo minuscolo. */
+.look-hold {
+  position: relative;
+  z-index: 1;
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--dim);
+}
+
+.look:has(img) .look-hold { display: none; }
+
+/* --- le parole sotto la fotografia ---
+   La riga a sinistra, le note a destra. Su schermo largo stanno
+   sulla stessa altezza: la frase è corta e le note sono cinque
+   righe, quindi affiancarle riempie la fascia invece di lasciare
+   una colonna vuota. Sotto i 900 px si incolonnano — ed è dove
+   oggi c'è il cartello del cantiere, quindi è una previsione,
+   non una cosa che si vede. */
+.piece-word {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+  /* Non "max-width più margine automatico": col sipario questo
+     blocco ha un fondo suo, che sale sopra la fotografia e deve
+     andare da bordo a bordo — un fondo largo 84rem lascerebbe due
+     fessure di fotografia ai lati e sembrerebbe un ritaglio. Il
+     blocco resta largo quanto la pagina e il rientro se lo calcola:
+     il margine del sito, o metà di quel che avanza oltre gli 84rem
+     se lo schermo è più largo. Le parole stanno nella stessa misura
+     di prima, cambia solo chi la tiene. */
+  padding-inline: max(var(--pad), (100% - 84rem) / 2);
+}
+
+@media (min-width: 900px) {
+  .piece-word { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+}
+
+/* La frase. Corpo da sottotitolo e misura stretta: a corpo grande
+   una riga lunga si perde nel ritorno a capo, e questa deve
+   potersi leggere tutta in un colpo — è lapidaria, non è un
+   testo. Stessa figura del .lead della home, stesso filetto. */
+.piece-say {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
+  line-height: 1.24;
+  max-width: 26ch;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.piece-say::before {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: clamp(1.3rem, 2.4vw, 1.8rem);
+}
+
+.piece-say em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+/* Le note di produzione. Righe separate da un filetto e non
+   riquadrate: un riquadro le farebbe sembrare un modulo da
+   compilare, mentre queste sono voci di un cartiglio. La
+   dicitura ha una colonna sua e fissa, così i valori si
+   incolonnano e l'occhio scende dritto. */
+.piece-tech { margin: 0; }
+
+.piece-tech > div {
+  display: grid;
+  gap: .3rem 1.5rem;
+  padding: .75rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 700px) {
+  .piece-tech > div { grid-template-columns: 9rem minmax(0, 1fr); }
+}
+
+.piece-tech > div:last-child { border-bottom: 1px solid var(--rule); }
+
+.piece-tech dt {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  /* il maiuscolo piccolo siede più in alto del tondo accanto:
+     senza questo le due colonne non stanno sulla stessa riga */
+  align-self: center;
+}
+
+.piece-tech dd {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: .92rem;
+  line-height: 1.5;
+}
+
+/* --- la scheda di un capo ---
+   Il numero, il nome e la fotografia. Nata per la collezione,
+   ora la usa il solo store: la vetrina non ha schede, e le
+   specifiche che stavano qui — materia, cuciture, taglie — sono
+   uscite con lei invece di restare a ingombrare il foglio.
+
+   .plate-figure resta però condivisa con l'apertura del giornale,
+   che di una fotografia in attesa ha bisogno uguale: sta nella
+   sezione SEZIONI, insieme al ritratto della home. */
+.plate-figure { margin-bottom: 1.15rem; }
+
+.plate-num {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 .45rem;
+}
+
+.plate h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  line-height: 1.14;
+  margin: 0 0 .6rem;
+}
+
+/* ------------------------------------------------------------
+   GIORNALE — l'apertura e l'elenco
+   L'apertura prende il posto che prenderebbe in un giornale:
+   metà pagina, con la sua figura. Gli altri pezzi scendono in
+   righe separate da un filetto — data a sinistra, testo a destra
+   — che è come si impagina un sommario, non una griglia di
+   riquadri tutti uguali.
+   ------------------------------------------------------------ */
+.post-lead {
+  display: grid;
+  gap: clamp(1.6rem, 4vw, 3.2rem);
+  align-items: center;
+  margin-bottom: clamp(2.6rem, 6vw, 4rem);
+}
+
+@media (min-width: 900px) {
+  .post-lead { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+}
+
+/* la figura dell'apertura è orizzontale, non 4:5: un pezzo del
+   giornale si apre con una fotografia distesa */
+.post-lead .plate-figure { aspect-ratio: 3 / 2; margin: 0; }
+
+.post-date {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 0 0 .8rem;
+}
+
+.post-date .tag { color: var(--gold); }
+
+.post-lead h2 {
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  margin: 0 0 1rem;
+  max-width: 18ch;
+}
+
+.posts { list-style: none; margin: 0; padding: 0; }
+
+.post-row {
+  display: grid;
+  gap: .4rem clamp(1.6rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2.1rem) 0;
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 900px) {
+  .post-row { grid-template-columns: 11rem minmax(0, 1fr); }
+}
+
+.post-row:last-child { border-bottom: 1px solid var(--rule); }
+
+.post-row h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  line-height: 1.16;
+  margin: 0 0 .5rem;
+  max-width: 26ch;
+  transition: color .25s ease;
+}
+
+.post-row p {
+  font-size: .95rem;
+  line-height: 1.6;
+  color: var(--dim);
+  margin: 0;
+  max-width: 62ch;
+}
+
+/* Il collegamento avvolge tutto il pezzo, non solo il titolo: la
+   riga intera è il bersaglio, che è il modo in cui si legge un
+   sommario. Il colore lo prende dal testo e lo cede al titolo
+   soltanto al passaggio — un elenco di titoli tutti in oro
+   sarebbe un elenco di avvisi. */
+a.post-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+a.post-link:hover h3,
+a.post-link:hover h2 { color: var(--gold); }
+
+.post-row .post-date { margin: 0; }
+
+/* ------------------------------------------------------------
+   STORE — lo stato del drop e i capi
+   Il drop apre a settembre: finché non è aperto lo store non
+   finge un carrello che non c'è. Dice quando apre, mostra cosa
+   ci sarà e a quanto, e l'unica cosa che si può fare davvero —
+   lasciare un indirizzo — è l'unica cosa che funziona.
+   ------------------------------------------------------------ */
+.drop-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  border: 1px solid var(--rule);
+  background: var(--panel);
+  padding: clamp(1.2rem, 2.6vw, 1.8rem) clamp(1.3rem, 3vw, 2.2rem);
+  margin-bottom: clamp(2.4rem, 5vw, 3.6rem);
+}
+
+.drop-state {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.drop-state em { font-style: italic; color: var(--gold); }
+
+.drop-when {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: .74rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 0;
+}
+
+.goods {
+  display: grid;
+  gap: clamp(2.4rem, 5vw, 3.8rem) clamp(1.6rem, 3vw, 2.6rem);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+/* Il prezzo sta in Garamond come la firma e le cifre del
+   cartiglio: è una cifra, e le cifre nel sito le dice la voce,
+   non la casa. In tondo, non in corsivo — il corsivo è
+   dell'accento, e un prezzo non è un accento. */
+.plate .good-price {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--fg);
+  margin: 0 0 1rem;
+  max-width: none;
+}
+
+.plate .good-price .vat {
+  font-family: var(--sans);
+  font-size: .74rem;
+  color: var(--dim);
+  margin-left: .55rem;
+}
+
+.good-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  list-style: none;
+  margin: 0 0 1.2rem;
+  padding: 0;
+}
+
+.good-sizes li {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  border: 1px solid var(--rule);
+  padding: .34rem .62rem;
+  color: var(--dim);
+}
+
+/* L'invito allo stesso disegno degli altri, ma è un <button> e
+   non un collegamento: non porta da nessuna parte, e finché il
+   drop non apre non fa niente. Disattivato per davvero, con
+   l'attributo — così lo dice anche a chi naviga da tastiera o con
+   un lettore di schermo, non solo a chi lo guarda. */
+button.cta {
+  cursor: pointer;
+  line-height: 1;
+}
+
+button.cta[disabled] {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+button.cta[disabled]:hover {
+  border-color: rgba(21, 22, 26, .28);
+  background: transparent;
+}
+
+[data-tone="dark"] button.cta[disabled]:hover {
+  border-color: rgba(247, 246, 243, .42);
+}
+
+/* le tre colonne di servizio in fondo allo store: stessa lingua
+   delle colonne del piede, e la testata è la stessa regola —
+   sta nella sezione PIEDE ALTO, dove è nata */
+.info-cols {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.2rem);
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.info-col p {
+  font-size: .95rem;
+  line-height: 1.6;
+  color: var(--dim);
+  margin: 0;
+  max-width: 34ch;
+}
+
+/* Il modulo dello store non prende nessuna regola sua: il campo,
+   la nota e la conferma sono già impaginati nella sezione
+   NEWSLETTER, e lì stanno allineati a sinistra — che è come sta
+   il blocco che li contiene. A centrarlo, come nella lettera
+   della home, provvede lì .letter .news-field: è quella sezione
+   a essere centrata, non il modulo.
+
+   Anche il comportamento è già a posto: site.js vale per ogni
+   form.news-form, quindi questo terzo modulo non ha richiesto di
+   toccare una riga di JavaScript. */
+
+/* ============================================================
+   SIPARIO — le sezioni si impilano
+   ------------------------------------------------------------
+   Ogni sezione si aggancia in cima e ci resta; la successiva,
+   che ha fondo pieno, le sale sopra e la copre. Vale a ogni
+   larghezza, telefono compreso.
+
+   La classe .curtain sull'<html> la mette snap.js. Impilamento e
+   agganci non sono due cose ma una sola vista da due lati, e il
+   sipario ha bisogno di qualcuno che misuri: una sezione più alta
+   della schermata, agganciata in cima, si taglierebbe il fondo —
+   ed è esattamente quello che succede su telefono, dove il testo
+   incolonnato è sempre più lungo dello schermo. Senza JavaScript
+   la classe non arriva, le sezioni scorrono in fila e la pagina
+   resta onesta invece di rompersi.
+
+   Le sezioni che non ci stanno in una schermata non si agganciano
+   con la cima ma con il fondo: salgono finché non mostrano la
+   propria fine, e lì si fermano ad aspettare la successiva. Il
+   loro top negativo — vh meno l'altezza — lo scrive snap.js, e
+   non è pigrizia: in CSS le percentuali di top guardano il blocco
+   contenitore, non l'elemento, quindi un calc() qui non saprebbe
+   di che altezza sta parlando.
+
+   Resta una sola condizione, ed è di impaginazione: il piede deve
+   essere posizionato con z-index proprio, perché gli elementi
+   agganciati sono "posizionati" e senza questo gli salirebbero
+   sopra, nascondendolo.
+   ============================================================ */
+.curtain .hero,
+.curtain .band {
+  position: sticky;
+  top: 0;
+}
+
+/* --- la vetrina della collezione: due strati per capo ---
+   Stesso sipario, ma un capo non è una sezione sola. La
+   fotografia riempie lo schermo e si aggancia in cima; le parole
+   salgono sopra la fotografia e si fermano appena si leggono per
+   intero, appoggiate al fondo dello schermo. Quel che avanza
+   sopra non è spazio lasciato libero, è la fotografia che resta
+   a vedersi: le sue parole le stanno sotto, non al posto suo. Poi
+   sale la fotografia del capo dopo e copre tutto, e si ricomincia.
+
+   Il top delle parole — schermata meno la loro altezza — lo scrive
+   snap.js, per la stessa ragione delle sezioni lunghe: in CSS una
+   percentuale di top guarda il blocco che contiene, non l'altezza
+   di chi si aggancia.
+
+   L'<article> che tiene insieme i due strati smette di essere una
+   scatola. Un aggancio non esce mai dalla propria: chiuso
+   nell'articolo, la fotografia si sgancerebbe alla fine del suo
+   capo e il sipario tornerebbe a essere uno scorrimento come un
+   altro. Con display: contents i due strati vedono la vetrina
+   intera, che è la scatola giusta. Senza sipario l'articolo resta
+   l'articolo. */
+.curtain article:has(> .look) { display: contents; }
+
+.curtain .look {
+  position: sticky;
+  top: 0;
+  /* In fila un fondo traslucido va bene, in pila no: sotto c'è lo
+     strato di prima, e finché la fotografia non c'è lo si
+     vedrebbe in trasparenza attraverso il riquadro che aspetta. */
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--panel), var(--panel));
+}
+
+.curtain .piece-word {
+  position: sticky;
+  /* il top lo scrive snap.js — vedi sopra */
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+}
+
+.curtain .band {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(3rem, 9vh, 7rem);
+}
+
+/* l'ombra fa leggere lo strato: si vede il bordo che sale */
+.curtain .band,
+.curtain .look,
+.curtain .piece-word,
+.curtain footer {
+  box-shadow: 0 -30px 60px -26px rgba(11, 11, 13, .55);
+}
+
+/* senza questo il piede finisce sotto le sezioni agganciate */
+.curtain footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Nella vetrina il piede prende la schermata intera. È l'ultimo
+   strato, e un ultimo strato copre: sotto di lui, a differenza
+   della home, non resta il margine vuoto di una sezione ma la
+   lastra di parole dell'ultimo capo — e mezza frase che sporge
+   sopra il piede non si legge come uno strato, si legge come un
+   guasto. Con la schermata intera l'ultima fermata mostra il
+   piede e basta. Le tre parti si distribuiscono l'altezza che
+   avanza invece di ammucchiarsi in cima.
+
+   La larghezza piena delle tre parti va ridata a mano: si tengono
+   nella misura del sito con un margine automatico, e un margine
+   automatico dentro una griglia toglie l'allungamento — senza
+   questa riga il piede si ritroverebbe le colonne rimpicciolite
+   in mezzo alla pagina. Il max-width di ciascuna resta a fare il
+   suo lavoro sugli schermi molto larghi. */
+.curtain body:has(.look) footer {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  align-content: space-between;
+}
+
+.curtain body:has(.look) footer > * { width: 100%; }
+
+/* ============================================================
+   CANTIERE — provvisorio, da togliere tutto insieme
+   ------------------------------------------------------------
+   Sotto i 900 px il sito non si mostra e al suo posto va un
+   cartello. Non è un limite tecnico — il sipario e gli agganci
+   funzionano già su telefono — ma una scelta: meglio dire che la
+   versione stretta non è pronta che mostrarla mezza impaginata.
+
+   Il resto della pagina va via con display: none e non con
+   l'opacità o fuori schermo: così esce anche dal giro del tab e
+   dai lettori di schermo, che altrimenti leggerebbero per intero
+   un sito che nessuno vede.
+
+   La soglia sta qui, ed è una sola. Se si sposta, va spostata
+   anche in snap.js e clip.js, che dietro al cartello non devono
+   accendersi: non c'è niente da misurare e niente da illuminare.
+
+   Per smontarlo: via questa sezione, via il blocco .hold da
+   index.html, via le due guardie nei due moduli. Non serve altro.
+   ============================================================ */
+.hold { display: none; }
+
+@media (max-width: 899px) {
+  .skip,
+  .nav,
+  main,
+  footer { display: none; }
+
+  .hold {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(1.2rem, 4vh, 2rem);
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: clamp(2.4rem, 9vw, 4rem) var(--pad);
+    background: #0B0B0D;
+    color: #F7F6F3;
+  }
+
+  /* il marchio a tutta larghezza è il primo gesto del sito: il
+     cartello non è una pagina d'errore e comincia con quello */
+  .hold .bigmark { margin-bottom: clamp(.6rem, 2vh, 1.2rem); }
+
+  .hold-line {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.7rem, 8vw, 2.4rem);
+    line-height: 1.12;
+    margin: 0;
+  }
+
+  .hold-line em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold-lux);
+  }
+
+  .hold-note {
+    font-family: var(--sans);
+    font-size: .95rem;
+    line-height: 1.6;
+    color: rgba(247, 246, 243, .62);
+    max-width: 34ch;
+    margin: 0;
+  }
+
+  .hold-drop {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: .72rem;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: rgba(247, 246, 243, .42);
+    margin: clamp(.4rem, 2vh, 1rem) 0 0;
+  }
+}
+
+/* ============================================================
+   RIVELAZIONI
+   ============================================================ */
+.rise { opacity: 0; transition: opacity .9s cubic-bezier(.16, 1, .3, 1); }
+.rise.in { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise { opacity: 1; transition: none; }
+  .nav, .nav-mark, .nav-links a.store { transition: none; }
+  .cta, .cta::after, .foot-list a::before { transition: none; }
+  .hero.has-video .hero-media video { transform: scale(1.02); transition: none; }
+}
