@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Giornale — Ferragatti</title>
+    <meta
+      name="description"
+      content="Note di laboratorio: come è fatto un capo Ferragatti, da quale filatura viene il filo, quante mani lo hanno toccato."
+    />
+    <meta name="theme-color" content="#0B0B0D" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Giornale — Ferragatti" />
+    <meta
+      property="og:description"
+      content="Note di laboratorio: materia, mani e misure di ogni capo."
+    />
+    <!-- <meta property="og:image" content="https://ferragatti.it/assets/img/og-giornale.jpg"> -->
+
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+
+  <body>
+    <a class="skip" href="#pezzi">Vai al contenuto</a>
+
+    <div class="hold">
+      <svg
+        class="bigmark"
+        viewBox="0 0 1000 104"
+        role="img"
+        aria-label="Ferragatti"
+      >
+        <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
+          FERRAGATTI
+        </text>
+      </svg>
+
+      <p class="hold-line">Mobile in <em>costruzione</em>.</p>
+    </div>
+
+    <header class="nav" id="nav" data-tone="dark">
+      <a class="nav-mark" href="../">FERRAGATTI</a>
+      <nav class="nav-links" aria-label="Principale">
+        <a href="../#cristiano">Chi siamo</a>
+        <a href="../#progetto">Progetto</a>
+        <a href="../#terza">Collezione</a>
+        <a class="store" href="../shop/">Visita lo store</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ==========================================================
+       TESTATA
+
+       Il menu dice «Blog» e l'indirizzo è /blog/, perché è la
+       parola che si cerca e che si scrive. La pagina però si
+       chiama Giornale: è il nome della cosa, non la categoria a
+       cui appartiene. Le due convivono senza contraddirsi — una è
+       l'insegna, l'altra è l'indirizzo.
+       ========================================================== -->
+      <section class="sheet page-head" data-tone="dark">
+        <div class="sheet-inner rise">
+          <p class="kicker">Giornale</p>
+
+          <h1>Note di <em>laboratorio</em></h1>
+
+          <p class="standfirst">
+            Ogni capo deve poter essere raccontato per intero. Qui si comincia
+            a raccontarlo.
+          </p>
+
+          <dl class="head-meta">
+            <div>
+              <dt>Uscita</dt>
+              <dd>Irregolare, quando c'è qualcosa da dire</dd>
+            </div>
+            <div>
+              <dt>Scrive</dt>
+              <dd>L'atelier</dd>
+            </div>
+            <div>
+              <dt>Pezzi</dt>
+              <dd>5, in scrittura</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+       I PEZZI
+
+       Nessun articolo è ancora scritto: i collegamenti puntano a
+       "#" e non fanno niente — la guardia sta in site.js, che
+       neutralizza ogni href="#" perché altrimenti il browser li
+       tratterebbe come «torna in cima».
+
+       Quando un pezzo si scrive, prende una cartella sua con
+       dentro un index.html — blog/mano-che-cuce/ — e qui si
+       cambia solo l'href. La struttura è già quella giusta: il
+       collegamento avvolge tutto il pezzo, non solo il titolo.
+       ========================================================== -->
+      <section class="sheet" id="pezzi" data-tone="light">
+        <div class="sheet-inner rise">
+          <p class="sheet-note">
+            Nota di servizio — i cinque pezzi qui sotto sono titoli
+            segnaposto e i collegamenti non portano ancora da nessuna parte.
+            Ogni pezzo scritto prende una sottocartella propria —
+            blog/nome-del-pezzo/ — e da qui si cambia solo l'indirizzo.
+          </p>
+
+          <!-- l'apertura: metà pagina e la sua figura, come si apre
+           un giornale -->
+          <article class="post-lead">
+            <div class="plate-figure">
+              <span>Apertura — fotografia in laboratorio</span>
+            </div>
+
+            <div>
+              <a class="post-link" href="#">
+                <p class="post-date">
+                  <span class="tag">In apertura</span> · 4 settembre 2026
+                </p>
+                <h2>La mano che cuce non è una metafora</h2>
+                <p>
+                  Nove punti per centimetro si contano, e chi li fa ha un nome.
+                  Una giornata nel laboratorio dove nasce la «Riva»: chi taglia,
+                  chi monta il collo, quanto tempo ci vuole davvero per una
+                  camicia che non deve sembrare fatta a macchina.
+                </p>
+              </a>
+            </div>
+          </article>
+
+          <ul class="posts">
+            <li class="post-row">
+              <p class="post-date">21 agosto 2026</p>
+              <a class="post-link" href="#">
+                <h3>Perché un drop all'anno, e non quattro</h3>
+                <p>
+                  La stagionalità non è un calendario, è una scelta di
+                  quantità. Cosa cambia nel modo di lavorare quando si smette
+                  di rincorrere le consegne.
+                </p>
+              </a>
+            </li>
+
+            <li class="post-row">
+              <p class="post-date">7 agosto 2026</p>
+              <a class="post-link" href="#">
+                <h3>Diciannove momme</h3>
+                <p>
+                  Il peso della seta si misura in momme, e sotto un certo peso
+                  una camicia non tiene la forma. Dove finisce la leggerezza e
+                  comincia il risparmio.
+                </p>
+              </a>
+            </li>
+
+            <li class="post-row">
+              <p class="post-date">17 luglio 2026</p>
+              <a class="post-link" href="#">
+                <h3>Il rovescio di una cucitura</h3>
+                <p>
+                  La ribattitura vista da dentro: perché il punto che non si
+                  vede è quello che dice di più su chi ha fatto il capo.
+                </p>
+              </a>
+            </li>
+
+            <li class="post-row">
+              <p class="post-date">2 luglio 2026</p>
+              <a class="post-link" href="#">
+                <h3>Da dove viene il filo</h3>
+                <p>
+                  Filatura, tessitura, tintoria: i tre passaggi che stanno
+                  prima del taglio, e i due che abbiamo scelto di fare a
+                  quindici chilometri l'uno dall'altro.
+                </p>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sheet-part">
+            <h2 class="block-title">
+              Il primo drop apre il <em>18 settembre</em>.
+            </h2>
+            <p class="big">
+              Chi vuole saperlo prima lascia un indirizzo: una email quando
+              apre, e nessun'altra.
+            </p>
+            <p class="cta-row">
+              <a class="cta" href="../shop/">Visita lo store</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contatti" data-tone="dark">
+      <div class="foot-grid rise">
+        <div class="foot-col">
+          <h3>Contatti</h3>
+          <p>
+            <a href="mailto:atelier@ferragatti.it">atelier@ferragatti.it</a>
+          </p>
+          <p>Viene dal mare<br />città di PESCARA, Italia</p>
+          <p class="dimtext">Risposta entro un giorno lavorativo.</p>
+        </div>
+
+        <div class="foot-col">
+          <h3>Pagine</h3>
+          <ul class="foot-list">
+            <li><a href="../collezione/">Collezione</a></li>
+            <li><a href="../blog/">Blog</a></li>
+            <li><a href="../shop/">Store</a></li>
+          </ul>
+        </div>
+
+        <div class="foot-col">
+          <h3>Riferimenti</h3>
+          <ul class="foot-list">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Cartella stampa</a></li>
+            <li><a href="#">Materiali e provenienze</a></li>
+            <li><a href="#">Spedizioni e resi</a></li>
+            <li><a href="#">Cura della seta</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="legal">
+        <span>© 2026 Ferragatti — Tutti i diritti riservati</span>
+        <span>P. IVA da inserire · Privacy · Cookie</span>
+      </p>
+
+      <div class="foot-mark">
+        <svg
+          class="bigmark"
+          viewBox="0 0 1000 104"
+          role="img"
+          aria-label="Ferragatti"
+        >
+          <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
+            FERRAGATTI
+          </text>
+        </svg>
+      </div>
+    </footer>
+
+    <script src="../assets/js/site.js"></script>
+  </body>
+</html>

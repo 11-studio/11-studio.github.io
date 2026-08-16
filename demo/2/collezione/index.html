@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Il titolo e la descrizione restano: non sono scritte della
+     pagina, sono come la pagina si presenta altrove — nella
+     scheda del browser, nei risultati di ricerca, in un link
+     condiviso. Toglierli non renderebbe la vetrina più muta, la
+     renderebbe solo introvabile. -->
+    <title>Collezione — Ferragatti</title>
+    <meta
+      name="description"
+      content="Drop 01: la collezione Ferragatti in fotografia. Tre pezzi in seta, apre il 18 settembre 2026."
+    />
+    <meta name="theme-color" content="#0B0B0D" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Collezione — Ferragatti" />
+    <meta
+      property="og:description"
+      content="Drop 01 in fotografia. Tre pezzi in seta, apre il 18 settembre 2026."
+    />
+    <!-- <meta property="og:image" content="https://ferragatti.it/assets/img/og-collezione.jpg"> -->
+
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+
+  <body>
+    <a class="skip" href="#vetrina">Vai al contenuto</a>
+
+    <!-- ==========================================================
+     CANTIERE — lo stesso cartello della home, stessa soglia.
+     Va tolto insieme a quello, non prima.
+     ========================================================== -->
+    <div class="hold">
+      <svg
+        class="bigmark"
+        viewBox="0 0 1000 104"
+        role="img"
+        aria-label="Ferragatti"
+      >
+        <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
+          FERRAGATTI
+        </text>
+      </svg>
+
+      <p class="hold-line">Mobile in <em>costruzione</em>.</p>
+    </div>
+
+    <!-- La barra è identica a quella della home, con "../" davanti:
+     dice le tre sezioni della home e l'invito allo store, non
+     l'indice del sito. Qui sotto passa una fotografia a tutto
+     schermo, ma la lastra di vetro resta: senza, tacerebbero
+     anche il marchio e il pulsante store, che in una pagina
+     interna sono l'unico modo di uscire. -->
+    <header class="nav" id="nav" data-tone="dark">
+      <a class="nav-mark" href="../">FERRAGATTI</a>
+      <nav class="nav-links" aria-label="Principale">
+        <a href="../#cristiano">Chi siamo</a>
+        <a href="../#progetto">Progetto</a>
+        <a href="../#terza">Collezione</a>
+        <a class="store" href="../shop/">Visita lo store</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ==========================================================
+       LA VETRINA
+
+       Nessuna testata e nessuna scheda: questa non è la pagina
+       dove si compra, è quella dove si guarda. I prezzi e le
+       taglie stanno nello store, che è il posto in cui uno li
+       cerca.
+
+       Ogni pezzo è una fotografia a piena schermata e, subito
+       sotto, due voci che non si somigliano:
+
+         la riga     una frase sola, in Garamond, sul dettaglio
+                     che quel capo è. Non descrive la fotografia
+                     — quella si vede — dice perché il pezzo
+                     esiste.
+         le note     come è fatto, nella lingua del cartiglio del
+                     cartamodello: dicitura in maiuscolo, valore
+                     in tondo, nessun aggettivo. Sono la prova
+                     che regge la riga sopra.
+
+       È lo stesso impianto della sezione «cura del dettaglio»
+       della home — l'affermazione, e sotto le prove che la
+       tengono in piedi — applicato al singolo capo.
+
+       COME SI SCORRE
+       Lo stesso sipario della home, ma qui un capo sono due
+       strati e non uno. La fotografia sale e riempie lo schermo;
+       poi salgono le parole, e si fermano appena si leggono per
+       intero — quel che avanza sopra resta fotografia, perché le
+       parole di un capo stanno sotto il capo, non al posto suo.
+       Poi sale la fotografia del capo dopo e copre tutto, e si
+       ricomincia. Un gesto, uno strato.
+
+       Le due misure — dove ogni strato si ferma e dove si
+       aggancia — le prende snap.js, che è caricato in fondo:
+       aggiungere un quarto capo non chiede di toccare niente,
+       basta che sia una .look e una .piece-word dentro un
+       <article> come questi.
+
+       Finché le fotografie non ci sono, ogni riquadro tiene il
+       posto con la dicitura di cosa manca, che è anche la nota di
+       servizio: quando arrivano, sparisce da sola e non resta
+       niente da ripulire.
+
+       PER METTERE UNA FOTOGRAFIA
+       Si scommenta l'<img> del riquadro e si toglie lo <span>.
+       I nomi dei file sono già decisi, in assets/img/:
+         collezione-01.jpg   collezione-02.jpg   collezione-03.jpg
+
+       L'alt non è la riga qui sotto e non la ripete: quella dice
+       perché il pezzo esiste, l'alt dice cosa si vede. Chi non
+       vede la fotografia riceve tutte e due, e se dicono la
+       stessa cosa ne ha ricevuta una sola.
+
+       IL TAGLIO DELLE FOTOGRAFIE
+       Il riquadro è alto una schermata e ritaglia in "cover":
+       serve uno scatto verticale o al più quadrato, mai
+       orizzontale — un 16:9 qui perde i due terzi dell'altezza e
+       resta un capo tagliato a metà.
+       ========================================================== -->
+      <section id="vetrina" data-tone="dark">
+        <!-- Il titolo della pagina c'è, ma non si vede: la vetrina
+         non ha una testata scritta, e senza un h1 chi naviga per
+         titoli con un lettore di schermo non troverebbe niente. -->
+        <h1 class="vh">Collezione — Drop 01</h1>
+
+        <!-- ============ 01 · CAMICIA «RIVA» ============ -->
+        <article>
+          <figure class="look">
+            <!-- <img class="rise" src="../assets/img/collezione-01.jpg"
+                  alt="Camicia «Riva» in seta avorio, collo morbido, indossata aperta sul collo"> -->
+            <span class="look-hold rise">Fotografia 01 — camicia «Riva»</span>
+          </figure>
+
+          <div class="piece-word">
+            <p class="piece-say rise">
+              Il collo tiene la forma <em>senza indurirsi</em>. È da lì che una
+              camicia si lascia giudicare.
+            </p>
+
+            <dl class="piece-tech rise">
+              <div>
+                <dt>Taglio</dt>
+                <dd>8 pezzi, taglia 48 · margine di cucitura 10 mm</dd>
+              </div>
+              <div>
+                <dt>Cucitura</dt>
+                <dd>Ribattuta in vista, 9 punti per centimetro</dd>
+              </div>
+              <div>
+                <dt>Filo</dt>
+                <dd>Seta 50, tinto in tinta con la pezza</dd>
+              </div>
+              <div>
+                <dt>Collo</dt>
+                <dd>Tela di cotone cucita, nessun termoadesivo</dd>
+              </div>
+              <div>
+                <dt>Confezione</dt>
+                <dd>Laboratorio di Pescara · 4 ore di lavoro per capo</dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+
+        <!-- ============ 02 · CAMICIA «PINETA» ============ -->
+        <article>
+          <figure class="look">
+            <!-- <img class="rise" src="../assets/img/collezione-02.jpg"
+                  alt="Camicia «Pineta» in seta verde tinta in pezza, ripresa di tre quarti"> -->
+            <span class="look-hold rise">Fotografia 02 — camicia «Pineta»</span>
+          </figure>
+
+          <div class="piece-word">
+            <p class="piece-say rise">
+              Tinta in pezza: il colore arriva <em>dopo la forma</em>, e ne
+              prende la memoria.
+            </p>
+
+            <dl class="piece-tech rise">
+              <div>
+                <dt>Taglio</dt>
+                <dd>8 pezzi, taglia 48 · margine di cucitura 10 mm</dd>
+              </div>
+              <div>
+                <dt>Tintura</dt>
+                <dd>In pezza, bagno unico, quaranta minuti</dd>
+              </div>
+              <div>
+                <dt>Cucitura</dt>
+                <dd>Ribattuta in vista, 9 punti per centimetro</dd>
+              </div>
+              <div>
+                <dt>Variazione</dt>
+                <dd>
+                  Ogni capo esce di un verde suo: è il bagno, non un difetto
+                </dd>
+              </div>
+              <div>
+                <dt>Confezione</dt>
+                <dd>Laboratorio di Pescara · 4 ore di lavoro per capo</dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+
+        <!-- ============ 03 · FOULARD «ADRIATICO» ============ -->
+        <article>
+          <figure class="look">
+            <!-- <img class="rise" src="../assets/img/collezione-03.jpg"
+                  alt="Foulard «Adriatico» in seta stampata, annodato al collo"> -->
+            <span class="look-hold rise">Fotografia 03 — foulard «Adriatico»</span>
+          </figure>
+
+          <div class="piece-word">
+            <p class="piece-say rise">
+              Novanta centimetri per novanta. L'orlo è l'unica cosa che
+              <em>non abbiamo affidato a una macchina</em>.
+            </p>
+
+            <dl class="piece-tech rise">
+              <div>
+                <dt>Misura</dt>
+                <dd>90 × 90 cm · seta 14 mm, armatura twill</dd>
+              </div>
+              <div>
+                <dt>Stampa</dt>
+                <dd>
+                  A quadro, sei colori · disegno del laboratorio di Pescara
+                </dd>
+              </div>
+              <div>
+                <dt>Orlo</dt>
+                <dd>Rollinato a mano, 3 mm</dd>
+              </div>
+              <div>
+                <dt>Tempo</dt>
+                <dd>Quaranta minuti di sola orlatura, per pezzo</dd>
+              </div>
+              <div>
+                <dt>Serie</dt>
+                <dd>120 pezzi, non riassortiti</dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer id="contatti" data-tone="dark">
+      <div class="foot-grid rise">
+        <div class="foot-col">
+          <h3>Contatti</h3>
+          <p>
+            <a href="mailto:atelier@ferragatti.it">atelier@ferragatti.it</a>
+          </p>
+          <p>Viene dal mare<br />città di PESCARA, Italia</p>
+          <p class="dimtext">Risposta entro un giorno lavorativo.</p>
+        </div>
+
+        <div class="foot-col">
+          <h3>Pagine</h3>
+          <ul class="foot-list">
+            <li><a href="../collezione/">Collezione</a></li>
+            <li><a href="../blog/">Blog</a></li>
+            <li><a href="../shop/">Store</a></li>
+          </ul>
+        </div>
+
+        <div class="foot-col">
+          <h3>Riferimenti</h3>
+          <ul class="foot-list">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Cartella stampa</a></li>
+            <li><a href="#">Materiali e provenienze</a></li>
+            <li><a href="#">Spedizioni e resi</a></li>
+            <li><a href="#">Cura della seta</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="legal">
+        <span>© 2026 Ferragatti — Tutti i diritti riservati</span>
+        <span>P. IVA da inserire · Privacy · Cookie</span>
+      </p>
+
+      <div class="foot-mark">
+        <svg
+          class="bigmark"
+          viewBox="0 0 1000 104"
+          role="img"
+          aria-label="Ferragatti"
+        >
+          <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
+            FERRAGATTI
+          </text>
+        </svg>
+      </div>
+    </footer>
+
+    <!-- site.js per il tono della barra e la comparsa delle parole;
+     snap.js per il sipario, che qui vale come sulla home — le sue
+     fermate le ricava anche dai due strati di un capo, la
+     fotografia e le parole. Se non gira, la classe .curtain non
+     arriva: gli strati tornano a essere una fotografia e sotto la
+     sua didascalia, in fila, e la vetrina si legge lo stesso.
+     clip.js no: illumina il marchio dell'apertura, e qui apertura
+     non ce n'è. -->
+    <script src="../assets/js/site.js"></script>
+    <script src="../assets/js/snap.js"></script>
+  </body>
+</html>
