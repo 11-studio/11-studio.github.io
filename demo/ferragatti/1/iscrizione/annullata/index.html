@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Disiscrizione — Ferragatti</title>
+    <meta name="theme-color" content="#f4f4f2" />
+    <meta name="robots" content="noindex, follow" />
+
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+  </head>
+
+  <body class="esito" data-tone="light">
+    <main class="esito">
+      <div class="esito-inner">
+        <a class="esito-mark" href="../../" aria-label="Ferragatti"></a>
+
+        <h1>Fatto. Non ti scriviamo <em>più</em></h1>
+
+        <p>
+          Sei uscito dalla lista. Nessuna conferma da dare, nessun modulo
+          da compilare, nessuna domanda sul perché: era un clic e un clic
+          è stato.
+        </p>
+
+        <!-- Il ripensamento.
+
+         Non è cortesia, è la toppa a un guasto reale: alcuni antivirus e
+         alcuni client di posta PRECARICANO i link dentro i messaggi, per
+         controllarli. Un link di disiscrizione che agisce su una GET può
+         quindi essere premuto da un robot senza che nessuno l'abbia
+         voluto, e la persona si ritroverebbe fuori senza saperlo.
+
+         La contromisura giusta non è chiedere «sei sicuro?» a chi vuole
+         andarsene — sarebbe rompere la promessa scritta sul sito per
+         colpa di un robot. È dare a chi non l'ha chiesto una via di
+         ritorno immediata. Chi voleva uscire ignora questo link e non ha
+         perso niente; chi non voleva rientra con un clic e nemmeno.
+
+         Il token arriva nell'indirizzo, messo lì dal redirect dell'API:
+         vale solo per chi quell'email l'ha ricevuta davvero, quindi non
+         è una porta per rimettere in lista qualcun altro. -->
+        <p id="ripensamento" hidden>
+          Non eri tu? Può succedere: certi programmi di posta aprono i
+          link da soli per controllarli.
+        </p>
+
+        <div class="esito-actions">
+          <a class="cta" href="../../">Torna al sito</a>
+          <a class="esito-undo" id="undo" href="#" hidden
+            >Rimettimi nella lista</a
+          >
+        </div>
+
+        <p class="esito-foot">
+          Se un domani cambi idea, il campo in fondo alla home è sempre
+          lì — <a href="../../privacy/">informativa</a>.
+        </p>
+      </div>
+    </main>
+
+    <script>
+      /* Il solo JavaScript delle pagine di esito, e fa una cosa sola:
+         prende il token dall'indirizzo e lo attacca al link di rientro.
+
+         Sta in linea e non in site.js perché site.js porta con sé le
+         lettere a cascata, l'intestazione e le rivelazioni — roba che
+         qui non esiste. Sei righe non giustificano di scaricare un
+         file intero su una pagina che si legge in quattro secondi.
+
+         Senza JavaScript il link resta nascosto: si perde il
+         ripensamento, non la disiscrizione, che è già avvenuta lato
+         server. Il guasto degrada dalla parte giusta. */
+      (function () {
+        var t = new URLSearchParams(location.search).get('t');
+        if (!t) return;
+
+        var a = document.getElementById('undo');
+        a.href = '/api/resubscribe?t=' + encodeURIComponent(t);
+        a.hidden = false;
+        document.getElementById('ripensamento').hidden = false;
+      })();
+    </script>
+  </body>
+</html>

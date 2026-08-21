@@ -149,7 +149,7 @@
   });
 
   // senza WebGL resta un fondo pieno, ma nella tinta del drappo
-  if (!gl) { canvas.style.background = '#17120A'; return; }
+  if (!gl) { canvas.style.background = '#02100A'; return; }
 
   /* Ogni punto della scia costa due vettori uniform (posizione +
      età + forza in un vec4, direzione in un vec2). WebGL ne
@@ -391,10 +391,10 @@
     'uniform vec4  u_tp[' + TRAIL + '];  // scia: xy posizione, z età, w forza',
     'uniform vec2  u_tv[' + TRAIL + '];  // scia: direzione del gesto',
     '',
-    '// l\'oro della palette — #C9A227, lo stesso di --gold in CSS —',
+    '// il verde della palette — #004B23, lo stesso di --gold in CSS —',
     '// in valori 0-1. È l\'unica tinta dichiarata: tutto il resto',
     '// del drappo si ricava da qui.',
-    'const vec3 ORO = vec3(0.788, 0.635, 0.153);',
+    'const vec3 TINTA = vec3(0.0, 0.294, 0.137);',
     '',
     'float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }',
     '',
@@ -579,23 +579,23 @@
     '  float sheen = pow(max(dot(n, halfDir), 0.0), 5.0) * 0.22;',
     '',
     '  // Tutti i colori del drappo escono da un solo valore:',
-    '  // l\'oro della palette, #C9A227. Cambiare quello li cambia',
+    '  // il verde della palette, #004B23. Cambiare quello li cambia',
     '  // tutti insieme e la seta resta in tinta.',
     '  //',
-    '  // Non è un drappo dorato in piena luce: è oro visto al buio,',
-    '  // che è come si vede l\'oro vero. L\'ombra scende quasi a nero',
-    '  // — con un soffio di freddo dentro, se no il nero della',
-    '  // stessa tinta impasta e il tessuto sembra piatto — la luce',
-    '  // diffusa porta la tinta, e solo il colpo di luce sale al',
-    '  // chiaro. La distanza fra questi tre è il metallo.',
-    '  vec3 col = ORO * 0.075 + vec3(0.006, 0.005, 0.014);',
-    '  col += ORO * 0.80 * diff * 0.46;',
+    '  // Non è un drappo in piena luce: è un verde visto al buio.',
+    '  // L\'ombra scende quasi a nero — con un soffio di freddo',
+    '  // dentro, se no il nero della stessa tinta impasta e il',
+    '  // tessuto sembra piatto — la luce diffusa porta la tinta, e',
+    '  // solo il colpo di luce sale al chiaro. La distanza fra',
+    '  // questi tre è la seta.',
+    '  vec3 col = TINTA * 0.075 + vec3(0.006, 0.005, 0.014);',
+    '  col += TINTA * 0.80 * diff * 0.46;',
     '',
-    '  col += ORO * 0.80 * sheen;',
-    '  col += mix(ORO, vec3(1.0), 0.55) * spec * 0.55;',
+    '  col += TINTA * 0.80 * sheen;',
+    '  col += mix(TINTA, vec3(1.0), 0.55) * spec * 0.55;',
     '',
-    '  // un soffio d\'oro attorno al cursore, appena percepibile',
-    '  col += ORO * pull * 0.11;',
+    '  // un soffio di tinta attorno al cursore, appena percepibile',
+    '  col += TINTA * pull * 0.11;',
     '',
     '  // la vignettatura si sposta con la luce: tiene lo sguardo',
     '  vec2 vc = uv - u_ptr * 0.28 * u_amt;',

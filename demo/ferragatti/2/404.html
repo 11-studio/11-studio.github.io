@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pagina non trovata — Ferragatti</title>
+    <meta name="theme-color" content="#0b0b0d" />
+    <meta name="robots" content="noindex, follow" />
+
+    <!-- ⚠ Percorso assoluto, ed è l'unico caso in cui è obbligatorio.
+     Il 404 viene servito a QUALUNQUE indirizzo sbagliato — anche
+     /shop/qualcosa/di/inventato/ — e un percorso relativo si
+     risolverebbe a partire da lì, cioè in un altro 404. Con
+     l'assoluto il foglio di stile si trova sempre.
+
+     Il rovescio: aperto con un doppio clic da disco resta senza
+     stile. È il baratto giusto, perché questa pagina la serve un
+     server o non esiste. -->
+    <link rel="stylesheet" href="/assets/css/style.css" />
+  </head>
+
+  <body class="esito" data-tone="dark">
+    <main class="esito">
+      <div class="esito-inner">
+        <a class="esito-mark" href="/" aria-label="Ferragatti"></a>
+
+        <h1>Questa pagina non c'è</h1>
+
+        <p>
+          L'indirizzo è sbagliato, oppure c'era qualcosa e non c'è più.
+          Da qui si torna dove le cose ci sono.
+        </p>
+
+        <div class="esito-actions">
+          <a class="cta" href="/">Torna alla home</a>
+        </div>
+
+        <p class="esito-foot">
+          <a href="/collezione/">Collezione</a> ·
+          <a href="/blog/">Giornale</a> ·
+          <a href="/shop/">Store</a> ·
+          <a href="/privacy/">Privacy</a>
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

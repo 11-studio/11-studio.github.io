@@ -11,58 +11,71 @@
    ============================================================ */
 
 /* ============================================================
-   CARATTERI — self-hostati, nessun CDN
+   CARATTERE — uno solo, e di sistema
    ------------------------------------------------------------
-   Due caratteri, due mestieri, nessun terzo.
+   Helvetica Neue. In tutto il sito, con una sola eccezione
+   dichiarata: la firma sotto il ritratto, che è un segno e non
+   tipografia di sistema, e prende un corsivo con le grazie in un
+   punto solo del foglio. Il perché sta nella sezione LA FIRMA.
 
-   Archivo è un grottesco di impianto americano: asse dritto,
-   terminali orizzontali, nessun vezzo. Regge il marchio in
-   maiuscolo, la navigazione e il testo corrente senza cambiare
-   registro. È il carattere della casa.
+   Non è una scelta originale, ed è esattamente il punto. Il
+   grottesco neutro è il carattere delle case che non hanno
+   bisogno di farsi riconoscere dalle lettere: la forma non dice
+   niente, così a parlare restano le fotografie, le misure e il
+   bianco. Un carattere «caratteristico» è un carattere a cui si
+   sta chiedendo di fare il lavoro che dovrebbe fare la collezione.
 
-   EB Garamond serve solo dove il sito parla in prima persona:
-   i titoli, la firma, le cifre. È un garaldo del Cinquecento —
-   contrasto basso, grazie piene — quindi porta autorevolezza
-   senza la lucidità da rivista patinata di un bodoniano.
+   Un carattere solo vuol dire nessun accostamento da governare.
+   La gerarchia la fanno corpo, peso e spaziatura — le tre cose
+   che un grottesco sa fare bene. Niente monospaziato, e niente
+   corsivo: l'obliquo di Helvetica è il tondo inclinato a macchina,
+   non un disegno a sé, e a corpo grande si vede. Dove serve un
+   corsivo vero — cioè nella firma, e solo lì — non lo si chiede a
+   Helvetica: si cambia carattere apposta.
 
-   Nessun monospaziato: le diciture in maiuscolo (etichette,
-   cartiglio, quote del cartamodello) sono Archivo spaziato.
-   Un monospaziato qui non avrebbe alcuna ragione tipografica —
-   serve a incolonnare codice, e qui non c'è codice da mostrare.
+   Non è incorporato: sta già su ogni Mac e ogni iPhone. Dove non
+   c'è, Arial ne condivide le metriche — stesse larghezze,
+   maiuscole a 0,716 em contro 0,714 — e ne prende il posto senza
+   spostare una riga. Nessun file da scaricare, nessuna licenza da
+   comprare, nessun CDN: il sito non porta più caratteri con sé.
 
-   Entrambi variabili: un file copre tutta la scala dei pesi.
-   Licenze in assets/fonts/.
+   Due pesi in tutto il foglio, e non uno di più:
+
+     400   testo corrente e titoli
+     500   diciture in maiuscolo
+
+   Il 600 in Helvetica Neue non esiste: chiederlo vuol dire farsi
+   dare il Bold, o un finto grassetto disegnato dal browser. Dove
+   c'era, è sceso a 500.
    ============================================================ */
-@font-face {
-  font-family: "Archivo";
-  src: url("../fonts/archivo-100900-normal.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "EB Garamond";
-  src: url("../fonts/eb-garamond-400800-normal.woff2") format("woff2");
-  font-weight: 400 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "EB Garamond";
-  src: url("../fonts/eb-garamond-400800-italic.woff2") format("woff2");
-  font-weight: 400 800;
-  font-style: italic;
-  font-display: swap;
-}
 
 :root {
-  --sans:  "Archivo", "Helvetica Neue", system-ui, -apple-system, Arial, sans-serif;
-  --serif: "EB Garamond", "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  --font: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+
+  /* L'unica eccezione, e serve un posto solo: la firma sotto il
+     ritratto. Il perché sta nel commento della sezione LA FIRMA.
+     Se compare una seconda volta in questo foglio, è un errore. */
+  --font-sign:
+    "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia,
+    "Times New Roman", serif;
+
+  /* Le due spaziature del maiuscolo, e sono due sole. La prima è
+     quella del marchio scritto: 0,19 em, la misura su cui è
+     calcolato il corpo dell'insegna a tutta larghezza. Nessuna
+     regola la chiama più — da quando la barra porta la firma
+     disegnata, l'unico posto in cui la parola si scrive è il
+     .bigmark, che quella spaziatura ce l'ha già dentro al conto del
+     textLength. Resta qui perché è la misura da cui quel conto
+     riparte se l'insegna si rifà. La seconda vale per ogni altra
+     dicitura — navigazione, inviti, testate di colonna, cartigli,
+     taglie. Un valore solo per tutte: tararle una per una a occhio,
+     da .08 a .19, è il gesto che fa sembrare un sito un esercizio
+     di tipografia invece che un sito. */
+  --track-mark: 0.19em;
+  --track-caps: 0.08em;
 
   --pad: clamp(1.4rem, 5vw, 5rem);
-  --gold-lux: #C9A227;
+  --gold-lux: #004b23;
 
   /* Ingombro della barra fissa. Sulla home non serve — l'apertura
      ci passa sotto apposta — ma le pagine interne cominciano con
@@ -88,68 +101,89 @@
    sul chiaro si scurisce, altrimenti bianco su bianco sparisce
    e la barra resta senza fondo. */
 [data-tone="dark"] {
-  --bg:   #0B0B0D;
-  --fg:   #F2F1EE;
-  --dim:  #8C8A84;
-  --gold: #C9A227;
-  --rule: rgba(242, 241, 238, .16);
-  --panel: rgba(242, 241, 238, .045);
+  --bg: #0b0b0d;
+  --fg: #f2f1ee;
+  --dim: #8c8a84;
+  --gold: #004b23;
+  --rule: rgba(242, 241, 238, 0.16);
+  --panel: rgba(242, 241, 238, 0.045);
 
-  --glass:        rgba(16, 16, 20, .38);
-  --glass-edge:   rgba(242, 241, 238, .22);
-  --glass-sheen:  rgba(242, 241, 238, .16);
-  --glass-shade:  rgba(0, 0, 0, .42);
-  --glass-chip:   rgba(242, 241, 238, .10);
-  --glass-halo:   0 0 .8px rgba(0, 0, 0, .55), 0 1px 3px rgba(0, 0, 0, .35);
-  --glass-solid:  rgba(11, 11, 13, .93);
+  --glass: rgba(16, 16, 20, 0.38);
+  --glass-edge: rgba(242, 241, 238, 0.22);
+  --glass-sheen: rgba(242, 241, 238, 0.16);
+  --glass-shade: rgba(0, 0, 0, 0.42);
+  --glass-chip: rgba(242, 241, 238, 0.1);
+  --glass-halo: 0 0 0.8px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.35);
+  --glass-solid: rgba(11, 11, 13, 0.93);
 }
 
 [data-tone="light"] {
-  --bg:   #F4F4F2;
-  --fg:   #15161A;
-  --dim:  #6C7076;
-  --gold: #8A6A12;   /* oro scurito: su fondo chiaro serve 5.6:1 */
-  --rule: rgba(21, 22, 26, .15);
-  --panel: rgba(21, 22, 26, .035);
+  --bg: #f4f4f2;
+  --fg: #15161a;
+  --dim: #6c7076;
+  --gold: #004b23; /* sul chiaro il verde tiene 10,3:1 senza ritocchi */
+  --rule: rgba(21, 22, 26, 0.15);
+  --panel: rgba(21, 22, 26, 0.035);
 
-  --glass:        rgba(248, 248, 246, .46);
-  --glass-edge:   rgba(21, 22, 26, .16);
-  --glass-sheen:  rgba(255, 255, 255, .55);
-  --glass-shade:  rgba(21, 22, 26, .16);
-  --glass-chip:   rgba(21, 22, 26, .05);
+  --glass: rgba(248, 248, 246, 0.46);
+  --glass-edge: rgba(21, 22, 26, 0.16);
+  --glass-sheen: rgba(255, 255, 255, 0.55);
+  --glass-shade: rgba(21, 22, 26, 0.16);
+  --glass-chip: rgba(21, 22, 26, 0.05);
   /* sul chiaro l'alone sta solo sotto la lettera: un bagliore
      centrato le mangerebbe i bordi e il maiuscolo piccolo, che
      è sottile, verrebbe su grigio invece che nero */
-  --glass-halo:   0 1px 2px rgba(255, 255, 255, .60);
-  --glass-solid:  rgba(244, 244, 242, .95);
+  --glass-halo: 0 1px 2px rgba(255, 255, 255, 0.6);
+  --glass-solid: rgba(244, 244, 242, 0.95);
 }
 
 /* ============================================================
    BASE
    ============================================================ */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
-/* Archivo ha un'altezza dell'occhio medio generosa (0,53 em): a
-   17 px sta comoda anche in interlinea larga, e il testo lungo
-   della sezione 1 si legge senza doverlo ingrandire. */
+/* Helvetica Neue ha l'occhio medio più corto di un grottesco
+   moderno (0,517 em contro 0,53): allo stesso corpo il testo
+   sembra un po' più piccolo, e chiede meno interlinea, non di più.
+   Il corpo resta 17 px e l'interlinea scende da 1,65 a 1,60.
+   Inseguire l'ingombro apparente del carattere di prima,
+   ingrandendo, toglierebbe la finezza per cui lo si è cambiato. */
 body {
   margin: 0;
-  background: #0B0B0D;
-  color: #F2F1EE;
-  font-family: var(--sans);
+  background: #0b0b0d;
+  color: #f2f1ee;
+  font-family: var(--font);
   font-size: 17px;
-  line-height: 1.65;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-img { max-width: 100%; display: block; }
+img {
+  max-width: 100%;
+  display: block;
+}
 
-::selection { background: var(--gold-lux); color: #0B0B0D; }
+/* La selezione si è capovolta con la tinta: sul verde di casa,
+   che è scuro, l'inchiostro quasi nero di prima spariva. Il testo
+   selezionato prende il chiaro della pagina, non il fondo. */
+::selection {
+  background: var(--gold-lux);
+  color: #f2f1ee;
+}
 
-:focus-visible { outline: 2px solid var(--gold-lux); outline-offset: 3px; }
+:focus-visible {
+  outline: 2px solid var(--gold-lux);
+  outline-offset: 3px;
+}
 
 /* ------------------------------------------------------------
    LA SCALA DELLE DICITURE
@@ -159,25 +193,41 @@ img { max-width: 100%; display: block; }
    legali — sta in tondo minuscolo, che è come si scrive in un
    documento vero. Maiuscolo dappertutto è il tic da modello.
 
-   insegna   Archivo 500-600 · .70-.80rem · +.09/.14em · caps
-   corrente  Archivo 400     · .82-1rem   · 0          · tondo
+   Il marchio non è in questa scala: nella barra e in cima ai
+   ritorni non è una dicitura ma un disegno — la firma, stesa come
+   maschera. Sta più giù, alla voce IL SEGNO.
+
+   insegna   500 · .68-.84rem · +.08em (--track-caps) · caps
+   corrente  400 · .82-1rem   ·  0                    · tondo
+   titoli    400 · 1,3-6,4rem · da -.010 a -.024em    · tondo
+
+   La crenatura negativa dei titoli non è un vezzo. Helvetica è
+   disegnata e spaziata per il corpo del testo: sopra i 40 px circa
+   gli intervalli si aprono e la parola si sfilaccia, quindi più il
+   corpo è grande più il titolo stringe. È l'operazione opposta a
+   quella che chiedeva il carattere di prima.
    ------------------------------------------------------------ */
 .skip {
   position: absolute;
   left: -9999px;
   top: 0;
   z-index: 99;
-  background: #F2F1EE;
-  color: #0B0B0D;
-  padding: .7rem 1.1rem;
-  font-family: var(--sans);
+  background: #f2f1ee;
+  color: #0b0b0d;
+  padding: 0.7rem 1.1rem;
   font-weight: 500;
-  font-size: .85rem;
+  font-size: 0.85rem;
 }
 
-.skip:focus { left: .5rem; top: .5rem; }
+.skip:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
 
-section { background: var(--bg); color: var(--fg); }
+section {
+  background: var(--bg);
+  color: var(--fg);
+}
 
 /* ============================================================
    MARCHIO A TUTTA LARGHEZZA
@@ -190,30 +240,39 @@ section { background: var(--bg); color: var(--fg); }
    spaziatura voluta, e i conti si fanno sull'inchiostro, non
    sugli avanzamenti.
 
-   La F e la I portano una spalla laterale di 0,081 em ciascuna:
-   se si fa arrivare l'avanzamento al margine, l'inchiostro resta
+   La F e la I portano una spalla laterale, 0,076 e 0,077 em: se
+   si fa arrivare l'avanzamento al margine, l'inchiostro resta
    dentro di quella quantità e il marchio risulta rientrato
-   rispetto alla riga sotto — a questa scala sono dieci pixel e
-   si vedono. Quindi il testo parte a −10,26 (la spalla della F
-   riportata fuori) e l'ingombro è 1020,48, cioè le mille unità
-   piene più le due spalle: così le aste della F e della I
-   toccano davvero i due margini.
+   rispetto alla riga sotto — a questa scala sono dieci pixel e si
+   vedono. Quindi il testo parte a -9,79 (la spalla della F
+   riportata fuori) e l'ingombro è 1019,71, cioè le mille unità
+   piene più le due spalle: così le aste della F e della I toccano
+   davvero i due margini.
 
-   In Archivo 500 le dieci lettere avanzano di 6,412 em, e i
-   nove intervalli portano il resto:
+   In Helvetica Neue Medium le dieci lettere avanzano di 6,188 em,
+   e i nove intervalli portano il resto:
 
-       corpo = 1000 / (6,412 + 9 × spaziatura − 0,1625)
+       corpo = 1000 / (6,188 + 9 × spaziatura - 0,153)
 
-   Con 0,1875 em — il respiro giusto per un'insegna in maiuscolo,
-   larga abbastanza da leggersi come marchio e non così larga da
-   sfilacciarsi — il corpo cade a 126.
+   Qui però il conto è stato girato al contrario rispetto a prima.
+   Le maiuscole di Helvetica Neue sono alte 0,714 em; volendo il
+   riquadro alto 104 con sei unità di aria sopra e sotto, le
+   lettere devono misurarne 92, quindi il corpo è 92 / 0,714 =
+   128,85 e la spaziatura è quel che avanza, 0,1918 em. Cade a un
+   soffio dallo 0,19 scelto per il marchio piccolo nella barra —
+   che infatti resta invariato, ed è per questo che le due insegne
+   portano lo stesso segno.
 
-   L'altezza delle maiuscole di Archivo è 0,686 em, cioè 86,4
-   unità: il riquadro è alto 98 e la base sta a 92, così sopra e
-   sotto restano sei unità uguali e il blocco non porta con sé
-   spazio morto da compensare in CSS. Un maiuscolo di grottesco
-   non ha discendenti né grazie sporgenti, ed è per questo che
-   può stare in un riquadro cucito addosso alle lettere.
+   Il riquadro sale da 98 a 104 perché Helvetica ha le maiuscole
+   più alte del carattere di prima (0,714 contro 0,686): a parità
+   di larghezza il marchio guadagna in altezza, e il riquadro lo
+   segue invece di tagliarlo.
+
+   Dove Helvetica Neue non c'è subentra Arial, che ne ha le stesse
+   larghezze e le maiuscole a 0,716 em. La larghezza è comunque
+   imposta da textLength, quindi il marchio non si sposta di un
+   pixel: cambia solo, di due millesimi di em, quanto le lettere
+   riempiono il riquadro.
    ============================================================ */
 .bigmark {
   display: block;
@@ -222,10 +281,144 @@ section { background: var(--bg); color: var(--fg); }
 }
 
 .bigmark text {
-  font-family: var(--sans);
+  font-family: var(--font);
   font-weight: 500;
-  font-size: 126px;
+  font-size: 128.85px;
   fill: currentColor;
+}
+
+/* ============================================================
+   LETTERE A CASCATA — il passaggio del puntatore sulle parole
+
+   Le voci della barra, gli inviti e i collegamenti del piede non
+   si accendono più tutti in un colpo. Di ogni lettera ce ne sono
+   due, una sopra l'altra: quella che si legge scende e se ne va
+   dal fondo del rigo, quella che le sta sopra — fuori dal rigo,
+   quindi invisibile — scende insieme a lei e si ferma esattamente
+   dove stava la prima. È un rullo, non un salto: alla fine la
+   parola è identica a prima, ma l'ha riscritta un'altra fila di
+   lettere. Nel documento la lettera resta però una sola: la copia
+   la disegna uno pseudo-elemento, per le ragioni scritte più sotto.
+
+   Il ritardo è l'indice della lettera moltiplicato per --step, e il
+   verso è quello della lettura: la cascata parte dalla prima e
+   arriva all'ultima. Quando il puntatore se ne va il ritardo vale
+   ancora, quindi il rullo torna indietro nello stesso ordine — la
+   parola non si ricompone di scatto.
+
+   La corsa è il rigo, né più né meno. Il riquadro di ogni lettera
+   è alto quanto la riga del testo che la contiene e taglia quello
+   che ne esce: le due copie si muovono di 100%, cioè di un rigo
+   esatto, quindi nessuna delle due si vede mai fuori dalla riga —
+   né sotto, addosso a quello che viene dopo, né sopra, addosso
+   alla riga precedente. Non c'è una misura da accordare a mano:
+   l'interlinea la decide il testo, e la corsa la segue da sola.
+
+   Il colore resta dov'era, sul collegamento: l'oro arriva tutto
+   insieme e la cascata è solo il movimento, se no il passaggio del
+   puntatore diventa due effetti che si contendono la stessa parola.
+
+   Ogni lettera è un inline-block e le due copie si muovono dentro
+   di lei: niente si sposta intorno mentre il rullo gira. Il prezzo
+   è la crenatura, che fra due inline-block non si applica più: su
+   maiuscolo spaziato non si vede, ed è per questo che la spezzatura
+   vale per le diciture e non per il testo corrente.
+
+   Il contenitore .lts è aria-hidden e l'elemento porta aria-label
+   col testo intero: chi ascolta la pagina sente la parola una
+   volta sola, non le sue lettere una per una e nemmeno in doppio.
+   ============================================================ */
+.lts {
+  display: inline;
+}
+
+/* Il riquadro che taglia. L'allineamento è alto e non alla base:
+   overflow:hidden sposta la linea di base di un inline-block al suo
+   bordo inferiore, e lasciandolo fare le lettere si appoggerebbero
+   male al resto della riga — al trattino delle voci del piede, per
+   dire. Allineate in cima, e alte quanto il rigo, ricadono
+   esattamente dove cadevano da testo semplice. */
+.lt {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+/* inline-block e non block: un riquadro di blocco per lettera
+   manderebbe a capo il testo agli occhi di chi lo copia e di chi lo
+   cerca nella pagina — la voce verrebbe fuori una lettera per riga.
+   In linea il testo resta una parola sola. */
+/* La curva parte subito e atterra piano. Non è un dettaglio di
+   gusto: con una curva simmetrica, che parte lenta, la prima
+   lettera resta ferma per un decimo di secondo dopo il puntatore, e
+   quel decimo si legge come un ritardo del sito, non come un
+   movimento. Qui il rullo scatta al primo fotogramma e si prende il
+   tempo dov'è invisibile, cioè in fondo alla corsa. */
+.lt-a,
+.lt::after {
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.16, 0.84, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * var(--step, 24ms));
+}
+
+/* La seconda copia sta appoggiata sopra la prima e aspetta un rigo
+   più in alto: è lei a scrivere la parola quando il rullo ha girato.
+
+   È uno pseudo-elemento e non un secondo <span> apposta. Scritta due
+   volte nel documento, la lettera finirebbe due volte anche nel
+   testo della pagina: «Progetto» varrebbe «PPrrooggeettttoo» per il
+   copia-incolla e per il trova-nella-pagina. content: attr() disegna
+   la copia senza aggiungere niente al testo. Il divieto di selezione
+   è la cintura: qualche browser il contenuto degli pseudo lo mette
+   comunque negli appunti. */
+.lt::after {
+  content: attr(data-c);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  transform: translateY(-100%);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Il richiamo si aggancia al genitore diretto di .lts, cioè al
+   collegamento stesso, e non all'elenco delle voci: così vale da
+   solo ovunque site.js spezzi una parola, oggi e domani. */
+:hover > .lts .lt-a,
+:focus-visible > .lts .lt-a {
+  transform: translateY(100%);
+}
+
+:hover > .lts .lt::after,
+:focus-visible > .lts .lt::after {
+  transform: translateY(0);
+}
+
+/* i pulsanti dello store sono spenti finché il drop non apre:
+   restano fermi anche sotto il puntatore */
+.cta[disabled]:hover > .lts .lt-a {
+  transform: none;
+}
+.cta[disabled]:hover > .lts .lt::after {
+  transform: translateY(-100%);
+}
+
+/* Il passo per contesto: più corto dove le parole sono lunghe, se
+   no l'ultima lettera parte quando la prima ha già finito e la
+   cascata diventa una fila indiana. Il conto da tenere d'occhio è
+   l'ultima lettera: passo per numero di lettere più la durata, e
+   deve stare sotto il secondo — «VISITA LO STORE», che è la voce
+   più lunga del sito, chiude in 840 ms. */
+.nav-links a {
+  --step: 30ms;
+}
+.cta {
+  --step: 28ms;
+}
+.foot-col a {
+  --step: 24ms;
 }
 
 /* ============================================================
@@ -269,7 +462,7 @@ section { background: var(--bg); color: var(--fg); }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: .9rem var(--pad);
+  padding: 0.9rem var(--pad);
   isolation: isolate;
 
   background: var(--glass);
@@ -284,12 +477,13 @@ section { background: var(--bg); color: var(--fg); }
   color: var(--fg);
   text-shadow: var(--glass-halo);
 
-  transition: background .6s ease,
-              backdrop-filter .6s ease,
-              -webkit-backdrop-filter .6s ease,
-              color .6s ease,
-              box-shadow .6s ease,
-              text-shadow .6s ease;
+  transition:
+    background 0.6s ease,
+    backdrop-filter 0.6s ease,
+    -webkit-backdrop-filter 0.6s ease,
+    color 0.6s ease,
+    box-shadow 0.6s ease,
+    text-shadow 0.6s ease;
 }
 
 /* SULL'APERTURA la lastra si toglie, la barra resta.
@@ -307,7 +501,9 @@ section { background: var(--bg); color: var(--fg); }
   text-shadow: var(--glass-halo);
 }
 
-.nav.bare::before { opacity: 0; }
+.nav.bare::before {
+  opacity: 0;
+}
 
 /* la luce fissa della lastra: sta sotto al contenuto (z-index
    negativo dentro l'isolation della barra) e non intercetta il
@@ -326,36 +522,92 @@ section { background: var(--bg); color: var(--fg); }
     transparent 78%,
     color-mix(in srgb, var(--glass-sheen) 45%, transparent) 100%
   );
-  opacity: .55;
-  transition: opacity .6s ease;
+  opacity: 0.55;
+  transition: opacity 0.6s ease;
 }
 
 /* dove il vetro non c'è (Firefox senza backdrop-filter attivo,
    browser vecchi) la barra torna piena: meglio opaca che
    illeggibile. */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .nav { background: var(--glass-solid); text-shadow: none; }
-  .nav::before { opacity: .25; }
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .nav {
+    background: var(--glass-solid);
+    text-shadow: none;
+  }
+  .nav::before {
+    opacity: 0.25;
+  }
 }
 
-/* il marchio piccolo tiene la stessa spaziatura di quello grande,
-   arrotondata: è la stessa insegna vista da lontano */
+/* IL SEGNO
+   ----------------------------------------------------------
+   Il marchio del sito è la firma calligrafica, non la parola in
+   maiuscoletto. Il disegno è quello di assets/img/marchio.svg —
+   che a sua volta è FERRAGATTI.svg tagliato al vivo, perché
+   l'export d'origine è un foglio A4 con il segno al centro.
+
+   Qui il disegno è incorporato come maschera, e le due scelte
+   hanno due ragioni distinte.
+
+   Maschera e non <img>: la barra cambia tono scendendo (site.js
+   le riscrive data-tone sezione per sezione, e --fg passa da
+   bianco a nero). Una maschera si colora con currentColor e fa
+   il passaggio insieme al resto della barra; un file col suo
+   blu dentro resterebbe fermo, sbagliato su uno dei due fondi.
+   È anche quello che tiene l'oro sul marchio dei ritorni.
+
+   Incorporato e non linkato: il marchio è la prima cosa che si
+   vede, e un mask-image che arriva dalla rete arriva dopo il
+   primo fotogramma — la barra si aprirebbe con il posto vuoto.
+   Dentro il foglio di stile è già lì quando la pagina dipinge.
+
+   Per rifarlo dopo un ritocco al disegno: prendere marchio.svg,
+   togliere commenti e prologo XML, schiacciare gli spazi,
+   passarlo in URL-encoding (le virgolette devono diventare %22,
+   o chiudono la stringa CSS) e sostituire il valore qui sotto.
+   L'aspect-ratio delle due regole è il viewBox del file: se il
+   ritaglio cambia, cambia anche quello. */
+:root {
+  --marchio: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2271.71 328.85 451.8 184.08%22 fill=%22currentColor%22 role=%22img%22 aria-label=%22Ferragatti%22%3E %3Cg%3E %3Cpath d=%22M98,381.25c-3.97.65-8.52,1.37-12.44.07s-6.59-5.14-6.89-9.27c-.72-9.65,6.91-17.45,14.88-21.52,9.67-4.94,20.91-5.61,31.58-5.48,5.7.07,11.42.49,17.03,1.53s10.62,2.5,15.78,4.23c10.18,3.42,18.86,9.75,28.19,14.88,5.06,2.79,10.31,5.06,15.81,6.81s11.33,3.06,17.06,4.28c11.84,2.51,24,4.95,36.12,3.04,10.02-1.58,19.96-6.52,25.08-15.63,2.35-4.18,3.66-8.99,3.11-13.8-.51-4.43-2.49-8.58-5.58-11.8-3.31-3.45-7.57-5.2-12.21-6-3.6-.62-7.08-.57-10.49.85-2.2.92-4.22,2.22-6.19,3.54-.88.59,0,1.22.67,1.5.84.35,2.58.75,3.44.17,2.01-1.35,4.08-2.68,6.33-3.6,1.36-.55,2.82-.8,3.83-.74.74.04.88.07,1.83.22.86.14,1.73.28,2.56.55,1.89.61,3.6,1.74,5.05,3.09,7.26,6.75,7.4,17.63,2.37,25.73-5.55,8.93-15.7,13.38-25.88,14.27-6.03.53-12.07-.09-18.01-1.09s-11.5-2.19-17.18-3.52-11.29-2.88-16.66-5.14c-4.9-2.07-9.5-4.77-14.05-7.5s-9.38-5.69-14.31-8.11-10.07-4.1-15.3-5.6c-11.23-3.23-22.73-4.53-34.41-4.26-10.73.25-21.77,1.35-31.26,6.77-7.59,4.33-14.8,12.16-14.1,21.55.32,4.3,2.67,7.99,6.42,10.14,4.26,2.44,9.39,2.9,14.2,2.63,2.32-.13,4.63-.46,6.93-.84.99-.16.96-.93.22-1.41-.98-.64-2.37-.73-3.49-.55h0Z%22/%3E %3Cpath d=%22M108.35,436.84c-10.06-1.71-20.28,3.67-25.43,12.31-5.41,9.07-3.78,20.61,1.93,29.1,6.46,9.6,17.86,13.58,29.09,12.77,12.54-.9,23.69-7.39,34.01-14.06,10.18-6.57,20.5-13.49,27.92-23.25,3.82-5.02,6.91-10.52,9.76-16.13,3.07-6.02,5.99-12.12,8.86-18.24s5.67-12.26,8.5-18.39c2.57-5.57,5.2-11.12,8.36-16.38,4.07-6.77,9.44-12.62,14.52-18.64,5.36-6.34,10.87-12.6,16.93-18.29,2.87-2.7,5.87-5.32,9.14-7.53,2.54-1.72,5.74-3.52,8.42-4.15.63-.15,1.28-.26,1.93-.31.31-.03.62-.04.93-.04.1,0,.5.02.12,0,.18.01.36.03.54.05,2.91.33,2.26-4.46-.15-4.73-6.55-.74-12.71,3.51-17.6,7.34-6.47,5.05-12.16,11.08-17.59,17.2-4.26,4.8-8.26,9.81-12.48,14.64-7.61,8.71-12.64,18.97-17.43,29.4-5.52,12.02-10.99,24.08-17.04,35.84-2.71,5.28-5.63,10.5-9.3,15.18s-8.12,8.81-12.85,12.48-9.65,6.87-14.63,10.07c-5.11,3.28-10.34,6.44-15.91,8.9-10.25,4.52-22.74,6.57-33.05,1.07-8-4.27-13.19-13.72-12.07-22.8s8.82-16.98,17.96-18.62c2.24-.4,4.49-.43,6.74-.05,2.88.49,2.24-4.32-.15-4.73h0Z%22/%3E %3Cpath d=%22M151.17,435.96c6.66-6.13,15.05-11.32,24.3-11.89,4.51-.28,9.1.41,13.13,2.53,2.08,1.1,3.94,2.55,6.16,3.38,2.41.9,5.07.85,7.53.17,2.83-.79,5.41-2.27,7.95-3.71,2.71-1.54,5.42-3.09,8.13-4.63,2.42-1.38-.76-5.2-2.98-3.94-2.42,1.38-4.85,2.76-7.27,4.14-2.24,1.28-4.49,2.7-6.94,3.53-2.23.76-4.47,1-6.62-.11s-3.96-2.5-6.14-3.44c-9.01-3.88-19.17-2.78-27.85,1.42-4.87,2.36-9.22,5.64-13.19,9.3-.93.86-.17,2.49.61,3.14.95.81,2.26.97,3.2.1h0Z%22/%3E %3Cpath d=%22M193.66,469.52c8.52-2.21,15.46-7.87,21.62-13.93,3.12-3.07,6.43-6.2,9.13-9.65s3.83-7.87,1.9-11.92c-.83-1.74-2.19-3.35-4.09-3.91-1.8-.53-3.96-.2-5.62.63s-2.89,2.42-4,3.79c-1.4,1.74-2.65,3.61-3.65,5.6-2.18,4.35-4.33,8.98-4.51,13.92-.16,4.42,1.35,8.96,4.19,12.35,6.56,7.82,17.44,3.9,23.09-2.85,1.04-1.24-1.53-5.46-2.74-4.02-3.9,4.65-11.63,9.03-17.56,5.43-6.81-4.13-3.08-13.75-.48-19.22,1.62-3.41,3.62-6.64,6.3-9.32,1.16-1.16,2.62-1.82,4.26-1.94.66-.05,1.36-.05,1.99.18.17.07.35.17.5.23.29.13.12.31.04.01.96,3.25-1.91,6.67-3.96,8.87-2.55,2.74-5.13,5.46-7.81,8.07-5.93,5.79-12.66,11.08-20.83,13.2-1.46.38.46,4.93,2.24,4.47h0Z%22/%3E %3Cpath d=%22M231.72,463.54c5.96-6.37,11.21-14.44,11.57-23.41l-1.13.72c7.93.86,15.97.42,23.76-1.29l-3.57-3c-3.27,2.34-6.22,5.11-8.76,8.23s-5.01,6.64-6,10.5c-.49,1.9-.6,3.91.2,5.75.85,1.96,2.49,3.44,4.31,4.49,3.07,1.78,6.86,2.65,10.32,1.66,2.82-.81,6.16-2.26,8.24-4.4,1.35-1.39-2.85-3.97-3.93-2.87-1.93,1.99-5.05,3.45-7.68,4.18-2.98.82-6.89.04-7.29-3.57-.47-4.27,2.66-8.65,5.08-11.89,2.65-3.55,5.83-6.63,9.43-9.21,1.64-1.18-2.55-3.23-3.57-3-7.52,1.65-15.19,2.06-22.84,1.23-.5-.05-1.1.14-1.13.72-.35,8.71-5.64,16.58-11.42,22.76-.98,1.05,3.14,3.73,4.39,2.39h0Z%22/%3E %3Cpath d=%22M270.43,462.09c5.99-5.8,10.61-14.21,10.94-22.65l-3.73.78c8.62.93,17.35.47,25.82-1.39l-3.46-.76c-5.79,4.15-11.12,9.79-13.99,16.4-1.34,3.1-1.93,6.91.7,9.53,2.35,2.34,6.15,2.99,9.32,3.2,4.32.29,8.72-.2,12.94-1.13.49-.11,1.72-.47.85-.98s-2.54-.27-3.43-.07c-3.28.72-6.92,1.28-10.26.59-1.81-.38-3.61-1.06-4.87-2.47-1.34-1.5-1.63-3.52-1.32-5.46.62-3.93,3.21-7.61,5.61-10.67s5.48-6.08,8.8-8.46c.6-.43.09-.68-.43-.81-.95-.24-2.08-.16-3.03.05-6.84,1.5-13.82,1.89-20.78,1.13-.56-.06-3.69-.2-3.73.78-.33,8.34-4.86,16.55-10.78,22.28-.59.57,1.62.75,1.79.75.88.02,2.35.04,3.05-.64h0Z%22/%3E %3Cpath d=%22M322.2,437.79c-3.16.86-6.43,2.48-8.89,4.66-2.63,2.32-4.55,5.31-6.28,8.33s-3.12,6.24-2.73,9.65c.33,2.94,2.1,5.77,5.01,6.7,3.31,1.06,7.22-.17,10.38-1.21,3.52-1.16,6.97-2.76,9.97-4.96,5.03-3.68,9.21-10.05,8.03-16.54-.7-3.87-3.63-5.84-7.25-6.75s-6.84-.49-10.33.77c-.47.17-2.7.85-2.72,1.47s1.58-.02,1.84-.11c2.32-.84,4.49-.67,6.84-.08,2.63.66,5.11,1.82,6.31,4.4,2.29,4.91-.11,10.97-3.38,14.81-1.72,2.03-3.93,3.73-6.35,4.83-2.27,1.04-5.04,1.87-7.55,1.6-2.68-.29-4.66-2.07-5.61-4.54-1.03-2.67-.64-5.56.39-8.17,1.13-2.87,2.86-5.65,4.69-8.12,1.33-1.8,3.49-4.45,5.6-5.02.88-.24,2.54-.67,3.1-1.45.53-.74-.62-.39-1.08-.27h0Z%22/%3E %3Cpath d=%22M356.87,438.2c-6.77,1.83-11.01,7.74-14.12,13.63-1.56,2.95-2.71,6.47-1.93,9.82.74,3.17,2.9,5.7,6.07,6.58,3.59,1,7.52.08,10.96-1.09,3.25-1.11,6.4-2.63,9.08-4.8,4.87-3.94,8.96-10.77,7.26-17.24-1.04-3.94-4.2-5.86-7.94-6.85s-7.28-.89-10.9.42c-.75.27-2.08.89-1.53,1.9.5.91,2.37.88,3.17.59,2.31-.83,4.09-.95,6.46-.38,2.5.6,4.71,1.82,5.61,4.38,1.76,5.03-.93,10.79-4.44,14.36-1.88,1.92-4.21,3.37-6.66,4.44-2.22.97-4.97,2.02-7.44,1.87s-4.06-2.24-4.66-4.43c-.74-2.68-.1-5.4,1-7.88,1.3-2.94,3.13-5.85,5.2-8.31,1.68-1.99,3.88-3.83,6.44-4.52.78-.21,2.06-.93,1.53-1.9s-2.34-.81-3.17-.59h0Z%22/%3E %3Cpath d=%22M363.51,460.8c.72,9.22-3.61,18.28-8.2,26-4.32,7.27-9.71,15.24-17.52,19.09-1.84.9-3.84,1.57-5.88,1.78-1,.11-1.46.02-2.13-.75s-1.1-1.83-1.35-2.82c-1.2-4.65,1.21-9.35,4.32-12.65,3.32-3.53,7.54-6.32,11.65-8.83s8.58-4.69,13.21-6.28c5.28-1.81,10.98-2.2,16.12-4.39,1.56-.67,3.2-1.25,4.67-2.11,1.57-.93,2.93-2.26,4.32-3.44.92-.78-.13-1.88-.91-2.17-1.17-.44-2.48-.2-3.42.59-1.21,1.02-2.39,2.11-3.76,2.91-.08.05-.36.19.04-.01-.11.06-.23.11-.34.16-.3.13-.61.27-.91.4-1.01.43-2.01.87-3.02,1.28-2.58,1.04-5.33,1.44-8.03,2.02s-5.19,1.29-7.71,2.18c-5.1,1.79-9.98,4.24-14.55,7.1s-8.97,5.85-12.39,9.79-5.42,8.89-4.21,13.95c.56,2.34,1.91,4.56,4.15,5.61,2.52,1.18,5.6.7,8.2.03,9.62-2.49,16.35-10.36,21.59-18.34,5.91-9,11.92-19.97,11.06-31.12-.17-2.18-5.17-2.09-5,.03h0Z%22/%3E %3Cpath d=%22M392.37,437.24c-6.74,1.83-11.08,7.76-14.1,13.71-1.63,3.21-2.68,6.75-1.92,10.35.7,3.32,2.94,6.29,6.17,7.5,3.5,1.32,7.39.36,10.81-.75s6.54-2.75,9.22-5c5.06-4.25,8.61-11.32,6.85-17.99-1.07-4.05-4.46-6.51-8.35-7.55s-7.08-.97-10.75.35c-1.19.43-1.34,1.95-.74,2.9.69,1.1,2.09,1.6,3.3,1.16,2.17-.78,4.17-.99,6.42-.49s4.5,1.23,5.33,3.54c1.7,4.75-1.14,10.37-4.53,13.63-1.97,1.9-4.27,3.34-6.78,4.41s-5.22,2.04-7.86,2c-2.29-.03-3.68-1.36-4.31-3.5-.74-2.52.09-5.29,1.2-7.57,2.33-4.78,6-10.86,11.5-12.35,3.05-.83,1.17-5.08-1.45-4.37h0Z%22/%3E %3Cg%3E %3Cpath d=%22M485.61,466.97c5.35-2.12,9.23-6.7,12.41-11.33,2.97-4.32,5.76-9.15,7.24-14.21.27-.92-1.76-.35-2.05-.25-.84.3-2.24.91-2.52,1.87-1.3,4.46-3.71,8.67-6.24,12.53-1.41,2.15-2.95,4.25-4.71,6.13-.7.75-1.42,1.48-2.22,2.12-.2.16-.4.31-.6.46-.02.02-.62.42-.3.21-.07.04-.76.44-.49.3.39-.2-.82.33-.06.03-.69.27-2.48.95-2.52,1.87s1.65.41,2.05.25h0Z%22/%3E %3Cpath d=%22M498.44,448.65c-.37,5.25,1.15,10.45,4.26,14.69,1.56,2.13,3.67,3.88,6.27,4.53,2.79.71,5.87.33,8.19-1.46s3.56-4.6,4.33-7.43c.4-1.46-4.5-2.4-4.94-.75-.67,2.47-1.71,5.21-3.93,6.7-.45.3-.93.57-1.45.73-.23.07-.44.11-.68.14.2-.02-.45-.08-.1-.01.29.06-.2-.09-.22-.1-.21-.1-.41-.22-.6-.36-.46-.31-.85-.69-1.23-1.09-3.66-3.89-5.31-9.6-4.94-14.86.07-1-1.57-1.41-2.3-1.52-.58-.09-2.58-.21-2.65.77h0Z%22/%3E %3C/g%3E %3Cpath d=%22M402.24,465.54c8.01,5.3,16.85-1.98,22.02-7.93,7.81-8.99,12.3-20.13,14.98-31.61,1.55-6.66,2.58-13.43,3.59-20.19l-3.64-2.91c.94,11.04-4.69,21.02-8.08,31.17-1.61,4.8-2.87,9.93-2.65,15.03.18,4.07,1.66,7.91,4.11,11.14,2.84,3.75,6.88,6.29,11.37,7.58,1.11.32.91-1.14.65-1.72-.47-1.04-1.41-2.02-2.53-2.34-19.1-5.47-5.46-30.19-1.58-42.04,1.72-5.24,2.87-10.74,2.4-16.28-.09-1.06-.83-2.06-1.64-2.7-.33-.26-1.85-1.18-1.99-.21-1.7,11.36-3.44,22.86-7.69,33.6-2.09,5.27-4.79,10.3-8.21,14.82-2.93,3.87-6.39,7.56-10.57,10.1-3.05,1.85-7.4,3.37-10.6,1.25-.66-.43-1.73-.75-1.81.35s1.07,2.35,1.88,2.89h0Z%22/%3E %3Cpath d=%22M424.34,421.5c3.12-.62,6.2-.35,9.31.16s6.06,1.01,9.11,1.38c2.2.27,4.46.5,6.66.09s4.23-1.71,5.89-3.31c1.06-1.02-3.34-3.11-4.36-2.12-1.54,1.48-3.28,2.77-5.45,3.07s-4.32-.17-6.42-.42c-6.19-.77-12.21-2.48-18.47-1.24-1.11.22-.06,1.29.39,1.58.92.6,2.23,1.04,3.34.82h0Z%22/%3E %3Cpath d=%22M310.28,461.6c1.92-1.99,4.26-3.86,7.07-4.32,2.22-.36,4.37.17,6.38,1.1,4.43,2.05,8.06,5.52,12.51,7.57,2.42,1.11,5.07,1.72,7.73,1.26.97-.17-1.6-4.13-2.84-3.91-4.94.87-9.16-2.08-13.05-4.72s-8.18-5.76-12.99-5.28c-3.21.32-5.89,2.26-8.07,4.52-.83.86,2.57,4.5,3.27,3.78h0Z%22/%3E %3Cpath d=%22M443.72,467.14c3.67,1.33,7.71,1.81,11.18-.31s5.71-5.84,7.71-9.24c2.77-4.7,5.68-9.44,7.98-14.38,2.53-5.44,4.32-11.19,5.69-17.01,1.58-6.73,2.62-13.57,3.64-20.4l-3.82-3.22c1.15,13.44-7.13,25.06-9.89,37.77-.6,2.77-1.14,5.83-.8,8.67.21,1.81.89,3.55,1.75,5.15,2.25,4.2,5.81,7.68,9.6,10.51,2.96,2.21,7.28,4.84,11,2.84.17-.09-1.59-1.71-1.73-1.83-.28-.24-1.67-1.63-2.09-1.4-2.78,1.49-6.13.28-8.53-1.42-.34-.24-.28-.19-.71-.62-.71-.7-1.35-1.48-1.95-2.28-1.09-1.45-2.03-3.05-2.7-4.74-1.73-4.38-.63-9.51.54-13.9,1.48-5.57,3.83-10.85,5.82-16.25,2.27-6.17,4.09-12.64,3.52-19.28-.05-.64-1.28-1.45-1.73-1.83-.15-.13-2.08-1.46-2.09-1.4-1.77,11.85-3.59,23.89-8.26,35.02-2.19,5.21-5.17,10.04-7.97,14.94-2.05,3.58-4.19,7.48-7.44,10.13-3.66,2.97-8.04,2.8-12.29,1.26-.29-.11,1,1.29,1.11,1.39.71.64,1.56,1.5,2.48,1.83h0Z%22/%3E %3Cpath d=%22M460,422.18c2.99-.59,6.02-.26,8.99.23s6.17,1.03,9.29,1.4c2.36.28,4.73.47,7.07-.05,2.48-.55,4.63-1.99,6.43-3.73,2.35-2.26-1.43-4.38-3.36-2.52-1.44,1.39-2.94,2.38-4.47,2.54-2.11.23-4.3-.19-6.46-.46-3.02-.37-5.99-1.02-9-1.41-3.23-.42-6.39-.37-9.59.26-1.08.21-2.19,1.42-1.86,2.57.37,1.28,1.87,1.38,2.94,1.17h0Z%22/%3E %3Cpath d=%22M173.07,451.35c.2,5.22.68,10.91,4.83,14.63,4.54,4.07,11.4,4.23,16.96,2.43,1.06-.34.26-1.36-.3-1.76-.85-.61-2.29-1.16-3.34-.82-2.09.68-4.34,1.02-6.54.88-.46-.03-.92-.07-1.36-.17-.05-.01-.62-.18-.38-.1-.7-.23.17.16-.39-.17-.46-.27-1.17-.85-1.69-1.47-2.8-3.37-2.91-8.15-3.06-12.31-.06-1.5-4.79-2.89-4.73-1.13h0Z%22/%3E %3Cpath d=%22M381.72,460.85c1.08-1.12,2.25-2.16,3.6-2.95.54-.32,1.12-.61,1.71-.83.07-.03.74-.16.78-.23s.09.03,0,0l-1.04.1c-.49,0-.61,0-.35.01.95.29,1.94.32,2.9.69,1.08.41,2.1.95,3.09,1.53,3.66,2.17,7.05,5.57,11.32,6.46,2.91.6,6.67.32,9.32-1.08.31-.16-1.64-.22-1.77-.22-.92.05-2.2.01-3.05.46-.1.05-1.22.56-1.23.51-.03-.14,3.18.1,1.88-.17-.02,0-.33-.05-.45-.07-.99-.2-1.94-.59-2.84-1.05-2.01-1.02-3.83-2.37-5.69-3.64s-3.77-2.53-5.9-3.32c-2.76-1.02-5.77-.95-8.64-.52-3.4.51-6.08,2.1-8.45,4.56-.28.29,1.62.23,1.77.22.64-.03,1.28-.09,1.92-.19.29-.05.92-.06,1.13-.27h0Z%22/%3E %3C/g%3E %3Cpath d=%22M506.21,434.68c2.03,0,.23-4.6-1.62-4.6-2.03,0-.23,4.6,1.62,4.6h0Z%22/%3E %3C/svg%3E");
+}
+
+/* L'altezza è più generosa del corpo che aveva la parola (.82rem):
+   la firma è a tratto sottile, e sotto i ~30px le aste si spengono
+   nell'antialiasing. Al massimo del clamp la barra misura ~69px,
+   cioè resta dentro --nav-h (4.4rem), su cui è calcolato lo stacco
+   delle pagine interne. */
 .nav-mark {
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: .82rem;
-  letter-spacing: .19em;
-  text-indent: .19em;
+  display: block;
+  height: clamp(1.9rem, 4vw, 2.5rem);
+  width: auto;
+  aspect-ratio: 451.8 / 184.08;
+
+  /* il colore del segno è il colore della barra */
+  background-color: currentColor;
+  -webkit-mask-image: var(--marchio);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: var(--marchio);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
   text-decoration: none;
   color: inherit;
-  transition: opacity .5s ease, visibility 0s;
+  transition:
+    background-color 0.6s ease,
+    opacity 0.5s ease,
+    visibility 0s;
 }
 
-/* Sull'apertura il marchio non si scrive. La parola sta già lì
-   sotto a tutta larghezza, ed è il primo gesto del sito: ripeterla
-   in piccolo sopra la sua stessa insegna toglie forza a entrambe.
-   Rientra col vetro, quando quella grande è passata e la barra
-   torna a essere l'unico posto in cui il nome è scritto.
+/* Sull'apertura il marchio non compare. Il nome sta già lì sotto a
+   tutta larghezza, ed è il primo gesto del sito: metterci sopra il
+   segno scritto a mano toglie forza a entrambi. Rientra col vetro,
+   quando l'insegna grande è passata e la barra torna a essere l'unico
+   posto in cui il nome si legge.
 
    Va via con l'opacità e non con display: il posto resta occupato,
    così i collegamenti a destra non slittano quando rientra. La
@@ -365,28 +617,34 @@ section { background: var(--bg); color: var(--fg); }
 .nav.bare .nav-mark {
   opacity: 0;
   visibility: hidden;
-  transition: opacity .5s ease, visibility 0s linear .5s;
+  transition:
+    opacity 0.5s ease,
+    visibility 0s linear 0.5s;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(.9rem, 2.6vw, 2rem);
-  font-family: var(--sans);
+  gap: clamp(0.9rem, 2.6vw, 2rem);
   font-weight: 500;
-  font-size: .78rem;
-  letter-spacing: .09em;
+  font-size: 0.78rem;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
 }
 
 .nav-links a {
   color: inherit;
   text-decoration: none;
-  opacity: .78;
-  transition: opacity .25s ease, color .25s ease;
+  opacity: 0.78;
+  transition:
+    opacity 0.25s ease,
+    color 0.25s ease;
 }
 
-.nav-links a:hover { opacity: 1; color: var(--gold); }
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--gold);
+}
 
 /* La pagina in cui si è già si segna con l'oro, non con un fondo
    né con un sottolineato: la barra è squadrata e vuota, e un
@@ -397,7 +655,10 @@ section { background: var(--bg); color: var(--fg); }
    home, e un'ancora non è mai «la pagina in cui si è». La regola
    resta scritta per la voce, non per il pulsante, così vale da
    sola se un domani il menu tornasse a puntare a delle pagine. */
-.nav-links a[aria-current="page"] { opacity: 1; color: var(--gold); }
+.nav-links a[aria-current="page"] {
+  opacity: 1;
+  color: var(--gold);
+}
 
 /* il pulsante resta il rettangolo di prima — la barra è squadrata
    e un pulsante a pillola dentro le stonerebbe — ma prende un velo
@@ -405,13 +666,14 @@ section { background: var(--bg); color: var(--fg); }
 .nav-links a.store {
   opacity: 1;
   border: 1px solid var(--glass-edge);
-  padding: .5rem .95rem;
+  padding: 0.5rem 0.95rem;
   background: var(--glass-chip);
-  transition: background .25s ease,
-              border-color .25s ease,
-              color .25s ease,
-              opacity .5s ease,
-              visibility 0s;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    opacity 0.5s ease,
+    visibility 0s;
 }
 
 .nav-links a.store:hover {
@@ -420,15 +682,12 @@ section { background: var(--bg); color: var(--fg); }
   background: color-mix(in srgb, var(--gold) 12%, var(--glass-chip));
 }
 
-/* Stessa ragione del marchio: sull'apertura lo stesso invito è già
-   in basso, accanto alla riga del drop, ed è quello il posto in cui
-   sta. Due volte "visita lo store" nella stessa schermata non sono
-   un invito più forte: sono un invito diviso in due. */
-.nav.bare .nav-links a.store {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .5s ease, visibility 0s linear .5s;
-}
+/* Il pulsante resta scritto anche sull'apertura, al contrario del
+   marchio. Finché in basso c'era lo stesso invito si toglieva, per
+   non dirlo due volte nella stessa schermata; adesso lì sotto c'è
+   l'invito a scendere, e i due non si pestano i piedi: uno porta
+   avanti nella pagina, l'altro fuori, allo store. Chi arriva per
+   comprare non deve scorrere tutto il sipario per trovare la porta. */
 
 /* Su schermo stretto i tre collegamenti di sezione non ci stanno e
    restano marchio e store: dopo l'apertura la barra ha comunque il
@@ -436,7 +695,9 @@ section { background: var(--bg); color: var(--fg); }
    resta vuota — ma sotto c'è la schermata intera che li dice
    tutti e due, quindi non manca niente. */
 @media (max-width: 660px) {
-  .nav-links a:not(.store) { display: none; }
+  .nav-links a:not(.store) {
+    display: none;
+  }
 }
 
 /* ============================================================
@@ -452,7 +713,7 @@ section { background: var(--bg); color: var(--fg); }
   overflow: hidden;
   /* il fondo che si vede prima che il canvas disegni: già in tinta,
      se no il primo istante è un lampo grigio */
-  background: #0D0A04;
+  background: #0d0a04;
   isolation: isolate;
 }
 
@@ -476,31 +737,42 @@ section { background: var(--bg); color: var(--fg); }
    quando parte, prende il posto dello stand-in in dissolvenza */
 .hero-media video {
   opacity: 0;
-  transition: opacity .9s ease;
+  transition: opacity 0.9s ease;
 }
 
-.hero-media video.ready { opacity: 1; }
-.hero-media canvas.stood-down { opacity: 0; transition: opacity .9s ease; }
+.hero-media video.ready {
+  opacity: 1;
+}
+.hero-media canvas.stood-down {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
 
 /* micro-parallasse: solo quando c'è il montato vero */
 .hero.has-video .hero-media video {
   transform: scale(1.06) translate(var(--px, 0px), var(--py, 0px));
-  transition: opacity .9s ease, transform .9s cubic-bezier(.16, 1, .3, 1);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Velo: tiene il testo leggibile senza spegnere la clip.
-   Non è nero neutro ma nero d'oro: un velo grigio sopra un drappo
-   dorato lo slava, e sotto il marchio — dove copre all'82% — la
-   seta perderebbe la tinta proprio dove il fondo si vede di più. */
+   Non è nero neutro ma nero verde: un velo grigio sopra un drappo
+   verde lo slava, e sotto il marchio — dove copre all'82% — la
+   seta perderebbe la tinta proprio dove il fondo si vede di più.
+   La regola è la stessa di quando il drappo era oro; è cambiata
+   solo la tinta da cui il nero prende il verso. */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg,
-    rgba(13, 10, 4, .55) 0%,
-    rgba(13, 10, 4, .12) 34%,
-    rgba(13, 10, 4, .82) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(4, 13, 8, 0.55) 0%,
+    rgba(4, 13, 8, 0.12) 34%,
+    rgba(4, 13, 8, 0.82) 100%
+  );
   pointer-events: none;
 }
 
@@ -514,94 +786,211 @@ section { background: var(--bg); color: var(--fg); }
   pointer-events: none;
   opacity: 0;
   mix-blend-mode: screen;
-  transition: opacity .8s ease;
-  background: radial-gradient(34rem 34rem at var(--mx, 50%) var(--my, 42%),
-    rgba(201, 162, 39, .17),
-    rgba(201, 162, 39, .05) 42%,
-    transparent 68%);
+  transition: opacity 0.8s ease;
+  background: radial-gradient(
+    34rem 34rem at var(--mx, 50%) var(--my, 42%),
+    rgba(0, 75, 35, 0.17),
+    rgba(0, 75, 35, 0.05) 42%,
+    transparent 68%
+  );
 }
 
-.hero.has-video .hero-light { opacity: 1; }
+.hero.has-video .hero-light {
+  opacity: 1;
+}
 
 .hero-mark {
   padding: 0 var(--pad);
-  color: #F7F6F3;
+  color: #f7f6f3;
   align-self: end;
 }
 
-.hero-mark .bigmark text { fill: #F7F6F3; }
-
-.hero-foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 2rem;
-  /* il riquadro del marchio ora finisce sulla base delle lettere:
-     l'aria sotto la parola la mette questo margine, non l'SVG */
-  padding: 2rem var(--pad) 2.2rem;
+.hero-mark .bigmark text {
+  fill: #f7f6f3;
 }
 
+/* La riga in basso ha un inquilino solo, e sta in mezzo: sotto un
+   marchio a tutta larghezza il centro è l'unico punto che non
+   sembra una scelta. Il padding laterale resta anche se ora non
+   allinea niente — serve al segno per non toccare i bordi quando
+   la finestra si stringe fin quasi alla soglia del cartello. */
+.hero-foot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* il riquadro del marchio ora finisce sulla base delle lettere:
+     l'aria sotto la parola la mette questo margine, non l'SVG */
+  padding: 1.4rem var(--pad) 2rem;
+}
+
+/* Occhiello sopra il marchio. Sta dentro .hero-mark e non fuori:
+   così prende lo stesso padding laterale della parola grande e i
+   due attacchi cadono sulla stessa verticale, senza doverne
+   ripetere la misura. Il margine sotto è l'aria fra la riga e le
+   maiuscole — piccolo apposta, perché le due cose si leggano come
+   un blocco solo e non come due righe capitate vicine. */
 .hero-line {
-  font-family: var(--sans);
   font-weight: 500;
-  font-size: .74rem;
-  letter-spacing: .13em;
+  font-size: 0.74rem;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
-  color: rgba(247, 246, 243, .74);
-  margin: 0;
+  color: rgba(247, 246, 243, 0.74);
+  margin: 0 0 0.9rem;
+}
+
+/* ------------------------------------------------------------
+   L'INVITO A SCENDERE
+
+   Tre V impilate, senza parole e senza contorno. Non è un pulsante
+   e non deve sembrarlo: sotto una barra squadrata, un secondo
+   rettangolo in basso sarebbe un'eco.
+
+   La zona sensibile al clic è più larga del segno — il padding la
+   porta alla misura del dito e del puntatore distratto, che sono
+   due cose più grandi di venti pixel di tratto.
+   ------------------------------------------------------------ */
+.scroll-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0.4rem 1.2rem;
+  color: rgba(247, 246, 243, 0.74);
+  transition: color 0.3s ease;
+}
+
+.scroll-cue:hover {
+  color: var(--gold-lux);
+}
+
+/* Il tratto è disegnato, non scritto: un carattere darebbe tre
+   glifi diversi su tre sistemi diversi, mentre qui la V è la
+   stessa dappertutto e resta a filo con lo spessore del resto
+   della pagina. Il colore viene dal collegamento, così basta il
+   :hover di sopra a cambiarle tutte e tre. */
+.cue-v {
+  display: block;
+  width: 18px;
+  height: 10px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  /* il respiro: ogni V scende, si accende e torna su. Il grosso
+     del giro è la pausa — la parte viva sta nel primo terzo — se
+     no le tre non finirebbero mai di muoversi tutte insieme e
+     l'effetto a cascata si perderebbe. */
+  animation: cue-breathe 2.4s ease-in-out infinite;
+}
+
+/* Il ritardo è quello che fa la cascata: prima una, poi la
+   seguente, poi l'ultima. Un ottavo di secondo l'una — sotto si
+   legge come un solo battito storto, sopra come tre segni che non
+   si parlano. */
+.cue-v:nth-child(2) {
+  animation-delay: 0.13s;
+}
+.cue-v:nth-child(3) {
+  animation-delay: 0.26s;
+}
+
+@keyframes cue-breathe {
+  0% {
+    opacity: 0.22;
+    transform: translateY(-2px);
+  }
+  16% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+  42%,
+  100% {
+    opacity: 0.22;
+    transform: translateY(-2px);
+  }
 }
 
 /* CTA discreta: contorno sottile, nessun blocco pieno sul video */
 .cta {
   display: inline-flex;
   align-items: center;
-  gap: .8rem;
-  padding: .78rem 1.4rem;
-  border: 1px solid rgba(247, 246, 243, .42);
-  color: #F7F6F3;
+  gap: 0;
+  padding: 0.78rem 1.4rem;
+  border: 1px solid rgba(247, 246, 243, 0.42);
+  color: #f7f6f3;
   text-decoration: none;
-  font-family: var(--sans);
   font-weight: 500;
-  font-size: .74rem;
-  letter-spacing: .11em;
+  font-size: 0.74rem;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   background: transparent;
-  transition: border-color .3s ease, background .3s ease;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
 }
 
+/* il segno dell'invito si scrive in due tempi: a riposo c'è solo
+   la punta, un cenno; passandoci sopra le cresce dietro l'asta e
+   il cenno diventa una freccia intera. L'asta viene prima nel
+   flusso ma sta dopo la parola — l'ordine la rimette al suo posto,
+   perché ::before nasce in testa e qui serve in coda. */
+.cta::before {
+  content: "";
+  order: 1;
+  width: 0;
+  height: 1px;
+  margin-left: 0.8rem;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+/* la punta: mezzo quadrato girato di un quarto, così il vertice
+   guarda a destra e le due braccia si aprono esattamente sulla
+   mezzeria della scatola. L'asta finirebbe dentro quella mezzeria
+   con un margine di -3px; lasciandogliene 2 in meno la linea si
+   ferma prima e fra i due segni resta un respiro — non una freccia
+   saldata, ma un trattino e una punta che si guardano. */
 .cta::after {
   content: "";
-  width: 1.4rem;
-  height: 1px;
-  background: currentColor;
-  transition: width .3s ease;
+  order: 2;
+  width: 6px;
+  height: 6px;
+  margin-left: -1px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
 }
 
 .cta:hover {
   border-color: var(--gold-lux);
-  background: rgba(201, 162, 39, .10);
+  background: rgba(0, 75, 35, 0.1);
 }
 
-.cta:hover::after { width: 2.1rem; }
+.cta:hover::before {
+  width: 1.3rem;
+}
 
 /* sul chiaro l'invito si capovolge: inchiostro sulla carta, non
    carta sull'inchiostro. Il contorno e l'oro vengono dai token
    del tono, così l'elemento resta lo stesso in tutte e due le
    sezioni e cambia solo di verso. */
 [data-tone="light"] .cta {
-  border-color: rgba(21, 22, 26, .28);
+  border-color: rgba(21, 22, 26, 0.28);
   color: var(--fg);
 }
 
 [data-tone="light"] .cta:hover {
   border-color: var(--gold);
-  background: rgba(138, 106, 18, .08);
+  background: rgba(0, 75, 35, 0.08);
 }
 
 /* riga dell'invito dentro un blocco di testo: prende respiro
    sopra, e lascia alla firma il suo margine */
-.cta-row { margin: 2.1rem 0 0; }
+.cta-row {
+  margin: 2.1rem 0 0;
+}
 
 /* nota di servizio, non un'insegna: tondo minuscolo */
 .clip-note {
@@ -609,14 +998,15 @@ section { background: var(--bg); color: var(--fg); }
   left: var(--pad);
   top: 1.2rem;
   z-index: 1;
-  font-family: var(--sans);
-  font-size: .75rem;
-  color: rgba(247, 246, 243, .42);
+  font-size: 0.75rem;
+  color: rgba(247, 246, 243, 0.42);
   margin: 0;
-  transition: opacity .5s ease;
+  transition: opacity 0.5s ease;
 }
 
-.clip-note.gone { opacity: 0; }
+.clip-note.gone {
+  opacity: 0;
+}
 
 /* ============================================================
    SEZIONI
@@ -627,28 +1017,46 @@ section { background: var(--bg); color: var(--fg); }
   overflow: hidden;
 }
 
-/* Il Garamond ha l'occhio medio corto (0,40 em contro lo 0,53
-   di Archivo): allo stesso corpo apparirebbe più piccolo di
-   quanto è, quindi il titolo sale di circa un decimo rispetto
-   alla misura che avrebbe avuto un didone. Nessuna crenatura
-   negativa: un garaldo è già spaziato per essere letto grande,
-   stringerlo gli chiude i contrappunti. */
+/* La crenatura si tara sul corpo massimo, non sul minimo: a 4,7
+   rem -0,022 em sono circa un pixel e mezzo per lettera e si
+   sentono, a 2,4 rem la stessa quantità non si nota. Sotto quella
+   soglia i titoli minori scendono a -0,010/-0,016.
+
+   Peso 400 e non 500. Il titolo di una casa non ha bisogno di
+   essere più grasso del testo, ha bisogno di essere più grande: il
+   500 resta alle diciture in maiuscolo, dove serve a tenere in
+   piedi lettere piccole e spaziate. */
 h2 {
-  font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(2.4rem, 6.1vw, 4.7rem);
-  line-height: 1.06;
-  letter-spacing: 0;
+  line-height: 1.04;
+  letter-spacing: -0.022em;
   margin: 0 0 1.7rem;
   max-width: 17ch;
   text-wrap: balance;
 }
 
-/* il corsivo del Garamond è un disegno a sé, non un tondo
-   inclinato: è quello che fa il lavoro dell'accento */
-h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
+/* L'accento non è più un corsivo, e non poteva restarlo: l'obliquo
+   di Helvetica non è un disegno a sé ma il tondo inclinato a
+   macchina, e a corpo di titolo si vede che è una scorciatoia.
+   Resta l'oro, che è un colore della casa e non un effetto
+   tipografico. Il peso non cambia: un accento che cambia anche
+   peso sono due segnali per una parola sola. La regola vale per
+   tutti i titoli del sito, non solo per gli h2. */
+h2 em,
+.page-head h1 em,
+.standfirst em,
+.band.pattern .lead em,
+.piece-say em,
+.drop-state em {
+  font-style: normal;
+  font-weight: inherit;
+  color: var(--gold);
+}
 
-.band p { max-width: 56ch; margin: 0 0 1.1rem; }
+.band p {
+  max-width: 56ch; /*margin: 0 0 1.1rem;*/
+}
 
 /* il paragrafo che porta il peso di una sezione: vale sulla home
    e sulle pagine interne allo stesso modo */
@@ -659,7 +1067,9 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
   max-width: 46ch;
 }
 
-.dimtext { color: var(--dim); }
+.dimtext {
+  color: var(--dim);
+}
 
 /* --- sezione 1: ritratto + testo --- */
 .split {
@@ -671,7 +1081,9 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
 }
 
 @media (min-width: 900px) {
-  .split { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+  .split {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  }
 }
 
 /* Il riquadro in attesa di una fotografia. È lo stesso oggetto in
@@ -687,7 +1099,7 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
   background: var(--panel);
   display: flex;
   align-items: flex-end;
-  padding: .9rem 1rem;
+  padding: 0.9rem 1rem;
   position: relative;
   overflow: hidden;
 }
@@ -713,32 +1125,57 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
 
 .portrait span,
 .plate-figure span {
-  font-family: var(--sans);
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: var(--dim);
   position: relative;
   z-index: 1;
 }
 
 .portrait:has(img) span,
-.plate-figure:has(img) span { display: none; }
+.plate-figure:has(img) span {
+  display: none;
+}
 
-/* la firma: corsivo del Garamond, corpo da nota a margine.
-   Non imita una calligrafia — è una firma tipografica, che è
-   quello che sta in fondo a una lettera stampata. */
+/* LA FIRMA — l'unica eccezione al carattere unico, e dichiarata.
+
+   Una firma non è tipografia di sistema, è un segno: sta in fondo
+   a una lettera al posto di una mano. Il corsivo è quello che fa
+   quel lavoro, e con l'obliquo di Helvetica non si può fare —
+   l'obliquo non è un disegno a sé, è il tondo inclinato a
+   macchina, e proprio qui, dove tutto il senso è che sembri
+   scritto a mano, si vedrebbe che è un ripiego meccanico.
+
+   Quindi la firma prende un corsivo vero, di un carattere con le
+   grazie, e non lo prende in prestito da nessun altro elemento:
+   --font-sign compare in un punto solo di tutto il foglio. Un
+   secondo carattere usato una volta non è un accostamento — è un
+   logotipo, come lo è la firma su un cartellino.
+
+   Nessun file da scaricare nemmeno qui. Iowan Old Style e Palatino
+   stanno sui Mac, Palatino Linotype e Book Antiqua su Windows,
+   Georgia dappertutto: hanno tutti un corsivo disegnato, non
+   sintetizzato, e sono tutti garaldi o di derivazione — la stessa
+   voce che aveva la firma prima.
+
+   Peso 400 e non 500: questi non sono caratteri variabili, hanno
+   il tondo e il nero. Chiedere un peso intermedio significa farsi
+   disegnare un finto grassetto dal browser, che su un corsivo si
+   vede subito perché ne ispessisce anche i tratti sottili. */
 .sign {
-  font-family: var(--serif);
+  font-family: var(--font-sign);
   font-style: italic;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1.85rem;
+  /* un corsivo con le grazie è già spaziato per essere letto
+     grande: qui non si stringe niente, al contrario dei titoli */
+  letter-spacing: 0;
   line-height: 1.2;
-  margin: 1.9rem 0 .35rem;
+  margin: 1.9rem 0 0.35rem;
 }
 
 /* il ruolo è una didascalia, non un'etichetta: tondo minuscolo */
 .role {
-  font-family: var(--sans);
-  font-size: .88rem;
+  font-size: 0.88rem;
   color: var(--dim);
   margin: 0;
 }
@@ -762,7 +1199,7 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
   z-index: 0;
   width: 100%;
   height: 100%;
-  opacity: .7;
+  opacity: 0.7;
   pointer-events: none;
 }
 
@@ -778,28 +1215,30 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
 .pattern-bg .stitch {
   fill: none;
   stroke: currentColor;
-  stroke-width: .8;
+  stroke-width: 0.8;
   stroke-dasharray: 8 6;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 /* linee di costruzione: pieghe, ripieghi, posizioni */
 .pattern-bg .aux {
   fill: none;
   stroke: currentColor;
-  stroke-width: .7;
-  opacity: .55;
+  stroke-width: 0.7;
+  opacity: 0.55;
 }
 
-.pattern-bg .dot { stroke-dasharray: 2 4; }
+.pattern-bg .dot {
+  stroke-dasharray: 2 4;
+}
 
 /* tratto-punto: centro davanti, centro dietro, linea di ripiego */
 .pattern-bg .fold {
   fill: none;
   stroke: currentColor;
-  stroke-width: .8;
+  stroke-width: 0.8;
   stroke-dasharray: 18 5 3 5;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 /* tacche di montaggio: corte e nette, si devono vedere */
@@ -807,10 +1246,15 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
   fill: none;
   stroke: currentColor;
   stroke-width: 1.4;
-  opacity: .85;
+  opacity: 0.85;
 }
 
-.pattern-bg .drill { fill: none; stroke: currentColor; stroke-width: .9; opacity: .7; }
+.pattern-bg .drill {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.9;
+  opacity: 0.7;
+}
 
 /* asole: tratto pieno con testa tonda, come il punto vero */
 .pattern-bg .slot {
@@ -818,48 +1262,144 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
   stroke: currentColor;
   stroke-width: 2.6;
   stroke-linecap: round;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 /* dettaglio della ribattitura: i due bordi, i punti, il tessuto */
-.pattern-bg .layer { fill: none; stroke: currentColor; stroke-width: 2.2; opacity: .75; }
+.pattern-bg .layer {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  opacity: 0.75;
+}
 .pattern-bg .seam {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.4;
   stroke-dasharray: 5 3.5;
-  opacity: .7;
+  opacity: 0.7;
 }
-.pattern-bg .wash { fill: currentColor; stroke: none; opacity: .07; }
+.pattern-bg .wash {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.07;
+}
 
-.pattern-bg .dim { fill: none; stroke: currentColor; stroke-width: .7; opacity: .5; }
-.pattern-bg .frame { fill: none; stroke: currentColor; stroke-width: .9; opacity: .45; }
-.pattern-bg .fill { fill: currentColor; stroke: none; opacity: .45; }
+.pattern-bg .dim {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.7;
+  opacity: 0.5;
+}
+.pattern-bg .frame {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.9;
+  opacity: 0.45;
+}
+.pattern-bg .fill {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.45;
+}
 
-.pattern-bg .grid { fill: none; stroke: currentColor; stroke-width: .5; opacity: .1; }
-.pattern-bg .grid-major { stroke-width: .8; opacity: .16; }
+/* cimosa: è tessuto, non disegno, e va pesata come la griglia —
+   sotto la linea di taglio, sotto le diciture, appena sopra il
+   tavolo. Se si legge prima dei pezzi ha sbagliato mestiere.
+   L'orlo esterno è l'unico tratto continuo; il limite interno è
+   dove finisce l'armatura fitta e comincia il tessuto buono,
+   quindi è più tenue. I fori del telaio sono una riga sola con
+   il tratteggio a punti tondi: sessanta cerchi disegnati a mano
+   sarebbero sessanta occasioni di sbagliarne uno. */
+.pattern-bg .selv {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.9;
+  opacity: 0.3;
+}
+.pattern-bg .selv-in {
+  stroke-width: 0.7;
+  stroke-dasharray: 14 7;
+  opacity: 0.2;
+}
+.pattern-bg .selv-web {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.045;
+}
+.pattern-bg .selv-hole {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-dasharray: 0 44;
+  opacity: 0.22;
+}
+
+/* Il nome sulla cimosa è stampato sul tessuto, non tracciato al
+   plotter: sta più basso di tono di ogni altra dicitura e più
+   spaziato, che è come esce dalla macchina da tessere. */
+.pattern-bg .selv-t {
+  font-size: 8.5px;
+  letter-spacing: 0.3em;
+  opacity: 0.26;
+}
+
+.pattern-bg .grid {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.5;
+  opacity: 0.1;
+}
+.pattern-bg .grid-major {
+  stroke-width: 0.8;
+  opacity: 0.16;
+}
 
 /* l'oro segue il tono della sezione: su carta chiara quello lucido
    sparirebbe, e il drittofilo è il segno che deve restare leggibile */
-.pattern-bg .gold { fill: none; stroke: var(--gold); stroke-width: 1.1; opacity: .95; }
-
-/* Le diciture di un piazzato si tracciano al plotter in un
-   gotico stretto, in maiuscolo: qui è il maiuscolo di Archivo,
-   spaziato quanto basta perché regga a 9 px sul fondo. */
-.pattern-bg text {
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: .08em;
-  fill: currentColor;
-  opacity: .78;
+.pattern-bg .gold {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.1;
+  opacity: 0.95;
 }
 
-.pattern-bg .lbl-sm { font-size: 9px; letter-spacing: .1em; opacity: .62; }
-.pattern-bg .lbl-hd { font-weight: 600; letter-spacing: .11em; opacity: .9; }
-.pattern-bg .gold-t { fill: var(--gold); opacity: .85; }
+/* Le diciture di un piazzato si tracciano al plotter in un gotico
+   stretto, in maiuscolo. È l'unico posto del sito che tiene una
+   spaziatura sua invece di --track-caps: qui non sono diciture di
+   interfaccia ma segni di un disegno tecnico, e a 9 px sul fondo
+   servono più aperte per reggere. Helvetica è più adatta di un
+   grottesco moderno a fare questo lavoro: è il carattere che sta
+   davvero sui documenti tecnici da mezzo secolo. */
+.pattern-bg text {
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  fill: currentColor;
+  opacity: 0.78;
+}
 
-.band .inner { position: relative; z-index: 1; }
+.pattern-bg .lbl-sm {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  opacity: 0.62;
+}
+.pattern-bg .lbl-hd {
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  opacity: 0.9;
+}
+.pattern-bg .gold-t {
+  fill: var(--gold);
+  opacity: 0.85;
+}
+
+.band .inner {
+  position: relative;
+  z-index: 1;
+}
 
 .band.pattern .inner {
   max-width: 46rem;
@@ -869,10 +1409,10 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
   padding-block: clamp(1rem, 3vw, 2rem);
 }
 
-/* Unico paragrafo della sezione, in Garamond e a un corpo da
-   sottotitolo: prosegue la voce dell'h2 invece di ripartire come
-   testo corrente, quindi non porta né la famiglia né la misura
-   del testo corrente. La misura resta stretta (28ch contro i 56
+/* Unico paragrafo della sezione, a un corpo da sottotitolo:
+   prosegue la voce dell'h2 invece di ripartire come testo
+   corrente, quindi non ne porta né la misura né il peso — con una
+   famiglia sola a distinguerlo restano corpo e crenatura. La misura resta stretta (28ch contro i 56
    del testo normale): a corpo grande una riga lunga si perde nel
    ritorno a capo, e qui deve restare dentro la sfumatura che la
    stacca dal cartamodello.
@@ -880,9 +1420,9 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
    Il filetto in oro sopra è l'unico segno aggiunto: dà l'attacco
    al blocco senza mettere in pagina un'altra parola. */
 .band.pattern .lead {
-  font-family: var(--serif);
   font-size: clamp(1.4rem, 2.9vw, 2.15rem);
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: -0.012em;
   line-height: 1.28;
   max-width: 28ch;
   margin: 0;
@@ -897,12 +1437,6 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
   height: 2px;
   background: var(--gold);
   margin-bottom: clamp(1.4rem, 2.6vw, 1.9rem);
-}
-
-.band.pattern .lead em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--gold);
 }
 
 /* --- sezione 3: campagna, un solo invito al centro ---
@@ -927,24 +1461,27 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
   z-index: -2;
   background:
     url("../img/campagna.jpg") center / cover no-repeat,
-    radial-gradient(120% 96% at 26% 14%, #33475C 0%, #1A2634 44%, #0A0E15 100%),
-    linear-gradient(202deg, rgba(150, 180, 210, .16), transparent 58%);
+    radial-gradient(120% 96% at 26% 14%, #33475c 0%, #1a2634 44%, #0a0e15 100%),
+    linear-gradient(202deg, rgba(150, 180, 210, 0.16), transparent 58%);
 }
 
-/* Velo: stessa funzione di quello dell'apertura, tinta opposta.
-   Là il fondo è dorato e il velo va sul nero caldo; qui la foto
-   è fredda, e un velo caldo le virerebbe l'azzurro sul grigio
-   proprio dove è più scura. Il centro resta il punto più aperto:
+/* Velo: stessa funzione di quello dell'apertura, altra tinta.
+   Là il fondo è verde e il velo prende il verso del verde; qui la
+   foto è azzurra, e il nero verde le virerebbe l'azzurro sul
+   grigio proprio dove è più scura, così il velo resta il suo, blu.
+   Il centro resta il punto più aperto:
    l'invito ci sta sopra e non deve stare in ombra. */
 .campaign::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg,
-    rgba(6, 10, 16, .62) 0%,
-    rgba(6, 10, 16, .26) 46%,
-    rgba(6, 10, 16, .72) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(6, 10, 16, 0.62) 0%,
+    rgba(6, 10, 16, 0.26) 46%,
+    rgba(6, 10, 16, 0.72) 100%
+  );
   pointer-events: none;
 }
 
@@ -961,22 +1498,23 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
    "Seta · Drop 1", così chi legge con la sintesi vocale sente una
    parola e non una sigla lettera per lettera.
 
-   Il Garamond in maiuscolo va spaziato — è disegnato per il tondo
-   minuscolo e a corpo grande, tutto maiuscolo, si chiude. Un
-   ventesimo di em basta: di più e diventa un'insegna di negozio. */
+   Il maiuscolo a corpo grande vuole comunque un filo d'aria, ma
+   molto meno di quanta ne chiedeva il carattere di prima: le
+   maiuscole di Helvetica sono già larghe e ben distanziate fra
+   loro, e a 6,4 rem due centesimi di em bastano. I cinque di prima,
+   qui, farebbero insegna di negozio. */
 .campaign-title {
-  font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(2.7rem, 8.4vw, 6.4rem);
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: .05em;
+  letter-spacing: 0.02em;
   /* la spaziatura aggiunge aria a destra dell'ultima lettera:
      senza questo il blocco centrato pende a sinistra */
-  text-indent: .05em;
-  color: #F7F6F3;
+  text-indent: 0.02em;
+  color: #f7f6f3;
   margin: 0 0 clamp(1.6rem, 4vh, 2.6rem);
-  text-shadow: 0 1px 26px rgba(6, 10, 16, .5);
+  text-shadow: 0 1px 26px rgba(6, 10, 16, 0.5);
 }
 
 /* il punto medio è una pausa, non una parola: sta più basso di
@@ -984,16 +1522,16 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
 .campaign-title .sep {
   color: var(--gold-lux);
   letter-spacing: 0;
-  margin: 0 .06em;
+  margin: 0 0.06em;
 }
 
 /* l'invito qui è l'unico elemento della sezione: prende un po'
    più di respiro di quello dell'apertura, che divide la riga
    con la dicitura del drop */
 .campaign .cta {
-  padding: .95rem 1.9rem;
-  font-size: .78rem;
-  border-color: rgba(247, 246, 243, .52);
+  padding: 0.95rem 1.9rem;
+  font-size: 0.78rem;
+  border-color: rgba(247, 246, 243, 0.52);
 }
 
 /* nota di servizio, gemella di quella della clip */
@@ -1002,9 +1540,8 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
   left: var(--pad);
   top: 1.2rem;
   z-index: 1;
-  font-family: var(--sans);
-  font-size: .75rem;
-  color: rgba(247, 246, 243, .42);
+  font-size: 0.75rem;
+  color: rgba(247, 246, 243, 0.42);
   margin: 0;
 }
 
@@ -1033,9 +1570,13 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
    (h2 a 17ch): senza margine automatico resterebbero incollate a
    sinistra dentro un blocco centrato */
 .letter-inner h2,
-.letter-inner p { margin-inline: auto; }
+.letter-inner p {
+  margin-inline: auto;
+}
 
-.letter-inner h2 { margin-bottom: clamp(2rem, 5vh, 3rem); }
+.letter-inner h2 {
+  margin-bottom: clamp(2rem, 5vh, 3rem);
+}
 
 /* il campo è l'unica cosa che si fa qui: sta al centro e in
    misura stretta, perché un campo lungo invita a scriverci un
@@ -1046,13 +1587,15 @@ h2 em { font-style: italic; font-weight: 500; color: var(--gold); }
 }
 
 .letter .news-note,
-.letter .news-done { text-align: center; }
+.letter .news-done {
+  text-align: center;
+}
 
 /* nota di servizio, non una didascalia del campo: sta in corpo
    minore e sbiadita perché al lancio va tolta */
 .news-note.small {
-  font-size: .76rem;
-  opacity: .72;
+  font-size: 0.76rem;
+  opacity: 0.72;
 }
 
 /* ============================================================
@@ -1072,7 +1615,9 @@ footer {
 }
 
 @media (min-width: 820px) {
-  .foot-grid { grid-template-columns: 1.35fr 1fr 1fr; }
+  .foot-grid {
+    grid-template-columns: 1.35fr 1fr 1fr;
+  }
 }
 
 /* testata di colonna: qui il maiuscolo spaziato è al suo posto,
@@ -1081,25 +1626,30 @@ footer {
    posto — una voce, e sotto quello che c'è da sapere. */
 .foot-col h3,
 .info-col h3 {
-  font-family: var(--sans);
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .14em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--gold);
   margin: 0 0 1.25rem;
 }
 
-.foot-col p { margin: 0 0 .55rem; color: var(--dim); font-size: 1rem; }
+.foot-col p {
+  margin: 0 0 0.55rem;
+  color: var(--dim);
+  font-size: 1rem;
+}
 
 .foot-col a {
   color: var(--fg);
   text-decoration: none;
   border-bottom: 1px solid var(--rule);
-  transition: border-color .25s ease;
+  transition: border-color 0.25s ease;
 }
 
-.foot-col a:hover { border-color: var(--gold); }
+.foot-col a:hover {
+  border-color: var(--gold);
+}
 
 .foot-list {
   list-style: none;
@@ -1107,35 +1657,35 @@ footer {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: .55rem;
+  gap: 0.55rem;
 }
 
 .foot-list a {
   border: 0;
   display: inline-flex;
   align-items: baseline;
-  gap: .6rem;
+  gap: 0.6rem;
   font-size: 1rem;
 }
 
+/* il trattino resta fermo: sotto il puntatore la voce ha già la
+   sua cascata di lettere, e due movimenti insieme se la giocano
+   fra loro. Il segno fa il punto elenco e basta. */
 .foot-list a::before {
   content: "";
-  width: .55rem;
+  width: 0.55rem;
   height: 1px;
   background: var(--gold);
   flex: none;
-  transform: translateY(-.28em);
-  transition: width .25s ease;
+  transform: translateY(-0.28em);
 }
-
-.foot-list a:hover::before { width: 1.2rem; }
 
 /* newsletter */
 .news-field {
   display: flex;
   border-bottom: 1px solid var(--fg);
   max-width: 22rem;
-  margin-top: .4rem;
+  margin-top: 0.4rem;
 }
 
 .news-field input {
@@ -1144,62 +1694,172 @@ footer {
   border: 0;
   background: transparent;
   color: var(--fg);
-  font-family: var(--sans);
   font-size: 1rem;
-  padding: .7rem .1rem;
+  padding: 0.7rem 0.1rem;
 }
 
-.news-field input::placeholder { color: var(--dim); }
-.news-field input:focus { outline: none; }
-.news-field:focus-within { border-color: var(--gold); }
+.news-field input::placeholder {
+  color: var(--dim);
+}
+.news-field input:focus {
+  outline: none;
+}
+.news-field:focus-within {
+  border-color: var(--gold);
+}
 
 .news-field button {
   border: 0;
   background: transparent;
   color: var(--fg);
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: .72rem;
-  letter-spacing: .12em;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
-  padding: 0 .1rem 0 1rem;
+  padding: 0 0.1rem 0 1rem;
   cursor: pointer;
-  transition: color .25s ease;
+  transition: color 0.25s ease;
 }
 
-.news-field button:hover { color: var(--gold); }
+.news-field button:hover {
+  color: var(--gold);
+}
 
 /* nota di servizio sotto il campo: minuscolo, altrimenti grida
    più dell'invito a iscriversi */
 .news-note {
-  font-family: var(--sans);
-  font-size: .82rem;
+  font-size: 0.82rem;
   color: var(--dim);
-  margin: .85rem 0 0;
+  margin: 0.85rem 0 0;
 }
 
 .news-done {
   display: none;
-  font-family: var(--sans);
   font-weight: 500;
-  font-size: .95rem;
+  font-size: 0.95rem;
   color: var(--gold);
-  margin: .9rem 0 0;
+  margin: 0.9rem 0 0;
 }
 
-form.sent { display: none; }
-form.sent ~ .news-done { display: block; }
+form.sent {
+  display: none;
+}
+form.sent ~ .news-done {
+  display: block;
+}
+
+/* --- il campo trappola ---
+   Fuori vista, ma non con display:none né visibility:hidden: sono
+   le due cose che un bot riconosce, e riconoscendole le salta. Va
+   spostato fuori schermo, che invece deve leggere come un campo
+   vero. aria-hidden e tabindex="-1" stanno nel markup e tengono
+   fuori chi naviga da tastiera e i lettori di schermo. */
+.news-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* --- il consenso ---
+   Non è una formalità da rimpicciolire finché non si vede: è la
+   cosa che rende lecito scrivere a quella persona, e chi la spunta
+   deve poterla leggere. Corpo piccolo ma non minuscolo, e la
+   casella allineata alla prima riga e non al centro del blocco. */
+.news-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--dim);
+  cursor: pointer;
+  text-align: left;
+}
+
+.news-consent input {
+  flex: none;
+  /* .18em porta la casella sulla prima riga del testo invece che
+     sopra: le caselle native non hanno la stessa metrica del testo
+     e senza questo galleggiano alte */
+  margin-top: 0.18em;
+  width: 0.95rem;
+  height: 0.95rem;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+.news-consent a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.news-consent a:hover {
+  color: var(--gold);
+}
+
+/* nella sezione «La lettera» tutto è centrato, ma il consenso no:
+   una riga di due righe centrata si legge peggio, e la casella
+   finirebbe staccata dal suo testo */
+.letter .news-consent {
+  max-width: 24rem;
+  margin-inline: auto;
+}
+
+/* --- invio in corso ---
+   Un campo che non risponde per due secondi sembra rotto, e chi lo
+   crede rotto preme di nuovo. Il pulsante si spegne e lo dice. */
+.news-field button:disabled {
+  cursor: default;
+  color: var(--dim);
+}
+
+form.sending .news-field {
+  border-color: var(--dim);
+}
+
+/* --- l'errore ---
+   Niente rosso. La casa ha un accento solo e introdurne un secondo
+   per un messaggio di servizio sarebbe una decisione di marca presa
+   di sfuggita. La conferma è in oro, l'errore è in --fg pieno con
+   un filetto davanti: si distinguono senza aggiungere colori. */
+.news-error {
+  display: none;
+  font-weight: 500;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--fg);
+  border-left: 1px solid var(--fg);
+  padding-left: 0.7rem;
+  margin: 0.9rem 0 0;
+  text-align: left;
+}
+
+form.failed ~ .news-error {
+  display: block;
+}
+
+.news-error:focus {
+  outline: none;
+}
+
+.letter .news-error {
+  max-width: 24rem;
+  margin-inline: auto;
+}
 
 .legal {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: .5rem 2rem;
+  gap: 0.5rem 2rem;
   max-width: 84rem;
   margin: 0 auto;
   padding-bottom: 1.6rem;
-  font-family: var(--sans);
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: var(--dim);
 }
 
@@ -1272,7 +1932,10 @@ main > .sheet:first-child:not(.page-head) {
   clip-path: inset(50%);
 }
 
-.sheet-inner { max-width: 84rem; margin: 0 auto; }
+.sheet-inner {
+  max-width: 84rem;
+  margin: 0 auto;
+}
 
 /* La misura del testo corrente, e :where() non è un vezzo: senza,
    questa regola peserebbe due classi e schiaccerebbe l'occhiello,
@@ -1281,7 +1944,10 @@ main > .sheet:first-child:not(.page-head) {
    elemento, quindi fa da fondo e qualunque classe la scavalca
    senza doverle correre dietro con selettori sempre più lunghi.
    Sulla home lo stesso lavoro lo fa .band p, che non si tocca. */
-:where(.sheet) p { max-width: 56ch; margin: 0 0 1.1rem; }
+:where(.sheet) p {
+  max-width: 56ch;
+  margin: 0 0 1.1rem;
+}
 
 /* --- la testata di pagina ---
    Non è una hero e non deve sembrarlo: niente immagine, niente
@@ -1303,50 +1969,36 @@ main > .sheet:first-child:not(.page-head) {
    titolo divide la schermata con un'immagine o un cartamodello,
    qui regge la testata da solo. */
 .page-head h1 {
-  font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(3rem, 7.4vw, 5.6rem);
-  line-height: 1.02;
-  letter-spacing: 0;
+  line-height: 1;
+  letter-spacing: -0.024em;
   margin: 0 0 1.4rem;
   max-width: 15ch;
   text-wrap: balance;
 }
 
-.page-head h1 em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--gold);
-}
-
 /* la dicitura sopra il titolo: qui il maiuscolo spaziato è al suo
    posto, fa da insegna esattamente come le testate di colonna */
 .kicker {
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: .72rem;
-  letter-spacing: .16em;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--gold);
   margin: 0 0 1.3rem;
 }
 
-/* l'occhiello prosegue la voce del titolo, quindi resta in
-   Garamond e in misura stretta: è una frase sola, non un testo */
+/* l'occhiello prosegue la voce del titolo, quindi tiene la misura
+   stretta e la crenatura: è una frase sola, non un testo */
 .standfirst {
-  font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(1.22rem, 2.4vw, 1.7rem);
+  letter-spacing: -0.01em;
   line-height: 1.34;
   max-width: 36ch;
   margin: 0;
   text-wrap: pretty;
-}
-
-.standfirst em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--gold);
 }
 
 .head-meta {
@@ -1358,18 +2010,24 @@ main > .sheet:first-child:not(.page-head) {
   border-top: 1px solid var(--rule);
 }
 
-.head-meta > div { display: flex; flex-direction: column; gap: .3rem; }
+.head-meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
 
 .head-meta dt {
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: .68rem;
-  letter-spacing: .14em;
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--dim);
 }
 
-.head-meta dd { margin: 0; font-family: var(--sans); font-size: .92rem; }
+.head-meta dd {
+  margin: 0;
+  font-size: 0.92rem;
+}
 
 /* --- nota di servizio in colonna ---
    Gemella di quelle della clip e della campagna, ma qui sta nel
@@ -1378,12 +2036,11 @@ main > .sheet:first-child:not(.page-head) {
    incorniciare. Ogni nota di questo tipo è roba da togliere prima
    del lancio: sono il promemoria di cosa è ancora finto. */
 .sheet-note {
-  font-family: var(--sans);
-  font-size: .8rem;
+  font-size: 0.8rem;
   line-height: 1.6;
   color: var(--dim);
   border-left: 2px solid var(--gold);
-  padding-left: .95rem;
+  padding-left: 0.95rem;
   margin: 0 0 clamp(2.2rem, 5vw, 3.2rem);
   max-width: 54ch;
 }
@@ -1392,6 +2049,7 @@ main > .sheet:first-child:not(.page-head) {
    ma sopra le schede, alla scala di un h2 ridotto */
 .sheet h2.block-title {
   font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  letter-spacing: -0.016em;
   margin: 0 0 clamp(1.8rem, 4vw, 2.6rem);
   max-width: 22ch;
 }
@@ -1414,8 +2072,8 @@ main > .sheet:first-child:not(.page-head) {
    store, che è il posto in cui uno li cerca. Qui c'è la
    fotografia, e sotto due voci che non si somigliano.
 
-   La riga (.piece-say) è una frase sola, in Garamond, sul
-   dettaglio che quel capo è: non descrive la fotografia — quella
+   La riga (.piece-say) è una frase sola, a corpo di sottotitolo,
+   sul dettaglio che quel capo è: non descrive la fotografia — quella
    si vede — dice perché il pezzo esiste. Porta il filetto d'oro
    dell'attacco, lo stesso della sezione «cura del dettaglio»
    della home, perché è la stessa figura: un'affermazione.
@@ -1457,12 +2115,13 @@ main > .sheet:first-child:not(.page-head) {
 .look-hold {
   position: relative;
   z-index: 1;
-  font-family: var(--sans);
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: var(--dim);
 }
 
-.look:has(img) .look-hold { display: none; }
+.look:has(img) .look-hold {
+  display: none;
+}
 
 /* --- le parole sotto la fotografia ---
    La riga a sinistra, le note a destra. Su schermo largo stanno
@@ -1488,7 +2147,9 @@ main > .sheet:first-child:not(.page-head) {
 }
 
 @media (min-width: 900px) {
-  .piece-word { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+  .piece-word {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  }
 }
 
 /* La frase. Corpo da sottotitolo e misura stretta: a corpo grande
@@ -1496,9 +2157,9 @@ main > .sheet:first-child:not(.page-head) {
    potersi leggere tutta in un colpo — è lapidaria, non è un
    testo. Stessa figura del .lead della home, stesso filetto. */
 .piece-say {
-  font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(1.45rem, 3vw, 2.2rem);
+  letter-spacing: -0.012em;
   line-height: 1.24;
   max-width: 26ch;
   margin: 0;
@@ -1514,37 +2175,36 @@ main > .sheet:first-child:not(.page-head) {
   margin-bottom: clamp(1.3rem, 2.4vw, 1.8rem);
 }
 
-.piece-say em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--gold);
-}
-
 /* Le note di produzione. Righe separate da un filetto e non
    riquadrate: un riquadro le farebbe sembrare un modulo da
    compilare, mentre queste sono voci di un cartiglio. La
    dicitura ha una colonna sua e fissa, così i valori si
    incolonnano e l'occhio scende dritto. */
-.piece-tech { margin: 0; }
+.piece-tech {
+  margin: 0;
+}
 
 .piece-tech > div {
   display: grid;
-  gap: .3rem 1.5rem;
-  padding: .75rem 0;
+  gap: 0.3rem 1.5rem;
+  padding: 0.75rem 0;
   border-top: 1px solid var(--rule);
 }
 
 @media (min-width: 700px) {
-  .piece-tech > div { grid-template-columns: 9rem minmax(0, 1fr); }
+  .piece-tech > div {
+    grid-template-columns: 9rem minmax(0, 1fr);
+  }
 }
 
-.piece-tech > div:last-child { border-bottom: 1px solid var(--rule); }
+.piece-tech > div:last-child {
+  border-bottom: 1px solid var(--rule);
+}
 
 .piece-tech dt {
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: .68rem;
-  letter-spacing: .14em;
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--dim);
   /* il maiuscolo piccolo siede più in alto del tondo accanto:
@@ -1554,8 +2214,7 @@ main > .sheet:first-child:not(.page-head) {
 
 .piece-tech dd {
   margin: 0;
-  font-family: var(--sans);
-  font-size: .92rem;
+  font-size: 0.92rem;
   line-height: 1.5;
 }
 
@@ -1568,24 +2227,25 @@ main > .sheet:first-child:not(.page-head) {
    .plate-figure resta però condivisa con l'apertura del giornale,
    che di una fotografia in attesa ha bisogno uguale: sta nella
    sezione SEZIONI, insieme al ritratto della home. */
-.plate-figure { margin-bottom: 1.15rem; }
+.plate-figure {
+  margin-bottom: 1.15rem;
+}
 
 .plate-num {
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: .68rem;
-  letter-spacing: .14em;
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--gold);
-  margin: 0 0 .45rem;
+  margin: 0 0 0.45rem;
 }
 
 .plate h3 {
-  font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.01em;
   line-height: 1.14;
-  margin: 0 0 .6rem;
+  margin: 0 0 0.6rem;
 }
 
 /* ------------------------------------------------------------
@@ -1604,24 +2264,30 @@ main > .sheet:first-child:not(.page-head) {
 }
 
 @media (min-width: 900px) {
-  .post-lead { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+  .post-lead {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  }
 }
 
 /* la figura dell'apertura è orizzontale, non 4:5: un pezzo del
    giornale si apre con una fotografia distesa */
-.post-lead .plate-figure { aspect-ratio: 3 / 2; margin: 0; }
-
-.post-date {
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: .68rem;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin: 0 0 .8rem;
+.post-lead .plate-figure {
+  aspect-ratio: 3 / 2;
+  margin: 0;
 }
 
-.post-date .tag { color: var(--gold); }
+.post-date {
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 0 0 0.8rem;
+}
+
+.post-date .tag {
+  color: var(--gold);
+}
 
 .post-lead h2 {
   font-size: clamp(2rem, 4vw, 3.1rem);
@@ -1629,33 +2295,41 @@ main > .sheet:first-child:not(.page-head) {
   max-width: 18ch;
 }
 
-.posts { list-style: none; margin: 0; padding: 0; }
+.posts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
 .post-row {
   display: grid;
-  gap: .4rem clamp(1.6rem, 4vw, 3rem);
+  gap: 0.4rem clamp(1.6rem, 4vw, 3rem);
   padding: clamp(1.5rem, 3vw, 2.1rem) 0;
   border-top: 1px solid var(--rule);
 }
 
 @media (min-width: 900px) {
-  .post-row { grid-template-columns: 11rem minmax(0, 1fr); }
+  .post-row {
+    grid-template-columns: 11rem minmax(0, 1fr);
+  }
 }
 
-.post-row:last-child { border-bottom: 1px solid var(--rule); }
+.post-row:last-child {
+  border-bottom: 1px solid var(--rule);
+}
 
 .post-row h3 {
-  font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  letter-spacing: -0.01em;
   line-height: 1.16;
-  margin: 0 0 .5rem;
+  margin: 0 0 0.5rem;
   max-width: 26ch;
-  transition: color .25s ease;
+  transition: color 0.25s ease;
 }
 
 .post-row p {
-  font-size: .95rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: var(--dim);
   margin: 0;
@@ -1674,9 +2348,13 @@ a.post-link {
 }
 
 a.post-link:hover h3,
-a.post-link:hover h2 { color: var(--gold); }
+a.post-link:hover h2 {
+  color: var(--gold);
+}
 
-.post-row .post-date { margin: 0; }
+.post-row .post-date {
+  margin: 0;
+}
 
 /* ------------------------------------------------------------
    STORE — lo stato del drop e i capi
@@ -1698,20 +2376,17 @@ a.post-link:hover h2 { color: var(--gold); }
 }
 
 .drop-state {
-  font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+  letter-spacing: -0.01em;
   line-height: 1.2;
   margin: 0;
 }
 
-.drop-state em { font-style: italic; color: var(--gold); }
-
 .drop-when {
-  font-family: var(--sans);
   font-weight: 500;
-  font-size: .74rem;
-  letter-spacing: .13em;
+  font-size: 0.74rem;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--dim);
   margin: 0;
@@ -1723,14 +2398,17 @@ a.post-link:hover h2 { color: var(--gold); }
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 }
 
-/* Il prezzo sta in Garamond come la firma e le cifre del
-   cartiglio: è una cifra, e le cifre nel sito le dice la voce,
-   non la casa. In tondo, non in corsivo — il corsivo è
-   dell'accento, e un prezzo non è un accento. */
+/* Il prezzo non si distingue più cambiando famiglia — non c'è una
+   seconda famiglia — ma facendo la cosa che a un prezzo serve
+   davvero: le cifre a larghezza fissa. Con tabular-nums le colonne
+   di prezzi si incolonnano sulla virgola invece di ballare, che è
+   il motivo per cui esistono le cifre tabulari. Peso 400: un
+   prezzo si legge, non si annuncia. */
 .plate .good-price {
-  font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
   line-height: 1;
   color: var(--fg);
   margin: 0 0 1rem;
@@ -1738,28 +2416,26 @@ a.post-link:hover h2 { color: var(--gold); }
 }
 
 .plate .good-price .vat {
-  font-family: var(--sans);
-  font-size: .74rem;
+  font-size: 0.74rem;
   color: var(--dim);
-  margin-left: .55rem;
+  margin-left: 0.55rem;
 }
 
 .good-sizes {
   display: flex;
   flex-wrap: wrap;
-  gap: .4rem;
+  gap: 0.4rem;
   list-style: none;
   margin: 0 0 1.2rem;
   padding: 0;
 }
 
 .good-sizes li {
-  font-family: var(--sans);
   font-weight: 500;
-  font-size: .72rem;
-  letter-spacing: .08em;
+  font-size: 0.72rem;
+  letter-spacing: var(--track-caps);
   border: 1px solid var(--rule);
-  padding: .34rem .62rem;
+  padding: 0.34rem 0.62rem;
   color: var(--dim);
 }
 
@@ -1775,16 +2451,21 @@ button.cta {
 
 button.cta[disabled] {
   cursor: not-allowed;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 button.cta[disabled]:hover {
-  border-color: rgba(21, 22, 26, .28);
+  border-color: rgba(21, 22, 26, 0.28);
   background: transparent;
 }
 
+/* e nemmeno la freccia si scrive: resta la punta, come a riposo */
+button.cta[disabled]:hover::before {
+  width: 0;
+}
+
 [data-tone="dark"] button.cta[disabled]:hover {
-  border-color: rgba(247, 246, 243, .42);
+  border-color: rgba(247, 246, 243, 0.42);
 }
 
 /* le tre colonne di servizio in fondo allo store: stessa lingua
@@ -1797,7 +2478,7 @@ button.cta[disabled]:hover {
 }
 
 .info-col p {
-  font-size: .95rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: var(--dim);
   margin: 0;
@@ -1871,7 +2552,9 @@ button.cta[disabled]:hover {
    altro. Con display: contents i due strati vedono la vetrina
    intera, che è la scatola giusta. Senza sipario l'articolo resta
    l'articolo. */
-.curtain article:has(> .look) { display: contents; }
+.curtain article:has(> .look) {
+  display: contents;
+}
 
 .curtain .look {
   position: sticky;
@@ -1899,12 +2582,37 @@ button.cta[disabled]:hover {
   padding-block: clamp(3rem, 9vh, 7rem);
 }
 
+/* IL RITRATTO NON PUÒ SFONDARE LA SCHERMATA
+   Un 4:5 prende l'altezza dalla larghezza, e la larghezza gliela
+   dà la colonna, cioè la finestra. Su una finestra larga e bassa —
+   1440×780, 1600×820 — il ritratto viene alto più della schermata
+   e si porta dietro la sezione, che sfonda di cinquanta o sessanta
+   pixel. Pochi da vedere, abbastanza da sentire: snap.js quei
+   pixel li legge come una fermata, e il primo gesto su questa
+   sezione se ne va tutto lì invece di portare a quella dopo. Da
+   fuori si legge come uno scorrimento che chiede due gesti per
+   muoversi una volta.
+
+   Si lega quindi la larghezza del ritratto anche all'altezza dello
+   schermo: al massimo quattro quinti di quel che avanza fra le due
+   fasce di margine, che è appunto la larghezza di un 4:5 alto
+   quanto lo spazio libero. A stringersi è la larghezza, non
+   l'altezza a essere tagliata: il taglio 4:5 resta quello, ed è lo
+   stesso della vetrina e dello store.
+
+   I due pixel tolti sono l'arrotondamento. Un'altezza calcolata al
+   sottopixel può tornare indietro un pixel più alta del previsto, e
+   un pixel di troppo è di nuovo una fermata. */
+.curtain .band .portrait {
+  max-width: calc((100svh - 2 * clamp(3rem, 9vh, 7rem) - 2px) * 0.8);
+}
+
 /* l'ombra fa leggere lo strato: si vede il bordo che sale */
 .curtain .band,
 .curtain .look,
 .curtain .piece-word,
 .curtain footer {
-  box-shadow: 0 -30px 60px -26px rgba(11, 11, 13, .55);
+  box-shadow: 0 -30px 60px -26px rgba(11, 11, 13, 0.55);
 }
 
 /* senza questo il piede finisce sotto le sezioni agganciate */
@@ -1913,29 +2621,18 @@ button.cta[disabled]:hover {
   z-index: 1;
 }
 
-/* Nella vetrina il piede prende la schermata intera. È l'ultimo
-   strato, e un ultimo strato copre: sotto di lui, a differenza
-   della home, non resta il margine vuoto di una sezione ma la
-   lastra di parole dell'ultimo capo — e mezza frase che sporge
-   sopra il piede non si legge come uno strato, si legge come un
-   guasto. Con la schermata intera l'ultima fermata mostra il
-   piede e basta. Le tre parti si distribuiscono l'altezza che
-   avanza invece di ammucchiarsi in cima.
+/* Nella vetrina il piede è alto quanto altrove, e non una
+   schermata intera. Era stato allungato per non lasciare sporgere
+   sopra di sé la lastra di parole dell'ultimo capo, ma il piede è
+   la stessa cosa su tutte le pagine e deve avere la stessa
+   misura: un piede alto il doppio degli altri si legge come una
+   pagina diversa, non come un ultimo strato. Quel che avanza
+   sopra resta l'ultimo capo, che è il posto da cui si viene.
 
-   La larghezza piena delle tre parti va ridata a mano: si tengono
-   nella misura del sito con un margine automatico, e un margine
-   automatico dentro una griglia toglie l'allungamento — senza
-   questa riga il piede si ritroverebbe le colonne rimpicciolite
-   in mezzo alla pagina. Il max-width di ciascuna resta a fare il
-   suo lavoro sugli schermi molto larghi. */
-.curtain body:has(.look) footer {
-  min-height: 100vh;
-  min-height: 100svh;
-  display: grid;
-  align-content: space-between;
-}
-
-.curtain body:has(.look) footer > * { width: 100%; }
+   Niente da riscrivere altrove: senza questa regola il piede
+   torna al blocco della sezione PIEDE ALTO, e snap.js misura
+   l'altezza vera — l'ultima fermata cade sul fondo del documento,
+   col piede appoggiato al fondo dello schermo. */
 
 /* ============================================================
    CANTIERE — provvisorio, da togliere tutto insieme
@@ -1957,13 +2654,17 @@ button.cta[disabled]:hover {
    Per smontarlo: via questa sezione, via il blocco .hold da
    index.html, via le due guardie nei due moduli. Non serve altro.
    ============================================================ */
-.hold { display: none; }
+.hold {
+  display: none;
+}
 
 @media (max-width: 899px) {
   .skip,
   .nav,
   main,
-  footer { display: none; }
+  footer {
+    display: none;
+  }
 
   .hold {
     display: flex;
@@ -1973,58 +2674,385 @@ button.cta[disabled]:hover {
     min-height: 100vh;
     min-height: 100svh;
     padding: clamp(2.4rem, 9vw, 4rem) var(--pad);
-    background: #0B0B0D;
-    color: #F7F6F3;
+    background: #0b0b0d;
+    color: #f7f6f3;
   }
 
   /* il marchio a tutta larghezza è il primo gesto del sito: il
      cartello non è una pagina d'errore e comincia con quello */
-  .hold .bigmark { margin-bottom: clamp(.6rem, 2vh, 1.2rem); }
+  .hold .bigmark {
+    margin-bottom: clamp(0.6rem, 2vh, 1.2rem);
+  }
 
   .hold-line {
-    font-family: var(--serif);
-    font-weight: 500;
+    font-weight: 400;
     font-size: clamp(1.7rem, 8vw, 2.4rem);
+    letter-spacing: -0.014em;
     line-height: 1.12;
     margin: 0;
   }
 
   .hold-line em {
-    font-style: italic;
-    font-weight: 500;
+    font-style: normal;
+    font-weight: inherit;
     color: var(--gold-lux);
   }
 
   .hold-note {
-    font-family: var(--sans);
-    font-size: .95rem;
+    font-size: 0.95rem;
     line-height: 1.6;
-    color: rgba(247, 246, 243, .62);
+    color: rgba(247, 246, 243, 0.62);
     max-width: 34ch;
     margin: 0;
   }
 
   .hold-drop {
-    font-family: var(--sans);
     font-weight: 500;
-    font-size: .72rem;
-    letter-spacing: .13em;
+    font-size: 0.72rem;
+    letter-spacing: var(--track-caps);
     text-transform: uppercase;
-    color: rgba(247, 246, 243, .42);
-    margin: clamp(.4rem, 2vh, 1rem) 0 0;
+    color: rgba(247, 246, 243, 0.42);
+    margin: clamp(0.4rem, 2vh, 1rem) 0 0;
   }
 }
 
 /* ============================================================
    RIVELAZIONI
    ============================================================ */
-.rise { opacity: 0; transition: opacity .9s cubic-bezier(.16, 1, .3, 1); }
-.rise.in { opacity: 1; }
+.rise {
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.rise.in {
+  opacity: 1;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .rise { opacity: 1; transition: none; }
-  .nav, .nav-mark, .nav-links a.store { transition: none; }
-  .cta, .cta::after, .foot-list a::before { transition: none; }
-  .hero.has-video .hero-media video { transform: scale(1.02); transition: none; }
+  html {
+    scroll-behavior: auto;
+  }
+  .rise {
+    opacity: 1;
+    transition: none;
+  }
+  .nav,
+  .nav-mark,
+  .nav-links a.store {
+    transition: none;
+  }
+  .cta,
+  .cta::before {
+    transition: none;
+  }
+  /* il rullo si spegne del tutto: senza transizione le due copie si
+     scambierebbero di scatto, che è il contrario di quello che
+     chiede chi ha chiesto meno movimento. Resta ferma la prima, e
+     la seconda resta dov'è, fuori dal rigo. */
+  .lt-a,
+  .lt::after {
+    transition: none;
+  }
+  :hover > .lts .lt-a,
+  :focus-visible > .lts .lt-a {
+    transform: none;
+  }
+  :hover > .lts .lt::after,
+  :focus-visible > .lts .lt::after {
+    transform: translateY(-100%);
+  }
+  /* le tre V restano, il respiro no: ferme e tutte alla stessa
+     intensità dicono la direzione lo stesso */
+  .scroll-cue {
+    transition: none;
+  }
+  .cue-v {
+    animation: none;
+    opacity: 0.8;
+    transform: none;
+  }
+  .hero.has-video .hero-media video {
+    transform: scale(1.02);
+    transition: none;
+  }
+}
+
+/* ============================================================
+   PAGINE DI SERVIZIO — esiti dell'iscrizione, privacy, 404
+   ------------------------------------------------------------
+   Sono un tipo di pagina a sé, e non una quinta pagina del sito.
+   La differenza sta in dove ci si arriva: non dal menu, ma da un
+   link dentro un'email o da un indirizzo sbagliato. Chi atterra
+   qui ha già una cosa in testa — «ha funzionato?» — e la risposta
+   deve essere la prima e quasi l'unica cosa in pagina.
+
+   Per questo non portano la barra e non portano il piede alto:
+   marchio, la frase, un invito a tornare. Una testata piena e tre
+   colonne di piede, su una pagina che si legge in quattro secondi,
+   sarebbero l'arredamento di una stanza in cui nessuno si siede.
+
+   ── E si vedono sul telefono ──
+   Questa è la ragione principale per cui sono un tipo a sé. Il
+   cartello del cantiere nasconde main e footer sotto i 900 px su
+   tutte le pagine, e va bene per il sito; qui no. Un link di
+   conferma si preme quasi sempre dal telefono, perché è lì che si
+   legge la posta: mostrare «Mobile in costruzione» a chi ha appena
+   confermato l'iscrizione significherebbe interrompere il solo
+   percorso che questa architettura esiste per far funzionare.
+
+   Quando il cantiere si smonta, questa sezione resta: non dipende
+   da quello, sopravvive da sola.
+   ============================================================ */
+body.esito {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body.esito main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(3rem, 10vh, 6rem) var(--pad);
+}
+
+.esito-inner {
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+/* Il marchio è a corpo piccolo e non a tutta larghezza: l'insegna
+   grande è il primo gesto del sito, e qui non stiamo aprendo il
+   sito — stiamo chiudendo un percorso cominciato in una casella di
+   posta. */
+.esito-mark {
+  display: block;
+  height: clamp(2.2rem, 7vw, 3rem);
+  width: auto;
+  aspect-ratio: 451.8 / 184.08;
+
+  background-color: currentColor;
+  -webkit-mask-image: var(--marchio);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: left center;
+  -webkit-mask-size: contain;
+  mask-image: var(--marchio);
+  mask-repeat: no-repeat;
+  mask-position: left center;
+  mask-size: contain;
+
+  color: var(--fg);
+  text-decoration: none;
+  margin-bottom: clamp(2.4rem, 7vh, 4rem);
+  transition: background-color 0.25s ease;
+}
+
+/* l'oro del passaggio del mouse arriva al segno perché la maschera si
+   colora con currentColor: cambia il colore, non il disegno */
+.esito-mark:hover {
+  color: var(--gold);
+}
+
+.esito h1 {
+  font-weight: 400;
+  font-size: clamp(1.9rem, 5.2vw, 3rem);
+  letter-spacing: -0.022em;
+  line-height: 1.08;
+  margin: 0 0 clamp(1.1rem, 3vh, 1.6rem);
+}
+
+.esito h1 em {
+  font-style: normal;
+  font-weight: inherit;
+  color: var(--gold);
+}
+
+.esito p {
+  font-size: clamp(1rem, 1.6vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--dim);
+  margin: 0 0 1rem;
+  max-width: 30rem;
+}
+
+.esito p strong {
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.esito-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.4rem;
+  align-items: center;
+  margin-top: clamp(2rem, 5vh, 3rem);
+}
+
+/* Il ripensamento: un link minore accanto all'invito principale,
+   non un secondo bottone. Su /iscrizione/annullata/ è la via di
+   ritorno per chi non ha premuto niente — gli antivirus e certi
+   client di posta precaricano i link, e una disiscrizione può
+   essere avvenuta senza che nessuno la volesse. Chi voleva uscire
+   lo ignora; chi non voleva rientra con un clic. */
+.esito-undo {
+  font-size: 0.85rem;
+  color: var(--dim);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.esito-undo:hover {
+  color: var(--gold);
+}
+
+.esito-foot {
+  margin-top: clamp(3rem, 9vh, 5rem);
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.78rem;
+  color: var(--dim);
+}
+
+.esito-foot a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.esito-foot a:hover {
+  color: var(--gold);
+}
+
+/* ── L'esenzione dal cantiere ──
+   Specificità più alta della regola in CANTIERE (0,1,1 contro
+   0,0,1), quindi vince a prescindere dall'ordine nel foglio. Sta
+   comunque qui sotto, e in un media query proprio, perché si legga
+   accanto a ciò che esenta invece che in mezzo alla sezione che
+   nasconde. */
+@media (max-width: 899px) {
+  body.esito main {
+    display: flex;
+  }
+
+  body.esito .esito-inner {
+    max-width: none;
+  }
+}
+
+/* ============================================================
+   INFORMATIVA — la pagina più lunga del sito, e la più noiosa
+   ------------------------------------------------------------
+   Testo corrente e nient'altro. Misura di riga stretta perché è
+   fatta per essere letta davvero da chi decide di leggerla, e non
+   per riempire una casella di conformità.
+   ============================================================ */
+body.legale main {
+  display: block;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: clamp(4rem, 12vh, 7rem) var(--pad) clamp(4rem, 10vh, 6rem);
+}
+
+.legale h1 {
+  font-weight: 400;
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  letter-spacing: -0.022em;
+  line-height: 1.1;
+  margin: 0 0 0.8rem;
+}
+
+.legale h2 {
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: clamp(2.4rem, 6vh, 3.4rem) 0 0.9rem;
+}
+
+.legale p,
+.legale li {
+  font-size: 0.98rem;
+  line-height: 1.68;
+  color: var(--fg);
+  margin: 0 0 1rem;
+}
+
+.legale .updated {
+  color: var(--dim);
+  font-size: 0.85rem;
+  margin-bottom: clamp(2rem, 5vh, 3rem);
+}
+
+.legale ul {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+
+.legale li {
+  margin-bottom: 0.5rem;
+}
+
+.legale a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.legale table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.4rem;
+  font-size: 0.92rem;
+}
+
+.legale th,
+.legale td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.7rem 1rem 0.7rem 0;
+  border-bottom: 1px solid var(--rule);
+  line-height: 1.55;
+}
+
+.legale th {
+  font-weight: 500;
+  width: 34%;
+}
+
+/* Una nota di servizio che va tolta quando il testo è stato
+   approvato da chi se ne prende la responsabilità. Si vede: è il
+   suo mestiere. */
+.legale .bozza {
+  border: 1px solid var(--gold);
+  padding: 1.1rem 1.3rem;
+  margin: 0 0 clamp(2rem, 5vh, 3rem);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--fg);
+}
+
+@media (max-width: 899px) {
+  body.legale main {
+    display: block;
+  }
+
+  .legale th,
+  .legale td {
+    display: block;
+    width: auto;
+    padding: 0;
+    border: 0;
+  }
+
+  .legale th {
+    color: var(--gold);
+    padding-top: 0.9rem;
+  }
+
+  .legale td {
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule);
+  }
 }

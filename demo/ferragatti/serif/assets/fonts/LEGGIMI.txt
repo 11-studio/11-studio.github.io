@@ -1,0 +1,96 @@
+Qui stanno i caratteri del sito.
+
+  playfair-display-400900-normal.woff2   38 KB   in uso
+  playfair-display-400900-italic.woff2   38 KB   in uso
+
+Sono il sottoinsieme latino del file variabile di Playfair Display,
+presi da Google Fonts. Disegno di Claus Eggers Sørensen, sotto SIL
+Open Font License 1.1. Un file per stile: l'intervallo di pesi
+400-900 lo copre il file da solo, e il foglio ne usa 400 e 500.
+
+I due @font-face stanno in cima a style.css, sezione CARATTERE.
+
+
+  archivo-100900-normal.woff2        35 KB   non piu' usato
+  eb-garamond-400800-normal.woff2    44 KB   non piu' usato
+  eb-garamond-400800-italic.woff2    47 KB   non piu' usato
+
+Restano da una versione precedente e non li scarica nessuno. Si
+possono cancellare: erano Archivo di Omnibus-Type ed EB Garamond di
+Georg Duffner e Octavio Pardo, tutti e due sotto la stessa licenza,
+e si ritrovano su fontsource.org o su Google Fonts.
+
+
+I CARATTERI SONO DUE, E SI DIVIDONO IL LAVORO
+
+Playfair Display porta quello che il sito dice: insegna, titoli,
+testo corrente, frasi. Helvetica Neue porta quello che il sito fa:
+voci della barra, inviti, pulsanti, occhielli, etichette delle
+schede, date, taglie, cartiglio del cartamodello. Il primo si
+scarica, il secondo e' di sistema e non costa niente.
+
+In style.css sono --font e --font-ui. La divisione coincide quasi
+esattamente con il maiuscolo spaziato: le diciture che erano in
+maiuscolo perche' fanno da insegna sono le stesse che vanno in
+grottesco. Le eccezioni sono tre e sono dichiarate nella sezione
+CARATTERE — i due marchi e il titolo di campagna, che sono
+maiuscolo spaziato ma restano nel didone.
+
+C'e' poi una terza voce in un punto solo, --font-sign, per la firma
+sotto il ritratto: sezione LA FIRMA.
+
+
+PERCHE' PLAYFAIR SI INCORPORA, MENTRE IL GROTTESCO NO
+
+Helvetica Neue sta su ogni Mac, e dove non c'e' subentra Arial, che
+ne ha le stesse identiche larghezze di avanzamento: le righe cadono
+negli stessi punti su tutte le macchine. Per questo la meta' di
+sistema non costa un byte, ed e' la stessa ragione per cui la
+versione col grottesco non portava caratteri con se'.
+
+Playfair Display non e' installato da nessuna parte, e i serif di
+sistema — Georgia, Times, Iowan Old Style — hanno metriche loro.
+Quindi i due file partono davvero a ogni prima visita, 77 KB in
+tutto, ed e' il prezzo di questa versione. La coda dello stack in
+--font serve per il tempo dello scaricamento e per il caso in cui i
+file non arrivino: con font-display: swap la pagina si legge subito
+in un serif di sistema e poi cambia.
+
+
+LA REGOLA DA RICORDARE SE SI CAMBIA CARATTERE
+
+Il corpo del marchio a tutta larghezza non e' scelto a occhio: e'
+calcolato sulle metriche vere del carattere — somma degli
+avanzamenti di FERRAGATTI, spalle laterali della F e della I,
+altezza delle maiuscole. Per Playfair Display:
+
+  somma degli avanzamenti   6,018 em
+  spalla della F            0,042 em
+  spalla della I            0,042 em
+  altezza delle maiuscole   0,708 em
+
+Da li' escono i quattro numeri che stanno nell'SVG di ogni pagina:
+
+  font-size    129.94px      (in style.css, sezione MARCHIO)
+  viewBox      0 0 1000 104
+  x            -5.46
+  textLength   1010.92
+
+Cambiando carattere vanno rifatti tutti e quattro, altrimenti la
+parola non tocca piu' i due margini e il riquadro le resta largo o
+stretto. Il conto per esteso sta nel commento della sezione MARCHIO
+in style.css. I quattro numeri sono ripetuti in nove punti fra
+index.html, collezione/, shop/ e blog/.
+
+Le tre misure da cui parte il conto si leggono dal file del
+carattere, non si stimano a occhio.
+
+
+E LA CRENATURA
+
+Cambiando carattere va rivista anche quella dei titoli. Il
+grottesco era disegnato per il corpo del testo e sopra i 40 px si
+sfilacciava, quindi i titoli stringevano fino a -0,024 em. Playfair
+Display e' un display face, gia' spaziato per i corpi grandi:
+stringerlo ancora chiude i contrografi e impasta le grazie. In
+questa versione le undici crenature negative sono tutte a zero.

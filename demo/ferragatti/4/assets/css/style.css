@@ -71,7 +71,21 @@
   --track-caps: 0.08em;
 
   --pad: clamp(1.4rem, 5vw, 5rem);
-  --gold-lux: #0b132b;
+
+  /* LA TINTA DI CASA — azzurro, in due pesi.
+     #a9c9e2 è il colore pieno, e su fondo scuro tiene 11,4:1: è
+     quello che porta --gold nelle sezioni buie. Sul chiaro però
+     resta a 1,6:1 su --bg, cioè non si legge — quindi lì --gold
+     passa allo stesso azzurro sceso di luminosità (#1c3b54,
+     10,6:1), che è la profondità a cui stava il verde di prima.
+     Sono la stessa tinta a due pesi, non due colori: 206° e 207°
+     di tonalità, mezza saturazione tutti e due.
+
+     --gold-lux è il pieno scuro, e non segue il tono perché i
+     posti che lo chiamano hanno già il loro fondo: la selezione ci
+     scrive sopra in chiaro, il filo del fuoco corre su entrambe le
+     pagine, e i tre tocchi dell'apertura stanno sul video. */
+  --gold-lux: #1c3b54;
 
   /* Ingombro della barra fissa. Sulla home non serve — l'apertura
      ci passa sotto apposta — ma le pagine interne cominciano con
@@ -100,7 +114,7 @@
   --bg: #0b0b0d;
   --fg: #f2f1ee;
   --dim: #8c8a84;
-  --gold: #0b132b;
+  --gold: #a9c9e2; /* sul buio l'azzurro va pieno: 11,4:1 */
   --rule: rgba(242, 241, 238, 0.16);
   --panel: rgba(242, 241, 238, 0.045);
 
@@ -117,7 +131,7 @@
   --bg: #f4f4f2;
   --fg: #15161a;
   --dim: #6c7076;
-  --gold: #0b132b; /* sul chiaro il blu tiene 16,7:1 senza ritocchi */
+  --gold: #1c3b54; /* sul chiaro l'azzurro scende di luminosità: 10,6:1 */
   --rule: rgba(21, 22, 26, 0.15);
   --panel: rgba(21, 22, 26, 0.035);
 
@@ -168,9 +182,9 @@ img {
   display: block;
 }
 
-/* La selezione si è capovolta con la tinta: sul blu di casa,
-   che è scuro, l'inchiostro quasi nero di prima spariva. Il testo
-   selezionato prende il chiaro della pagina, non il fondo. */
+/* La selezione si è capovolta con la tinta: sull'azzurro pieno di
+   casa, che è scuro, l'inchiostro quasi nero di prima spariva. Il
+   testo selezionato prende il chiaro della pagina, non il fondo. */
 ::selection {
   background: var(--gold-lux);
   color: #f2f1ee;
@@ -658,7 +672,7 @@ section {
   overflow: hidden;
   /* il fondo che si vede prima che il canvas disegni: già in tinta,
      se no il primo istante è un lampo grigio */
-  background: #0d0a04;
+  background: #040a0d;
   isolation: isolate;
 }
 
@@ -703,10 +717,10 @@ section {
 
 /* Velo: tiene il testo leggibile senza spegnere la clip.
    Non è nero neutro ma nero blu: un velo grigio sopra un drappo
-   blu lo slava, e sotto il marchio — dove copre all'82% — la
+   azzurro lo slava, e sotto il marchio — dove copre all'82% — la
    seta perderebbe la tinta proprio dove il fondo si vede di più.
-   La regola è la stessa di quando il drappo era oro; è cambiata
-   solo la tinta da cui il nero prende il verso. */
+   La regola è la stessa di quando il drappo era oro e poi verde; è
+   cambiata solo la tinta da cui il nero prende il verso. */
 .hero::before {
   content: "";
   position: absolute;
@@ -714,9 +728,9 @@ section {
   z-index: -1;
   background: linear-gradient(
     180deg,
-    rgba(4, 6, 13, 0.55) 0%,
-    rgba(4, 6, 13, 0.12) 34%,
-    rgba(4, 6, 13, 0.82) 100%
+    rgba(4, 8, 13, 0.55) 0%,
+    rgba(4, 8, 13, 0.12) 34%,
+    rgba(4, 8, 13, 0.82) 100%
   );
   pointer-events: none;
 }
@@ -734,8 +748,8 @@ section {
   transition: opacity 0.8s ease;
   background: radial-gradient(
     34rem 34rem at var(--mx, 50%) var(--my, 42%),
-    rgba(11, 19, 43, 0.17),
-    rgba(11, 19, 43, 0.05) 42%,
+    rgba(28, 59, 84, 0.17),
+    rgba(28, 59, 84, 0.05) 42%,
     transparent 68%
   );
 }
@@ -909,7 +923,7 @@ section {
 
 .cta:hover {
   border-color: var(--gold-lux);
-  background: rgba(11, 19, 43, 0.1);
+  background: rgba(28, 59, 84, 0.1);
 }
 
 .cta:hover::before {
@@ -927,7 +941,7 @@ section {
 
 [data-tone="light"] .cta:hover {
   border-color: var(--gold);
-  background: rgba(11, 19, 43, 0.08);
+  background: rgba(28, 59, 84, 0.08);
 }
 
 /* riga dell'invito dentro un blocco di testo: prende respiro
@@ -1410,14 +1424,13 @@ h2 em,
 }
 
 /* Velo: stessa funzione di quello dell'apertura, e ora anche la
-   stessa famiglia. Finché il drappo era oro i due veli andavano
-   in direzioni opposte — caldo là, freddo qui; adesso che di sopra
-   c'è il blu notte sono tutti e due neri freddi, e restano due
-   dichiarazioni distinte solo perché lì il nero segue la tinta
-   della seta e qui l'azzurro della fotografia. Non vanno fusi in
-   un token: rispondono a due fondi diversi.
-   Il centro resta il punto più aperto:
-   l'invito ci sta sopra e non deve stare in ombra. */
+   stessa tinta. Quando il drappo era verde i due veli divergevano
+   — là il nero prendeva il verso del verde, qui quello dell'azzurro
+   della foto, se no le virava il grigio addosso. Da quando la casa
+   è azzurra i due tirano dalla stessa parte, e restano due valori
+   distinti solo perché i fondi hanno profondità diverse: la foto
+   regge un velo più fitto del video. Il centro resta il punto più
+   aperto: l'invito ci sta sopra e non deve stare in ombra. */
 .campaign::before {
   content: "";
   position: absolute;

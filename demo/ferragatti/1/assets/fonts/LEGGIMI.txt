@@ -1,25 +1,49 @@
-Caratteri self-hostati. Nessuna chiamata a CDN esterni.
+Questa cartella non è più in uso.
 
-  Archivo            casa      variabile 100-900
-                     Omnibus-Type                      — SIL Open Font License 1.1
+Il sito è passato a un carattere solo, Helvetica Neue, preso dal
+sistema operativo e non incorporato. Non c'è più nessun @font-face
+in style.css e nessuno di questi file viene scaricato dal browser.
 
-  EB Garamond        voce      variabile 400-800, romano e corsivo
-                     Georg Duffner e Octavio Pardo     — SIL Open Font License 1.1
+  archivo-100900-normal.woff2        35 KB   non più usato
+  eb-garamond-400800-normal.woff2    44 KB   non più usato
+  eb-garamond-400800-italic.woff2    47 KB   non più usato
 
-Entrambi OFL: si possono usare, incorporare e ridistribuire anche in
-un progetto commerciale. Il testo completo della licenza si trova su
-https://openfontlicense.org
+Si possono cancellare: sono 126 KB che non partono più a ogni
+prima visita. Restano qui solo per poter tornare indietro senza
+riscaricarli — erano Archivo di Omnibus-Type ed EB Garamond di
+Georg Duffner e Octavio Pardo, tutti e due sotto SIL Open Font
+License 1.1, e si ritrovano su fontsource.org o su Google Fonts.
 
-Archivo porta il marchio, la navigazione, il testo corrente e le
-diciture del cartamodello. EB Garamond parla solo dove parla il
-marchio in prima persona: titoli, firma, cifre.
 
-Nessun monospaziato, e non è una dimenticanza: un monospaziato serve
-a incolonnare codice. Le diciture in maiuscolo sono Archivo spaziato.
+PERCHÉ SI PUÒ FARE SENZA INCORPORARE NIENTE
 
-Sottoinsieme: solo latino di base (U+0000-00FF). Se servono greco,
-cirillico o simboli matematici vanno riscaricati i blocchi relativi.
+Helvetica Neue è installata su ogni Mac e ogni iPhone. Dove non
+c'è — Windows, Android, Linux — subentra Arial, che di Helvetica
+ha le stesse larghezze di avanzamento e le maiuscole alte 0,716 em
+contro 0,714: le righe cadono negli stessi punti, e la differenza
+si vede solo mettendo le due parole una sopra l'altra. È la ragione
+per cui questa sostituzione, che di solito è una scorciatoia da
+evitare, qui non lo è.
 
-Il corpo del marchio dipende dalle metriche di Archivo (avanzamenti,
-spalle laterali, altezza delle maiuscole): se si sostituisce il
-carattere vanno rifatti i conti in style.css, sezione MARCHIO.
+Su Linux la coda dello stack chiama Liberation Sans, che è a sua
+volta metricamente compatibile con Arial.
+
+
+LA REGOLA DA RICORDARE SE SI CAMBIA CARATTERE
+
+Il corpo del marchio a tutta larghezza non è scelto a occhio: è
+calcolato sulle metriche vere di Helvetica Neue Medium — somma
+degli avanzamenti di FERRAGATTI (6,188 em), spalle laterali della
+F e della I (0,076 e 0,077 em), altezza delle maiuscole (0,714 em).
+Da lì escono i quattro numeri che stanno nell'SVG di ogni pagina:
+
+  font-size    128.85px      (in style.css, sezione MARCHIO)
+  viewBox      0 0 1000 104
+  x            -9.79
+  textLength   1019.71
+
+Cambiando carattere vanno rifatti tutti e quattro, altrimenti la
+parola non tocca più i due margini e il riquadro le resta largo o
+stretto. Il conto per esteso sta nel commento della sezione MARCHIO
+in style.css. I quattro numeri sono ripetuti in nove punti fra
+index.html, collezione/, shop/ e blog/.

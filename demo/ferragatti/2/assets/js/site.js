@@ -172,31 +172,130 @@
 
   /* ==========================================================
      LETTERA
-     Nessun invio: mostra solo la conferma. Per collegarla
-     davvero, sostituire il corpo con una fetch() verso il
-     proprio servizio email o l'endpoint Shopify.
+     L'iscrizione, collegata davvero.
 
-     I moduli sono due — la sezione e il piede — e non sono
-     cablati per nome: vale ogni form.news-form, e il campo e la
-     conferma si cercano a partire dal modulo stesso. Aggiungerne
-     un terzo non richiede toccare questo file.
+     I moduli sono due — la sezione «La lettera» in home e quello
+     dello store — e non sono cablati per nome: vale ogni
+     form.news-form, e il campo, la conferma e l'errore si cercano
+     a partire dal modulo stesso. Aggiungerne un terzo non
+     richiede toccare questo file.
+
+     ── Il modulo funziona anche senza JavaScript ──
+     Ha action e method veri: senza questo file il browser invia
+     la pagina e l'API risponde con un redirect a /iscrizione/.
+     Quel che si aggiunge qui è solo il non ricaricare la pagina,
+     e i tre stati che una pagina ricaricata non può mostrare —
+     invio in corso, errore, conferma sul posto.
+
+     Per questo l'indirizzo dell'API non è scritto qui ma si legge
+     da form.action: un valore solo, nel markup, usato da tutte e
+     due le strade. Se un domani cambia, cambia in un posto.
+
+     ── La cortesia dei tre stati ──
+     Un campo che non risponde per due secondi sembra rotto, e chi
+     lo crede rotto preme di nuovo. Quindi: si disattiva il
+     pulsante, si dice «un momento», e si riaccende comunque vada.
      ========================================================== */
   var forms = document.querySelectorAll('form.news-form');
 
   Array.prototype.forEach.call(forms, function (form) {
+    var input = form.querySelector('input[type="email"]');
+    var button = form.querySelector('button[type="submit"]');
+    var wrap = form.parentNode;
+    var done = wrap.querySelector('.news-done');
+    var fail = wrap.querySelector('.news-error');
+
+    if (!input || !button) return;
+
+    var etichetta = button.textContent.trim();
+
+    function errore(testo) {
+      form.classList.remove('sending');
+      button.disabled = false;
+      button.textContent = etichetta;
+
+      if (fail) {
+        fail.textContent = testo;
+        form.classList.add('failed');
+        // Il messaggio prende il fuoco: chi usa un lettore di
+        // schermo altrimenti non saprebbe che è comparso, e
+        // resterebbe fermo su un campo che sembra a posto.
+        fail.setAttribute('tabindex', '-1');
+        fail.focus();
+      }
+    }
+
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
 
-      var input = form.querySelector('input[type="email"]');
-      if (!input) return;
-      if (!input.value || input.value.indexOf('@') < 1) { input.focus(); return; }
+      form.classList.remove('failed');
 
-      form.classList.add('sent');
+      var valore = input.value.trim();
+      // Controllo volutamente grossolano: la validazione vera la fa
+      // il server, che è l'unico posto in cui possa contare. Qui si
+      // intercetta solo il refuso evidente, per non far fare un
+      // giro di rete a una stringa senza chiocciola.
+      if (!valore || valore.indexOf('@') < 1 || valore.indexOf('.') < 0) {
+        errore('Controlla l\'indirizzo: manca qualcosa.');
+        input.focus();
+        return;
+      }
 
-      // la conferma è il fratello successivo: è lo stesso legame
-      // che usa il foglio di stile per mostrarla (form.sent ~ .news-done)
-      var done = form.parentNode.querySelector('.news-done');
-      if (done) { done.setAttribute('tabindex', '-1'); done.focus(); }
+      if (!form.querySelector('input[name="consent"]').checked) {
+        errore('Serve la spunta del consenso per poterti scrivere.');
+        return;
+      }
+
+      form.classList.add('sending');
+      button.disabled = true;
+      button.textContent = 'Un momento';
+
+      var dati = {};
+      Array.prototype.forEach.call(
+        form.querySelectorAll('input[name]'),
+        function (el) {
+          dati[el.name] = el.type === 'checkbox' ? el.checked : el.value;
+        }
+      );
+      dati.email = valore;
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          // È questa intestazione a far rispondere JSON all'API
+          // invece di un redirect. Il modulo senza JavaScript non
+          // la manda, e riceve il redirect: stessa rotta, due
+          // dialetti, nessun ramo da mantenere sul server.
+          accept: 'application/json'
+        },
+        body: JSON.stringify(dati)
+      })
+        .then(function (r) {
+          return r.json().then(function (corpo) {
+            return { ok: r.ok && corpo.ok, corpo: corpo };
+          });
+        })
+        .then(function (esito) {
+          if (!esito.ok) {
+            errore(esito.corpo.message || 'Non ha funzionato. Riprova fra poco.');
+            return;
+          }
+
+          form.classList.add('sent');
+
+          // la conferma è il fratello successivo: è lo stesso legame
+          // che usa il foglio di stile per mostrarla (form.sent ~ .news-done)
+          if (done) { done.setAttribute('tabindex', '-1'); done.focus(); }
+        })
+        .catch(function () {
+          // Rete caduta, API spenta, oppure la pagina è stata
+          // aperta con un doppio clic da disco — in cui l'API non
+          // c'è e non può esserci. In tutti e tre i casi la cosa
+          // onesta è dirlo e riaccendere il pulsante, non lasciare
+          // «Un momento» acceso per sempre.
+          errore('Connessione non riuscita. Riprova fra poco.');
+        });
     });
   });
 })();

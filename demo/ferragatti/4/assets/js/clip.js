@@ -149,7 +149,7 @@
   });
 
   // senza WebGL resta un fondo pieno, ma nella tinta del drappo
-  if (!gl) { canvas.style.background = '#060A18'; return; }
+  if (!gl) { canvas.style.background = '#020A10'; return; }
 
   /* Ogni punto della scia costa due vettori uniform (posizione +
      età + forza in un vec4, direzione in un vec2). WebGL ne
@@ -391,10 +391,14 @@
     'uniform vec4  u_tp[' + TRAIL + '];  // scia: xy posizione, z età, w forza',
     'uniform vec2  u_tv[' + TRAIL + '];  // scia: direzione del gesto',
     '',
-    '// il blu della palette — #0B132B, lo stesso di --gold in CSS —',
-    '// in valori 0-1. È l\'unica tinta dichiarata: tutto il resto',
-    '// del drappo si ricava da qui.',
-    'const vec3 TINTA = vec3(0.043, 0.075, 0.169);',
+    '// l\'azzurro della palette nel suo peso scuro — #1C3B54, lo',
+    '// stesso di --gold-lux in CSS — in valori 0-1. È l\'unica tinta',
+    '// dichiarata: tutto il resto del drappo si ricava da qui.',
+    '//',
+    '// Qui va il peso scuro e non #A9C9E2, che è la tinta piena: il',
+    '// drappo sta sotto il marchio in chiaro, e una seta di quel',
+    '// colore se lo mangerebbe. Questo è l\'azzurro visto al buio.',
+    'const vec3 TINTA = vec3(0.110, 0.231, 0.329);',
     '',
     'float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }',
     '',
@@ -579,15 +583,16 @@
     '  float sheen = pow(max(dot(n, halfDir), 0.0), 5.0) * 0.22;',
     '',
     '  // Tutti i colori del drappo escono da un solo valore:',
-    '  // il blu della palette, #0B132B. Cambiare quello li cambia',
+    '  // l\'azzurro della palette, #1C3B54. Cambiare quello li cambia',
     '  // tutti insieme e la seta resta in tinta.',
     '  //',
-    '  // Non è un drappo in piena luce: è un blu visto al buio.',
-    '  // L\'ombra scende quasi a nero — con un soffio di freddo',
-    '  // dentro, se no il nero della stessa tinta impasta e il',
-    '  // tessuto sembra piatto — la luce diffusa porta la tinta, e',
-    '  // solo il colpo di luce sale al chiaro. La distanza fra',
-    '  // questi tre è la seta.',
+    '  // Non è un drappo in piena luce: è un azzurro visto al buio.',
+    '  // L\'ombra scende quasi a nero, la luce diffusa porta la',
+    '  // tinta, e solo il colpo di luce sale al chiaro. La distanza',
+    '  // fra questi tre è la seta. Il pizzico che si somma',
+    '  // all\'ombra serviva a staccarla dal verde; con una tinta già',
+    '  // fredda conta molto meno, ma resta perché è quello che',
+    '  // impedisce al nero di impastare in una macchia sola.',
     '  vec3 col = TINTA * 0.075 + vec3(0.006, 0.005, 0.014);',
     '  col += TINTA * 0.80 * diff * 0.46;',
     '',

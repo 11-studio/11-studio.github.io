@@ -39,11 +39,11 @@
     <div class="hold">
       <svg
         class="bigmark"
-        viewBox="0 0 1000 98"
+        viewBox="0 0 1000 104"
         role="img"
         aria-label="Ferragatti"
       >
-        <text x="-10.26" y="92" textLength="1020.48" lengthAdjust="spacing">
+        <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
           FERRAGATTI
         </text>
       </svg>
@@ -56,7 +56,7 @@
      comparirebbe per un fotogramma sopra il clip. Da lì in poi la
      classe la governa site.js. -->
     <header class="nav bare" id="nav" data-tone="dark">
-      <a class="nav-mark" href="#top">FERRAGATTI</a>
+      <a class="nav-mark" href="#top" aria-label="Ferragatti"></a>
       <!-- La barra dice le sezioni della home, non l'indice del
        sito: tre ancore e l'invito allo store. Le pagine interne
        si raggiungono dall'invito che le riguarda — la collezione
@@ -69,11 +69,17 @@
        Una barra che porta fuori dalla pagina al primo clic si
        porta via anche l'apertura.
 
-       Il percorso dello store è relativo e senza barra iniziale:
-       così il sito funziona sia sul dominio (dominio.it/shop/)
-       sia in una sottocartella di GitHub Pages
-       (utente.github.io/ferragatti/shop/), senza cambiare una
-       riga. -->
+       Il percorso dello store è relativo e senza barra iniziale.
+       Le PAGINE restano quindi spostabili in blocco: funzionano
+       sulla radice del dominio e aperte con un doppio clic da
+       disco, senza cambiare una riga.
+
+       Non vale però più per il sito INTERO. Da quando c'è la
+       newsletter, il modulo di iscrizione punta a /api/subscribe —
+       un percorso assoluto, perché /api/ non è un file del sito ma
+       una rotta che nginx monta sulla radice del dominio. Il sito
+       vuole quindi la radice di un dominio suo: in una
+       sottocartella le pagine si vedrebbero e l'iscrizione no. -->
       <nav class="nav-links" aria-label="Principale">
         <a href="#cristiano">Chi siamo</a>
         <a href="#progetto">Progetto</a>
@@ -118,6 +124,14 @@
         </p>
 
         <div class="hero-mark">
+          <!-- La riga del drop sta sopra il nome, non accanto al segno
+           che invita a scendere: sono due cose diverse — una dice cosa
+           si sta guardando, l'altro dice dove andare — e tenerle sulla
+           stessa riga in basso le faceva sembrare una didascalia e il
+           suo pulsante. Qui sopra è un occhiello: si legge prima del
+           marchio, che è l'ordine in cui la frase ha senso. -->
+          <p class="hero-line">Drop 01 · Settembre 2026</p>
+
           <!-- Le tre misure (x, y, textLength) non sono arbitrarie: sono
            calcolate sulle spalle laterali e sull'altezza delle
            maiuscole di Archivo. Il conto sta nel foglio di stile,
@@ -125,19 +139,41 @@
            o peso vanno rifatte tutte e tre. -->
           <svg
             class="bigmark"
-            viewBox="0 0 1000 98"
+            viewBox="0 0 1000 104"
             role="img"
             aria-label="Ferragatti"
           >
-            <text x="-10.26" y="92" textLength="1020.48" lengthAdjust="spacing">
+            <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
               FERRAGATTI
             </text>
           </svg>
         </div>
 
         <div class="hero-foot">
-          <p class="hero-line">Seta · Drop 01 · Settembre 2026</p>
-          <a class="cta" href="shop/">Visita lo store</a>
+          <!-- L'invito a scendere, non quello a comprare: lo store sta
+           nella barra, qui in basso serve dire che sotto la schermata
+           c'è dell'altro. Il collegamento porta alla prima sezione, e
+           snap.js lo trasforma nello stesso scatto di un gesto: chi
+           clicca e chi scorre arrivano allo stesso posto.
+
+           Tre V uguali, scritte tre volte invece che una moltiplicata
+           dal foglio di stile: il ritardo di ciascuna sta nel CSS, e
+           averle qui in chiaro è ciò che permette di toglierne una
+           senza andare a cercare un :nth-child. Il segno non porta
+           parole — a dire cosa si sta guardando ci pensa la riga del
+           drop, sopra il marchio — quindi il nome del collegamento lo
+           dà aria-label. -->
+          <a class="scroll-cue" href="#cristiano" aria-label="Scorri">
+            <svg class="cue-v" viewBox="0 0 18 10" aria-hidden="true">
+              <path d="M1 1.3 9 8.7 17 1.3" />
+            </svg>
+            <svg class="cue-v" viewBox="0 0 18 10" aria-hidden="true">
+              <path d="M1 1.3 9 8.7 17 1.3" />
+            </svg>
+            <svg class="cue-v" viewBox="0 0 18 10" aria-hidden="true">
+              <path d="M1 1.3 9 8.7 17 1.3" />
+            </svg>
+          </a>
         </div>
       </section>
 
@@ -159,12 +195,12 @@
               lavora lì: è il punto in cui la manifattura diventa la nostra
               identità.
             </p>
-            <p class="cta-row">
-              <a class="cta" href="blog/">Leggi il blog</a>
-            </p>
 
             <p class="sign">Cristiano Ferragatti</p>
             <p class="role">Fondatore e direttore creativo</p>
+            <p class="cta-row">
+              <a class="cta" href="blog/">Leggi il blog</a>
+            </p>
           </div>
         </div>
       </section>
@@ -174,7 +210,7 @@
        ========================================================== -->
       <section class="band pattern" id="progetto" data-tone="light">
         <!-- ==========================================================
-         Impianto di taglio della camicia "Riva", taglia 48.
+         Impianto di taglio della camicia "Bottoni Grandi", taglia 48.
 
          Non è un ornamento a forma di cartamodello: è disegnato
          con le convenzioni vere del piazzato industriale, e ogni
@@ -187,6 +223,7 @@
            trattino sul bordo   tacca di montaggio
                                 (una davanti, due dietro)
            cerchietto           foro di infilzatura
+           banda diagonale      cimosa, il bordo vero del tessuto
 
          La griglia è il tavolo di taglio: un quadro ogni 10 cm,
          marcato ogni 50. Le misure del disegno rispettano quel
@@ -201,6 +238,38 @@
           preserveAspectRatio="xMidYMid slice"
           aria-hidden="true"
         >
+          <!-- La cimosa si vede solo dove non dà fastidio a nulla:
+           la sfumatura la spegne prima che arrivi sotto il testo
+           della sezione, i due rettangoli neri la tolgono sotto il
+           cartiglio e sotto il dettaglio A — che sono fogli
+           appoggiati sopra, e sopra un foglio il tessuto non si
+           vede. -->
+          <defs>
+            <linearGradient
+              id="cimosa-sfuma"
+              gradientUnits="userSpaceOnUse"
+              x1="560"
+              y1="0"
+              x2="1000"
+              y2="0"
+            >
+              <stop offset="0" stop-color="#000" />
+              <stop offset="1" stop-color="#fff" />
+            </linearGradient>
+            <mask
+              id="cimosa-luce"
+              maskUnits="userSpaceOnUse"
+              x="0"
+              y="0"
+              width="1600"
+              height="1000"
+            >
+              <rect width="1600" height="1000" fill="url(#cimosa-sfuma)" />
+              <rect x="1126" y="346" width="328" height="298" fill="#000" />
+              <rect x="1126" y="676" width="328" height="168" fill="#000" />
+            </mask>
+          </defs>
+
           <!-- tavolo di taglio -->
           <g class="grid">
             <path
@@ -213,6 +282,43 @@
           <g class="grid grid-major">
             <path d="M0 400H1600M0 800H1600" />
             <path d="M400 0V1000M800 0V1000M1200 0V1000" />
+          </g>
+
+          <!-- ============ CIMOSA ============
+           Il bordo vero della pezza: la seta è srotolata di sbieco
+           sul tavolo, e la cimosa gli attraversa il piano da alto a
+           sinistra verso basso a destra. Sta qui, subito dopo la
+           griglia e prima di ogni pezzo, perché è tessuto e il
+           tessuto sta sotto: i pezzi ci passano sopra, come sul
+           tavolo vero.
+
+           Il disegno è tracciato dritto e poi ruotato: una cimosa è
+           una fascia, e una fascia si scrive con due rette, non con
+           otto coordinate storte. Dentro ci sono i segni che ha
+           davvero — l'orlo compatto, la fila di fori del telaio, e
+           il nome della filatura ripetuto per tutta la pezza.
+           Nessuno di questi segni serve al taglio, e infatti sono
+           i più leggeri del foglio. -->
+          <g class="selvedge" mask="url(#cimosa-luce)">
+            <g transform="rotate(58 1000 500)">
+              <path class="selv-web" d="M-700 470H2400V534H-700Z" />
+              <path class="selv" d="M-700 470H2400" />
+              <path class="selv selv-in" d="M-700 534H2400" />
+              <path class="selv-hole" d="M-680 486H2380" />
+
+              <text class="selv-t" x="180" y="516">
+                FERRAGATTI · CIMOSA · SETA 19 MM
+              </text>
+              <text class="selv-t" x="620" y="516">
+                FERRAGATTI · CIMOSA · SETA 19 MM
+              </text>
+              <text class="selv-t" x="1060" y="516">
+                FERRAGATTI · CIMOSA · SETA 19 MM
+              </text>
+              <text class="selv-t" x="1500" y="516">
+                FERRAGATTI · CIMOSA · SETA 19 MM
+              </text>
+            </g>
           </g>
 
           <!-- ============ 01 · DAVANTI ============ -->
@@ -468,7 +574,7 @@
             <path class="frame" d="M1130 350H1450V640H1130Z" />
             <path class="aux" d="M1130 380H1450M1130 508H1450M1130 588H1450" />
             <text class="lbl-hd" x="1144" y="371">
-              FERRAGATTI · CAMICIA «RIVA»
+              FERRAGATTI · CAMICIA «BOTTONI GRANDI»
             </text>
 
             <text class="lbl-sm" x="1144" y="400">MODELLO</text>
@@ -569,7 +675,7 @@
         <div class="campaign-inner rise">
           <h1 class="campaign-title">Seta <span class="sep">·</span> Drop 1</h1>
 
-          <a class="cta" href="collezione/">Guarda la campagna</a>
+          <a class="cta" href="collezione/">Scopri la campagna</a>
         </div>
       </section>
 
@@ -584,11 +690,31 @@
         <div class="letter-inner rise">
           <h2>Restiamo in contatto</h2>
 
-          <form class="news-form" id="letter-news" novalidate>
+          <!-- action e method sono veri, e servono: senza
+           JavaScript il browser invia il modulo da sé e l'API
+           risponde con un redirect a /iscrizione/. site.js si
+           limita a evitare il ricaricamento e a mostrare i tre
+           stati che una pagina ricaricata non può mostrare.
+
+           L'indirizzo dell'API è l'unico percorso assoluto del
+           sito. È l'eccezione alla regola dei percorsi relativi, e
+           ha una ragione: /api/ non è un file del sito, è una
+           rotta che nginx monta sulla radice del dominio, quindi
+           non si sposta insieme alle pagine. -->
+          <form
+            class="news-form"
+            id="letter-news"
+            action="/api/subscribe"
+            method="post"
+            novalidate
+          >
+            <input type="hidden" name="source" value="home" />
+
             <span class="news-field">
               <label for="letter-email" class="skip">Indirizzo email</label>
               <input
                 id="letter-email"
+                name="email"
                 type="email"
                 autocomplete="email"
                 placeholder="indirizzo email"
@@ -596,11 +722,51 @@
               />
               <button type="submit">Iscrivimi</button>
             </span>
+
+            <!-- Il campo trappola.
+
+             Sta fuori vista, ma non con display:none — quello i bot
+             lo riconoscono e lo saltano. È spostato fuori schermo,
+             è aria-hidden e ha tabindex -1: una persona non lo
+             vede, non ci arriva col tab e un lettore di schermo non
+             glielo annuncia. Uno script che legge l'HTML e riempie
+             tutti i campi, invece, ci scrive.
+
+             Si chiama «azienda» perché deve sembrare un campo vero:
+             uno che si chiamasse «honeypot» lo salterebbe chiunque.
+
+             Se arriva pieno, l'API risponde 200 come a tutti e non
+             scrive niente. Al bot si mente: un errore gli direbbe
+             che la trappola c'è. -->
+            <div class="news-trap" aria-hidden="true">
+              <label for="letter-azienda">Azienda</label>
+              <input
+                id="letter-azienda"
+                name="azienda"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <label class="news-consent">
+              <input type="checkbox" name="consent" value="true" />
+              <span>
+                Acconsento a ricevere la lettera di Ferragatti a questo
+                indirizzo. <a href="privacy/">Informativa privacy</a>.
+              </span>
+            </label>
+
             <p class="news-note small">
-              Anteprima — l'invio non è ancora collegato.
+              Una email all'anno, e ci si cancella con un clic.
             </p>
           </form>
-          <p class="news-done">Grazie. Vi scriviamo a settembre.</p>
+
+          <p class="news-done">
+            Ti abbiamo scritto. Apri l'email e conferma: finché non lo fai, non
+            sei iscritto.
+          </p>
+          <p class="news-error" role="alert"></p>
         </div>
       </section>
     </main>
@@ -647,17 +813,19 @@
 
       <p class="legal">
         <span>© 2026 Ferragatti — Tutti i diritti riservati</span>
-        <span>P. IVA da inserire · Privacy · Cookie</span>
+        <span
+          >P. IVA da inserire · <a href="privacy/">Informativa privacy</a></span
+        >
       </p>
 
       <div class="foot-mark">
         <svg
           class="bigmark"
-          viewBox="0 0 1000 98"
+          viewBox="0 0 1000 104"
           role="img"
           aria-label="Ferragatti"
         >
-          <text x="-10.26" y="92" textLength="1020.48" lengthAdjust="spacing">
+          <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
             FERRAGATTI
           </text>
         </svg>

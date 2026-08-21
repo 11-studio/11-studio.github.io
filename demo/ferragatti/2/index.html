@@ -37,16 +37,7 @@
      telefono, non c'è niente da riaccendere.
      ========================================================== -->
     <div class="hold">
-      <svg
-        class="bigmark"
-        viewBox="0 0 1000 104"
-        role="img"
-        aria-label="Ferragatti"
-      >
-        <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
-          FERRAGATTI
-        </text>
-      </svg>
+      <div class="bigmark" role="img" aria-label="Ferragatti"></div>
 
       <p class="hold-line">Mobile in <em>costruzione</em>.</p>
     </div>
@@ -56,7 +47,7 @@
      comparirebbe per un fotogramma sopra il clip. Da lì in poi la
      classe la governa site.js. -->
     <header class="nav bare" id="nav" data-tone="dark">
-      <a class="nav-mark" href="#top">FERRAGATTI</a>
+      <a class="nav-mark" href="#top" aria-label="Ferragatti"></a>
       <!-- La barra dice le sezioni della home, non l'indice del
        sito: tre ancore e l'invito allo store. Le pagine interne
        si raggiungono dall'invito che le riguarda — la collezione
@@ -69,11 +60,17 @@
        Una barra che porta fuori dalla pagina al primo clic si
        porta via anche l'apertura.
 
-       Il percorso dello store è relativo e senza barra iniziale:
-       così il sito funziona sia sul dominio (dominio.it/shop/)
-       sia in una sottocartella di GitHub Pages
-       (utente.github.io/ferragatti/shop/), senza cambiare una
-       riga. -->
+       Il percorso dello store è relativo e senza barra iniziale.
+       Le PAGINE restano quindi spostabili in blocco: funzionano
+       sulla radice del dominio e aperte con un doppio clic da
+       disco, senza cambiare una riga.
+
+       Non vale però più per il sito INTERO. Da quando c'è la
+       newsletter, il modulo di iscrizione punta a /api/subscribe —
+       un percorso assoluto, perché /api/ non è un file del sito ma
+       una rotta che nginx monta sulla radice del dominio. Il sito
+       vuole quindi la radice di un dominio suo: in una
+       sottocartella le pagine si vedrebbero e l'iscrizione no. -->
       <nav class="nav-links" aria-label="Principale">
         <a href="#cristiano">Chi siamo</a>
         <a href="#progetto">Progetto</a>
@@ -126,21 +123,12 @@
            marchio, che è l'ordine in cui la frase ha senso. -->
           <p class="hero-line">Drop 01 · Settembre 2026</p>
 
-          <!-- Le tre misure (x, y, textLength) non sono arbitrarie: sono
-           calcolate sulle spalle laterali e sull'altezza delle
-           maiuscole di Archivo. Il conto sta nel foglio di stile,
-           sezione MARCHIO A TUTTA LARGHEZZA — se si cambia carattere
-           o peso vanno rifatte tutte e tre. -->
-          <svg
-            class="bigmark"
-            viewBox="0 0 1000 104"
-            role="img"
-            aria-label="Ferragatti"
-          >
-            <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
-              FERRAGATTI
-            </text>
-          </svg>
+          <!-- L'insegna è il disegno, non la parola: la stessa firma
+           che sta nella barra, alla scala dell'apertura. Il riquadro
+           e il tetto alla larghezza stanno nel foglio di stile,
+           sezione L'INSEGNA GRANDE — qui non c'è niente da tarare,
+           il segno si scala. -->
+          <div class="bigmark" role="img" aria-label="Ferragatti"></div>
         </div>
 
         <div class="hero-foot">
@@ -669,7 +657,7 @@
         <div class="campaign-inner rise">
           <h1 class="campaign-title">Seta <span class="sep">·</span> Drop 1</h1>
 
-          <a class="cta" href="collezione/">Guarda la campagna</a>
+          <a class="cta" href="collezione/">Scopri la campagna</a>
         </div>
       </section>
 
@@ -684,11 +672,31 @@
         <div class="letter-inner rise">
           <h2>Restiamo in contatto</h2>
 
-          <form class="news-form" id="letter-news" novalidate>
+          <!-- action e method sono veri, e servono: senza
+           JavaScript il browser invia il modulo da sé e l'API
+           risponde con un redirect a /iscrizione/. site.js si
+           limita a evitare il ricaricamento e a mostrare i tre
+           stati che una pagina ricaricata non può mostrare.
+
+           L'indirizzo dell'API è l'unico percorso assoluto del
+           sito. È l'eccezione alla regola dei percorsi relativi, e
+           ha una ragione: /api/ non è un file del sito, è una
+           rotta che nginx monta sulla radice del dominio, quindi
+           non si sposta insieme alle pagine. -->
+          <form
+            class="news-form"
+            id="letter-news"
+            action="/api/subscribe"
+            method="post"
+            novalidate
+          >
+            <input type="hidden" name="source" value="home" />
+
             <span class="news-field">
               <label for="letter-email" class="skip">Indirizzo email</label>
               <input
                 id="letter-email"
+                name="email"
                 type="email"
                 autocomplete="email"
                 placeholder="indirizzo email"
@@ -696,11 +704,51 @@
               />
               <button type="submit">Iscrivimi</button>
             </span>
+
+            <!-- Il campo trappola.
+
+             Sta fuori vista, ma non con display:none — quello i bot
+             lo riconoscono e lo saltano. È spostato fuori schermo,
+             è aria-hidden e ha tabindex -1: una persona non lo
+             vede, non ci arriva col tab e un lettore di schermo non
+             glielo annuncia. Uno script che legge l'HTML e riempie
+             tutti i campi, invece, ci scrive.
+
+             Si chiama «azienda» perché deve sembrare un campo vero:
+             uno che si chiamasse «honeypot» lo salterebbe chiunque.
+
+             Se arriva pieno, l'API risponde 200 come a tutti e non
+             scrive niente. Al bot si mente: un errore gli direbbe
+             che la trappola c'è. -->
+            <div class="news-trap" aria-hidden="true">
+              <label for="letter-azienda">Azienda</label>
+              <input
+                id="letter-azienda"
+                name="azienda"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <label class="news-consent">
+              <input type="checkbox" name="consent" value="true" />
+              <span>
+                Acconsento a ricevere la lettera di Ferragatti a questo
+                indirizzo. <a href="privacy/">Informativa privacy</a>.
+              </span>
+            </label>
+
             <p class="news-note small">
-              Anteprima — l'invio non è ancora collegato.
+              Una email all'anno, e ci si cancella con un clic.
             </p>
           </form>
-          <p class="news-done">Grazie. Vi scriviamo a settembre.</p>
+
+          <p class="news-done">
+            Ti abbiamo scritto. Apri l'email e conferma: finché non lo fai, non
+            sei iscritto.
+          </p>
+          <p class="news-error" role="alert"></p>
         </div>
       </section>
     </main>
@@ -747,20 +795,13 @@
 
       <p class="legal">
         <span>© 2026 Ferragatti — Tutti i diritti riservati</span>
-        <span>P. IVA da inserire · Privacy · Cookie</span>
+        <span
+          >P. IVA da inserire · <a href="privacy/">Informativa privacy</a></span
+        >
       </p>
 
       <div class="foot-mark">
-        <svg
-          class="bigmark"
-          viewBox="0 0 1000 104"
-          role="img"
-          aria-label="Ferragatti"
-        >
-          <text x="-9.79" y="98" textLength="1019.71" lengthAdjust="spacing">
-            FERRAGATTI
-          </text>
-        </svg>
+        <div class="bigmark" role="img" aria-label="Ferragatti"></div>
       </div>
     </footer>
 
