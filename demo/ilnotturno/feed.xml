@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>il Notturno</title>
+    <link>https://ilnotturno.it/</link>
+    <description>il Notturno è il quotidiano online che racconta cronaca, politica, economia, cultura, sport e tecnologia con approfondimenti e inchieste. Aggiornato 24 ore su 24.</description>
+    <language>it</language>
+    <lastBuildDate>Fri, 11 Sep 2026 11:32:00 +0200</lastBuildDate>
+    <atom:link href="https://ilnotturno.it/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Il derby si gioca in notturna: formazioni, precedenti e la guida allo stadio</title>
+      <link>https://ilnotturno.it/sport/derby-in-notturna-guida-alla-partita/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/sport/derby-in-notturna-guida-alla-partita/</guid>
+      <pubDate>Fri, 11 Sep 2026 09:00:00 +0200</pubDate>
+      <dc:creator>Paolo Santoro</dc:creator>
+      <category>Sport</category>
+      <description>Fischio d'inizio alle 20.45. Le probabili scelte dei due allenatori, i numeri delle ultime dieci sfide e tutte le informazioni pratiche per chi va allo stadio e per chi lo guarda in tv.</description>
+      <enclosure url="https://ilnotturno.it/images/stadio-notte.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>La notte dei musei: 40 aperture straordinarie e i numeri di un pubblico che cambia</title>
+      <link>https://ilnotturno.it/cultura/notte-dei-musei-aperture-straordinarie-numeri-cultura/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/cultura/notte-dei-musei-aperture-straordinarie-numeri-cultura/</guid>
+      <pubDate>Fri, 11 Sep 2026 08:30:00 +0200</pubDate>
+      <dc:creator>Elena Riva</dc:creator>
+      <category>Cultura</category>
+      <description>Sabato musei aperti fino all'una a un euro. L'anno scorso 120mila ingressi, il 60% sotto i 35 anni. Il programma completo e le mostre da non perdere.</description>
+      <enclosure url="https://ilnotturno.it/images/museo-notte.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Metro aperta fino alle 2: parte la sperimentazione dei trasporti notturni</title>
+      <link>https://ilnotturno.it/cronaca/metro-aperta-fino-alle-due-sperimentazione-trasporti-notturni/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/cronaca/metro-aperta-fino-alle-due-sperimentazione-trasporti-notturni/</guid>
+      <pubDate>Fri, 11 Sep 2026 07:30:00 +0200</pubDate>
+      <dc:creator>Marta Ferrante</dc:creator>
+      <category>Cronaca</category>
+      <description>Da venerdì le linee A e B resteranno in servizio due ore in più nei fine settimana. Il piano durerà sei mesi, poi il Comune deciderà se renderlo stabile. Ecco orari, frequenze e cosa cambia per bus e taxi.</description>
+      <enclosure url="https://ilnotturno.it/images/metro-notte.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Legge di bilancio, il cantiere delle misure: cosa c'è davvero sul tavolo</title>
+      <link>https://ilnotturno.it/politica/legge-di-bilancio-cantiere-misure-cosa-c-e-sul-tavolo/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/politica/legge-di-bilancio-cantiere-misure-cosa-c-e-sul-tavolo/</guid>
+      <pubDate>Fri, 11 Sep 2026 06:45:00 +0200</pubDate>
+      <dc:creator>Luca Bellini</dc:creator>
+      <category>Politica</category>
+      <description>Fisco, pensioni, sanità e famiglie: le richieste dei partiti superano di molto le risorse disponibili. La guida per orientarsi tra annunci e coperture, capitolo per capitolo.</description>
+      <enclosure url="https://ilnotturno.it/images/palazzo-notte.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Bollette, come cambia il mercato dell'energia in autunno: la guida per le famiglie</title>
+      <link>https://ilnotturno.it/economia/bollette-come-cambia-mercato-energia-autunno/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/economia/bollette-come-cambia-mercato-energia-autunno/</guid>
+      <pubDate>Fri, 11 Sep 2026 06:00:00 +0200</pubDate>
+      <dc:creator>Sara Conti</dc:creator>
+      <category>Economia</category>
+      <description>Fine delle tutele residue, nuove offerte a prezzo variabile e il ruolo del fornitore di ultima istanza. Cosa controllare nel contratto e come confrontare le proposte senza farsi confondere.</description>
+      <enclosure url="https://ilnotturno.it/images/bollette-energia.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Perché una città ha bisogno della notte</title>
+      <link>https://ilnotturno.it/opinioni/perche-una-citta-ha-bisogno-della-notte/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/opinioni/perche-una-citta-ha-bisogno-della-notte/</guid>
+      <pubDate>Fri, 11 Sep 2026 05:30:00 +0200</pubDate>
+      <dc:creator>Andrea Vitale</dc:creator>
+      <category>Opinioni</category>
+      <description>La metro aperta fino alle 2 non è una concessione alla movida. È il riconoscimento che una parte della città vive, lavora e si sposta quando l'altra dorme. E ha gli stessi diritti.</description>
+      <enclosure url="https://ilnotturno.it/images/citta-notte.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Il ritorno dei treni notturni in Europa: un viaggio da Vienna a Bruxelles in cuccetta</title>
+      <link>https://ilnotturno.it/esteri/ritorno-treni-notturni-europa-reportage/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/esteri/ritorno-treni-notturni-europa-reportage/</guid>
+      <pubDate>Thu, 10 Sep 2026 21:00:00 +0200</pubDate>
+      <dc:creator>Davide Moretti</dc:creator>
+      <category>Esteri</category>
+      <description>Tra nuove linee, vagoni rinnovati e prezzi che non sempre convincono, il treno di notte torna a essere un'alternativa all'aereo. Abbiamo fatto il viaggio per capire se funziona davvero.</description>
+      <enclosure url="https://ilnotturno.it/images/treno-notte.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Primo giorno di scuola tra cantieri aperti e nuove aule: cosa trovano gli studenti</title>
+      <link>https://ilnotturno.it/cronaca/scuola-primo-giorno-cantieri-nuove-aule/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/cronaca/scuola-primo-giorno-cantieri-nuove-aule/</guid>
+      <pubDate>Thu, 10 Sep 2026 18:20:00 +0200</pubDate>
+      <dc:creator>Marta Ferrante</dc:creator>
+      <category>Cronaca</category>
+      <description>Su 214 edifici scolastici della città, 38 hanno ancora lavori in corso. Quattro plessi riaprono completamente rinnovati. La mappa delle situazioni critiche e le risposte del Comune.</description>
+      <enclosure url="https://ilnotturno.it/images/scuola-cantiere.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Maratona, 30mila iscritti: il percorso, le strade chiuse e gli orari</title>
+      <link>https://ilnotturno.it/sport/maratona-trentamila-iscritti-percorso-strade-chiuse/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/sport/maratona-trentamila-iscritti-percorso-strade-chiuse/</guid>
+      <pubDate>Thu, 10 Sep 2026 16:00:00 +0200</pubDate>
+      <dc:creator>Paolo Santoro</dc:creator>
+      <category>Sport</category>
+      <description>Domenica la città si ferma per la corsa più partecipata di sempre. La mappa dei 42 chilometri, i punti di ristoro, le deviazioni dei mezzi pubblici e i consigli per chi va a tifare.</description>
+      <enclosure url="https://ilnotturno.it/images/maratona.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Riforma degli enti locali, il confronto entra nel vivo in commissione</title>
+      <link>https://ilnotturno.it/politica/riforma-enti-locali-confronto-commissione/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/politica/riforma-enti-locali-confronto-commissione/</guid>
+      <pubDate>Thu, 10 Sep 2026 14:30:00 +0200</pubDate>
+      <dc:creator>Luca Bellini</dc:creator>
+      <category>Politica</category>
+      <description>Sindaci e Regioni divisi sui poteri delle province. Il relatore: «Testo in aula entro novembre». Le audizioni cominciano la prossima settimana.</description>
+      <enclosure url="https://ilnotturno.it/images/aula-commissione.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Festival del cinema, i dieci film da non perdere secondo la nostra critica</title>
+      <link>https://ilnotturno.it/spettacoli/festival-cinema-film-da-non-perdere/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/spettacoli/festival-cinema-film-da-non-perdere/</guid>
+      <pubDate>Thu, 10 Sep 2026 11:00:00 +0200</pubDate>
+      <dc:creator>Elena Riva</dc:creator>
+      <category>Spettacoli</category>
+      <description>Dal concorso alle sezioni parallele, la selezione della redazione tra esordi, ritorni attesi e documentari. Con i trailer e le date delle proiezioni aperte al pubblico.</description>
+      <enclosure url="https://ilnotturno.it/images/cinema-sala.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Intelligenza artificiale in redazione: come la usiamo e come non la usiamo</title>
+      <link>https://ilnotturno.it/tecnologia/intelligenza-artificiale-in-redazione-come-la-usiamo/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/tecnologia/intelligenza-artificiale-in-redazione-come-la-usiamo/</guid>
+      <pubDate>Thu, 10 Sep 2026 10:00:00 +0200</pubDate>
+      <dc:creator>Giulia Marchetti, Marta Ferrante</dc:creator>
+      <category>Tecnologia</category>
+      <description>Pubblichiamo le regole che ci siamo dati. Nessun articolo è scritto da un algoritmo, ma alcuni strumenti ci aiutano a lavorare meglio. Ecco quali, per cosa, e chi risponde di ogni parola.</description>
+      <enclosure url="https://ilnotturno.it/images/redazione-schermi.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Lavoro notturno, i nuovi contratti: maggiorazioni, riposi e limiti di età</title>
+      <link>https://ilnotturno.it/economia/lavoro-notturno-nuovi-contratti-cosa-prevedono/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/economia/lavoro-notturno-nuovi-contratti-cosa-prevedono/</guid>
+      <pubDate>Thu, 10 Sep 2026 08:00:00 +0200</pubDate>
+      <dc:creator>Sara Conti</dc:creator>
+      <category>Economia</category>
+      <description>Tre rinnovi contrattuali firmati nell'ultimo mese ridefiniscono le regole per chi lavora tra le 22 e le 6. Cosa cambia per sanità, logistica e ristorazione.</description>
+      <enclosure url="https://ilnotturno.it/images/magazzino-notte.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Il diritto al silenzio non è un capriccio</title>
+      <link>https://ilnotturno.it/opinioni/il-diritto-al-silenzio/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/opinioni/il-diritto-al-silenzio/</guid>
+      <pubDate>Thu, 10 Sep 2026 06:00:00 +0200</pubDate>
+      <dc:creator>Sara Conti</dc:creator>
+      <category>Opinioni</category>
+      <description>Nel dibattito sulla città notturna manca sempre una voce: quella di chi la notte vorrebbe semplicemente dormire. Non è conservatorismo, è una questione di salute pubblica.</description>
+      <enclosure url="https://ilnotturno.it/images/finestra-notte.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Biblioteche aperte 24 ore: dentro la sala studio che non chiude mai</title>
+      <link>https://ilnotturno.it/cultura/biblioteche-aperte-24-ore-studio-notturno/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/cultura/biblioteche-aperte-24-ore-studio-notturno/</guid>
+      <pubDate>Wed, 09 Sep 2026 20:00:00 +0200</pubDate>
+      <dc:creator>Elena Riva</dc:creator>
+      <category>Cultura</category>
+      <description>Da un anno la biblioteca centrale ha una sala aperta giorno e notte. Chi la frequenta, cosa funziona e cosa no. Il modello che altre città vogliono copiare.</description>
+      <enclosure url="https://ilnotturno.it/images/biblioteca-notte.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Città costiere e innalzamento dei mari: cosa stanno facendo le capitali europee</title>
+      <link>https://ilnotturno.it/esteri/citta-costiere-piani-adattamento-clima/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/esteri/citta-costiere-piani-adattamento-clima/</guid>
+      <pubDate>Wed, 09 Sep 2026 17:00:00 +0200</pubDate>
+      <dc:creator>Davide Moretti</dc:creator>
+      <category>Esteri</category>
+      <description>Da Rotterdam a Lisbona, i piani di adattamento sono ormai parte della pianificazione ordinaria. Confronto tra approcci, costi e tempi.</description>
+      <enclosure url="https://ilnotturno.it/images/porto-notte.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Mercati rionali, via al piano di riqualificazione: otto strutture rinnovate in tre anni</title>
+      <link>https://ilnotturno.it/cronaca/mercati-rionali-piano-riqualificazione/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/cronaca/mercati-rionali-piano-riqualificazione/</guid>
+      <pubDate>Wed, 09 Sep 2026 12:00:00 +0200</pubDate>
+      <dc:creator>Marta Ferrante</dc:creator>
+      <category>Cronaca</category>
+      <description>Coperture nuove, banchi a norma e orari serali sperimentali. Gli operatori chiedono garanzie sui trasferimenti temporanei durante i lavori.</description>
+      <enclosure url="https://ilnotturno.it/images/mercato.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Smartphone e sonno: cosa dicono davvero le ricerche sulla luce blu</title>
+      <link>https://ilnotturno.it/scienza/smartphone-e-sonno-cosa-dicono-le-ricerche/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/scienza/smartphone-e-sonno-cosa-dicono-le-ricerche/</guid>
+      <pubDate>Wed, 09 Sep 2026 07:00:00 +0200</pubDate>
+      <dc:creator>Giulia Marchetti</dc:creator>
+      <category>Scienza</category>
+      <description>Gli studi più recenti ridimensionano il ruolo della luce degli schermi e puntano il dito su un altro fattore. Cosa sappiamo, cosa no, e quali abitudini funzionano davvero.</description>
+      <enclosure url="https://ilnotturno.it/images/smartphone-letto.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>Il cielo di settembre: equinozio, pianeti visibili e dove osservarli lontano dalle luci</title>
+      <link>https://ilnotturno.it/scienza/cielo-di-settembre-guida-eventi-astronomici/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/scienza/cielo-di-settembre-guida-eventi-astronomici/</guid>
+      <pubDate>Tue, 08 Sep 2026 19:30:00 +0200</pubDate>
+      <dc:creator>Giulia Marchetti</dc:creator>
+      <category>Scienza</category>
+      <description>La guida agli appuntamenti astronomici del mese, dall'equinozio d'autunno alle congiunzioni, con i consigli per l'osservazione a occhio nudo e i luoghi con meno inquinamento luminoso vicino alla città.</description>
+      <enclosure url="https://ilnotturno.it/images/cielo-stellato.jpg" type="image/jpeg" length="0"/>
+    </item>
+    <item>
+      <title>L'informazione locale non è un lusso</title>
+      <link>https://ilnotturno.it/opinioni/informazione-locale-non-e-un-lusso/</link>
+      <guid isPermaLink="true">https://ilnotturno.it/opinioni/informazione-locale-non-e-un-lusso/</guid>
+      <pubDate>Tue, 08 Sep 2026 06:00:00 +0200</pubDate>
+      <dc:creator>Marta Ferrante</dc:creator>
+      <category>Opinioni</category>
+      <description>Ogni anno chiudono decine di testate locali e i territori restano senza nessuno che racconti cosa succede nei consigli comunali, negli ospedali, nelle scuole. Perché abbiamo scelto di andare in direzione contraria.</description>
+      <enclosure url="https://ilnotturno.it/images/edicola-notte.jpg" type="image/jpeg" length="0"/>
+    </item>
+  </channel>
+</rss>

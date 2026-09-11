@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /cerca/
+
+Sitemap: https://ilnotturno.it/sitemap.xml
