@@ -4,7 +4,8 @@
     ============================================
 
     Impostazione da quotidiano online: titoli e corpo in serif, interfaccia
-    in sans, colonna di lettura stretta, sezioni con colore proprio.
+    in sans, colonna di lettura stretta. Palette bianco/nero: le uniche
+    macchie di colore sono le immagini.
 
     Indice:
     1. Variabili e reset
@@ -23,9 +24,9 @@
    1. VARIABILI E RESET
    ============================================ */
 :root {
-  --brand: #0b1f3a;            /* blu notte: bottoni, nav, footer */
-  --brand-2: #163a6b;
-  --accent: #c8102e;           /* rosso: ultim'ora */
+  --brand: #111111;            /* nero: bottoni, nav, footer */
+  --brand-2: #3d3d3d;          /* nero attenuato: hover, link di servizio */
+  --accent: #111111;           /* ultim'ora (stessa tinta: la palette è bianco/nero) */
   --ink: #111111;              /* testo principale */
   --ink-2: #3d3d3d;            /* sommari */
   --muted: #6b6b6b;            /* meta, date */
@@ -770,7 +771,7 @@ body.is-scrolled .sections-nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--section, var(--brand)), color-mix(in srgb, var(--section, var(--brand)) 55%, #000));
+  background: var(--section, var(--brand));
   color: rgba(255, 255, 255, 0.65);
   font-family: var(--font-display);
   font-size: 22px;
@@ -1750,7 +1751,7 @@ body.is-scrolled .sections-nav {
 }
 
 mark {
-  background: #fff3a8;
+  background: var(--bg-media);
   color: inherit;
 }
 
