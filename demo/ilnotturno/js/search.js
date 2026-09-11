@@ -17,10 +17,12 @@
 
   var index = null;
   var loading = null;
+  // Prefisso quando il sito è in una sottocartella (vedi SITE.url in config.js)
+  var base = document.documentElement.getAttribute("data-base") || "";
 
   function load() {
     if (!loading) {
-      loading = fetch("/search-index.json")
+      loading = fetch(base + "/search-index.json")
         .then(function (r) {
           return r.json();
         })
@@ -77,13 +79,13 @@
     results.innerHTML = items
       .map(function (a) {
         var media = a.image
-          ? '<div class="media"><img src="' + a.image + '" alt="" loading="lazy"></div>'
+          ? '<div class="media"><img src="' + base + a.image + '" alt="" loading="lazy"></div>'
           : '<div class="media media--empty" style="--section:' + a.color + '"><span>Notturno</span></div>';
         return (
           '<article class="card card--row">' +
-          '<a class="card__media" href="' + a.url + '" tabindex="-1" aria-hidden="true">' + media + "</a>" +
-          '<div class="card__body"><div class="card__kicker"><a class="kicker" href="' + a.sectionUrl + '" style="--section:' + a.color + '">' + escapeHtml(a.section) + "</a></div>" +
-          '<h3 class="card__title"><a href="' + a.url + '">' + highlight(a.title, terms) + "</a></h3>" +
+          '<a class="card__media" href="' + base + a.url + '" tabindex="-1" aria-hidden="true">' + media + "</a>" +
+          '<div class="card__body"><div class="card__kicker"><a class="kicker" href="' + base + a.sectionUrl + '" style="--section:' + a.color + '">' + escapeHtml(a.section) + "</a></div>" +
+          '<h3 class="card__title"><a href="' + base + a.url + '">' + highlight(a.title, terms) + "</a></h3>" +
           '<p class="card__summary">' + highlight(a.subtitle, terms) + "</p>" +
           '<div class="card__byline"><span>di ' + escapeHtml(a.authors.join(" e ")) + "</span><time>" + escapeHtml(a.dateLabel) + "</time></div></div></article>"
         );
