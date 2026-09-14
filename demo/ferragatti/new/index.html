@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Ferragatti — Drop 01</title>
+    <meta
+      name="description"
+      content="Ferragatti. Seta, cura del dettaglio, un drop all'anno. Il primo drop apre il 18 settembre 2026."
+    />
+    <meta name="theme-color" content="#0B0B0D" />
+
+    <!-- Open Graph: da completare con l'immagine vera prima del lancio -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ferragatti — Drop 01" />
+    <meta
+      property="og:description"
+      content="Seta, cura del dettaglio, un drop all'anno. Il primo drop apre il 18 settembre 2026."
+    />
+    <!-- <meta property="og:image" content="https://ferragatti.it/assets/img/og.jpg"> -->
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <!-- BENVENUTO: copertina bianca con la firma che si scrive,
+     sezione BENVENUTO in style.css e in assets/js/welcome.js.
+     Sta prima di tutto, script compreso, perché deve coprire lo
+     schermo dal primo fotogramma. -->
+    <div id="welcome-overlay" aria-hidden="true"></div>
+    <noscript
+      ><style>
+        #welcome-overlay {
+          display: none;
+        }
+      </style></noscript
+    >
+    <script src="assets/js/welcome.js"></script>
+
+    <a class="skip" href="#manifattura">Vai al contenuto</a>
+
+    <!-- ==========================================================
+     CANTIERE — il cartello che tiene il posto su schermo stretto
+
+     Provvisorio. Sotto i 900 px il sito non si mostra: al suo
+     posto sta questo, e il resto della pagina è display:none.
+     Quando la versione stretta sarà pronta si toglie questo
+     blocco e si toglie la sezione CANTIERE dal foglio di stile —
+     l'impilamento a sipario e gli agganci funzionano già su
+     telefono, non c'è niente da riaccendere.
+     ========================================================== -->
+    <div class="hold">
+      <svg
+        class="bigmark"
+        viewBox="0 0 1000 104"
+        role="img"
+        aria-label="Ferragatti"
+      >
+        <text x="-5.46" y="98" textLength="1010.92" lengthAdjust="spacing">
+          FERRAGATTI
+        </text>
+      </svg>
+
+      <p class="hold-line">Mobile in <em>costruzione</em>.</p>
+    </div>
+
+    <!-- Sempre trasparente: sezione LA BARRA, alla voce
+     INTESTAZIONE in style.css. I tre link sono segnaposto — vanno
+     collegati alle pagine vere quando ci sono. -->
+    <header class="nav" id="nav" data-tone="dark">
+      <a class="nav-logo" href="#top" aria-label="Ferragatti">
+        <img
+          class="nav-logo-full"
+          src="assets/img/LOGO/PESCARA_FERRAGATTI_N.png"
+          alt=""
+        />
+        <span class="nav-logo-compact">Ferragatti</span>
+      </a>
+      <nav class="nav-links" aria-label="Principale">
+        <a href="#">Collezione</a>
+        <a href="#">Bottega</a>
+        <a href="#">Progetto</a>
+        <a href="#">Identità</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-search">
+          <button
+            type="button"
+            class="nav-icon-btn nav-search-toggle"
+            aria-expanded="false"
+            aria-controls="nav-search-input"
+            aria-label="Cerca"
+          >
+            <svg
+              class="nav-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle cx="10.3" cy="10.3" r="6.3"></circle>
+              <line x1="15.1" y1="15.1" x2="20.8" y2="20.8"></line>
+            </svg>
+          </button>
+
+          <form class="nav-search-form" role="search" action="#" novalidate>
+            <label for="nav-search-input" class="skip">Cerca</label>
+            <input
+              id="nav-search-input"
+              type="search"
+              name="q"
+              placeholder="Cosa stai cercando?"
+              autocomplete="off"
+            />
+            <button
+              type="button"
+              class="nav-search-close"
+              aria-label="Chiudi la ricerca"
+            >
+              <svg
+                class="nav-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <line x1="6.5" y1="6.5" x2="17.5" y2="17.5"></line>
+                <line x1="17.5" y1="6.5" x2="6.5" y2="17.5"></line>
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <a
+          class="nav-icon-btn nav-cart"
+          href="#"
+          aria-label="Carrello, 0 articoli"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M3.6 10.6h16.8l-1.1 9.6a1.3 1.3 0 0 1-1.3 1.1H6a1.3 1.3 0 0 1-1.3-1.1L3.6 10.6Z"
+            ></path>
+            <path d="M8 10.6V7.6a4 4 0 0 1 8 0v3"></path>
+          </svg>
+          <span class="nav-cart-count" aria-hidden="true">0</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- ==========================================================
+       APERTURA — bianca, un video discreto in sfondo
+
+       .hero-media porta il fondo (foto o video, vedi LEGGIMI in
+       assets/img); finché il file vero non c'è resta trasparente e
+       si vede il bianco della sezione. Titolo e invito restano
+       piccoli apposta: il contenuto forte è il video, non il testo
+       sopra. .hero resta una sezione del sipario (vedi .curtain
+       .hero in style.css), quindi l'altezza piena le serve comunque.
+       ========================================================== -->
+      <section class="hero" data-tone="light">
+        <video
+          src="assets/img/collezione-hero.webm"
+          type="video/webm"
+          autoplay
+          muted
+          loop
+          playsinline
+          class="hero-media"
+          aria-hidden="true"
+        ></video>
+
+        <div class="hero-inner rise">
+          <h1 class="hero-title">Collezione</h1>
+          <a class="cta" href="collezione/">Scopri la campagna</a>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+       MANIFATTURA — un solo richiamo, sul fondo pieno del tono
+       ========================================================== -->
+      <section class="band manifattura" id="manifattura" data-tone="dark">
+        <div class="inner rise">
+          <h2 class="hero-title">Il tempo della nostra passione</h2>
+          <p class="cta-row">
+            <a class="cta" href="shop/">Visita la bottega</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+       PROGETTO — cartamodello
+       ========================================================== -->
+      <section class="band pattern" id="progetto" data-tone="light">
+        <!-- ==========================================================
+         Impianto di taglio della camicia "Bottoni Grandi", taglia 48.
+
+         Non è un ornamento a forma di cartamodello: è disegnato
+         con le convenzioni vere del piazzato industriale, e ogni
+         segno vuol dire qualcosa.
+
+           linea piena          linea di taglio
+           tratteggio           linea di cucitura (margine 10 mm)
+           tratto-punto         centro davanti / dietro, ripiego
+           freccia oro          drittofilo
+           trattino sul bordo   tacca di montaggio
+                                (una davanti, due dietro)
+           cerchietto           foro di infilzatura
+           banda diagonale      cimosa, il bordo vero del tessuto
+
+         La griglia è il tavolo di taglio: un quadro ogni 10 cm,
+         marcato ogni 50. Le misure del disegno rispettano quel
+         passo, quindi la scala si legge sul fondo.
+
+         Il riquadro si taglia sopra e sotto (preserveAspectRatio
+         slice): tutto ciò che conta sta fra y=150 e y=850.
+         ========================================================== -->
+        <svg
+          class="pattern-bg"
+          viewBox="0 0 1600 1000"
+          preserveAspectRatio="xMidYMid slice"
+          aria-hidden="true"
+        >
+          <!-- La cimosa si vede solo dove non dà fastidio a nulla:
+           la sfumatura la spegne prima che arrivi sotto il testo
+           della sezione, i due rettangoli neri la tolgono sotto il
+           cartiglio e sotto il dettaglio A — che sono fogli
+           appoggiati sopra, e sopra un foglio il tessuto non si
+           vede. -->
+          <defs>
+            <linearGradient
+              id="cimosa-sfuma"
+              gradientUnits="userSpaceOnUse"
+              x1="560"
+              y1="0"
+              x2="1000"
+              y2="0"
+            >
+              <stop offset="0" stop-color="#000" />
+              <stop offset="1" stop-color="#fff" />
+            </linearGradient>
+            <mask
+              id="cimosa-luce"
+              maskUnits="userSpaceOnUse"
+              x="0"
+              y="0"
+              width="1600"
+              height="1000"
+            >
+              <rect width="1600" height="1000" fill="url(#cimosa-sfuma)" />
+              <rect x="1126" y="346" width="328" height="298" fill="#000" />
+              <rect x="1126" y="676" width="328" height="168" fill="#000" />
+            </mask>
+          </defs>
+
+          <!-- tavolo di taglio -->
+          <g class="grid">
+            <path
+              d="M0 80H1600M0 160H1600M0 240H1600M0 320H1600M0 400H1600M0 480H1600M0 560H1600M0 640H1600M0 720H1600M0 800H1600M0 880H1600M0 960H1600"
+            />
+            <path
+              d="M80 0V1000M160 0V1000M240 0V1000M320 0V1000M400 0V1000M480 0V1000M560 0V1000M640 0V1000M720 0V1000M800 0V1000M880 0V1000M960 0V1000M1040 0V1000M1120 0V1000M1200 0V1000M1280 0V1000M1360 0V1000M1440 0V1000M1520 0V1000"
+            />
+          </g>
+          <g class="grid grid-major">
+            <path d="M0 400H1600M0 800H1600" />
+            <path d="M400 0V1000M800 0V1000M1200 0V1000" />
+          </g>
+
+          <!-- ============ CIMOSA ============
+           Il bordo vero della pezza: la seta è srotolata di sbieco
+           sul tavolo, e la cimosa gli attraversa il piano da alto a
+           sinistra verso basso a destra. Sta qui, subito dopo la
+           griglia e prima di ogni pezzo, perché è tessuto e il
+           tessuto sta sotto: i pezzi ci passano sopra, come sul
+           tavolo vero.
+
+           Il disegno è tracciato dritto e poi ruotato: una cimosa è
+           una fascia, e una fascia si scrive con due rette, non con
+           otto coordinate storte. Dentro ci sono i segni che ha
+           davvero — l'orlo compatto, la fila di fori del telaio, e
+           il nome della filatura ripetuto per tutta la pezza.
+           Nessuno di questi segni serve al taglio, e infatti sono
+           i più leggeri del foglio. -->
+          <g class="selvedge" mask="url(#cimosa-luce)">
+            <g transform="rotate(58 1000 500)">
+              <path class="selv-web" d="M-700 470H2400V534H-700Z" />
+              <path class="selv" d="M-700 470H2400" />
+              <path class="selv selv-in" d="M-700 534H2400" />
+              <path class="selv-hole" d="M-680 486H2380" />
+
+              <text class="selv-t" x="180" y="516">
+                FERRAGATTI · CIMOSA · SETA 19 MM
+              </text>
+              <text class="selv-t" x="620" y="516">
+                FERRAGATTI · CIMOSA · SETA 19 MM
+              </text>
+              <text class="selv-t" x="1060" y="516">
+                FERRAGATTI · CIMOSA · SETA 19 MM
+              </text>
+              <text class="selv-t" x="1500" y="516">
+                FERRAGATTI · CIMOSA · SETA 19 MM
+              </text>
+            </g>
+          </g>
+
+          <!-- ============ 01 · DAVANTI ============ -->
+          <g>
+            <path
+              class="stitch"
+              d="M140 224 L168 224 C186 220 208 198 226 158 L346 194 C350 222 344 262 350 296 C355 322 361 338 366 350 C363 400 358 452 358 500 C358 556 366 600 369 646 L370 688 C357 740 290 768 190 768 L140 768"
+            />
+            <path
+              class="cut"
+              d="M140 216 L166 216 C184 213 212 190 228 150 L348 186 C352 220 352 262 358 296 C363 322 369 338 374 350 C371 400 366 452 366 500 C366 556 374 600 377 646 L378 690 C364 746 292 776 190 776 L140 776 Z"
+            />
+
+            <!-- centro davanti, e la linea su cui si ripiega l'abbottonatura -->
+            <path class="fold" d="M166 216V776" />
+            <path class="aux" d="M194 216V776" />
+
+            <!-- asole: verticali, sul centro davanti -->
+            <path
+              class="slot"
+              d="M166 241v10M166 317v10M166 393v10M166 469v10M166 545v10M166 621v10M166 697v10"
+            />
+
+            <!-- posizione del taschino: contorno punteggiato e due fori -->
+            <path class="aux dot" d="M226 400H306V492H226Z" />
+            <g class="drill">
+              <circle cx="234" cy="408" r="3" />
+              <circle cx="298" cy="408" r="3" />
+            </g>
+
+            <!-- tacche: spalla, giro (una sola, è il davanti), fianco in vita -->
+            <path class="notch" d="M288 168l-3 10M357 292h-11M366 500h-11" />
+
+            <path
+              class="gold"
+              d="M330 250V660M324 264l6-14 6 14M324 646l6 14 6-14"
+            />
+            <text
+              class="lbl-sm gold-t"
+              transform="translate(322 470) rotate(-90)"
+              text-anchor="middle"
+            >
+              DRITTOFILO
+            </text>
+
+            <!-- richiamo del dettaglio ingrandito in basso a destra -->
+            <circle class="aux" cx="366" cy="560" r="24" />
+            <text class="lbl-sm" x="398" y="556">A</text>
+
+            <text class="lbl" x="200" y="656">01 · DAVANTI</text>
+            <text class="lbl-sm" x="200" y="676">TAGLIARE 2 · SETA 19 MM</text>
+            <text class="lbl-sm" x="200" y="692">TG 48 · MARGINE 10 MM</text>
+          </g>
+
+          <!-- ============ 02 · DIETRO ============
+           È il dietro basso: il bordo alto non è la spalla ma la
+           cucitura del carré, che si monta a cavallo. -->
+          <g>
+            <path
+              class="stitch"
+              d="M450 248 C520 244 594 252 634 262 C644 288 648 322 658 352 C655 400 650 452 650 500 C650 556 658 600 661 646 L662 688 C648 742 566 772 450 772"
+            />
+            <path
+              class="cut"
+              d="M450 240 C520 236 596 244 640 256 C650 284 656 320 666 352 C663 400 658 452 658 500 C658 556 666 600 669 646 L670 690 C656 748 570 780 450 780 Z"
+            />
+
+            <path class="fold" d="M450 240V780" />
+            <path class="aux" d="M466 320H458V700H466" />
+            <text class="lbl-sm" transform="translate(474 640) rotate(-90)">
+              SUL RIPIEGO
+            </text>
+
+            <!-- piega a soffietto al centro dietro -->
+            <path class="aux" d="M474 244V352M498 244V352" />
+            <path class="notch" d="M474 300h24M492 294l6 6-6 6" />
+            <text class="lbl-sm" x="512" y="286">SOFFIETTO 3 CM</text>
+
+            <!-- due tacche sul giro: è il dietro -->
+            <path
+              class="notch"
+              d="M545 238v10M652 300h-11M652 316h-11M658 500h-11"
+            />
+
+            <path
+              class="gold"
+              d="M614 380V680M608 394l6-14 6 14M608 666l6 14 6-14"
+            />
+
+            <text class="lbl" x="480" y="452">02 · DIETRO</text>
+            <text class="lbl-sm" x="480" y="472">TAGLIARE 1 · RIPIEGO</text>
+            <text class="lbl-sm" x="480" y="488">SETA 19 MM · TG 48</text>
+          </g>
+
+          <!-- quota: lunghezza del davanti -->
+          <g class="dim">
+            <path d="M412 150V776M406 166l6-16 6 16M406 760l6 16 6-16" />
+            <text
+              class="lbl-sm"
+              transform="translate(406 500) rotate(-90)"
+              text-anchor="middle"
+            >
+              LUNGH. 78 CM
+            </text>
+          </g>
+
+          <!-- ============ 04 · MANICA ============
+           Il colmo non è in mezzo: sta spostato verso il davanti,
+           come in ogni manica che debba cadere dritta da ferma.
+           Le due metà del giro non sono uguali e non lo devono
+           essere: il davanti scava sotto e monta ripido, il dietro
+           è più lungo e più disteso. Ogni metà è costruita sul
+           quarto: incavo al primo quarto, corda a metà, pancia al
+           terzo — è così che il colmo esce a esse e non a punta. -->
+          <g>
+            <path
+              class="stitch"
+              d="M710 276 C726 271 742 262 758 250 C778 234 800 210 819 184 C835 166 854 156 880 158 C900 160 919 166 935 175 C956 189 981 212 1004 235 C1026 255 1052 268 1072 276 C1055 371 1027 483 977 588 C928 599 842 599 792 588 C757 483 727 371 710 276 Z"
+            />
+            <path
+              class="cut"
+              d="M700 270 C718 264 736 254 754 240 C776 224 800 200 820 172 C838 152 858 146 880 150 C902 152 922 158 940 168 C962 182 988 206 1012 230 C1036 252 1064 266 1084 274 C1066 372 1036 486 984 596 C930 608 840 608 784 596 C748 486 718 372 700 270 Z"
+            />
+
+            <!-- colmo, tacca del davanti, doppia tacca del dietro, sottomanica -->
+            <path
+              class="notch"
+              d="M880 150v12M788 210l6 8M1012 230l-5 9M1030 246l-5 9M700 270h12M1084 274h-12"
+            />
+
+            <!-- apertura del polso e le due pieghe che entrano nel polsino -->
+            <path class="aux" d="M940 602V516" />
+            <path class="notch" d="M934 516h12" />
+            <text class="lbl-sm" x="932" y="560" text-anchor="end">
+              APERTURA 11 CM
+            </text>
+            <path class="aux" d="M876 602V570M896 602V570" />
+            <path class="notch" d="M876 584h20M890 578l6 6-6 6" />
+
+            <path
+              class="gold"
+              d="M880 310V440M874 324l6-14 6 14M874 426l6 14 6-14"
+            />
+
+            <text class="lbl" x="770" y="470">04 · MANICA</text>
+            <text class="lbl-sm" x="770" y="490">TAGLIARE 2 · SETA 19 MM</text>
+            <text class="lbl-sm" x="770" y="506">EMBU 3 CM SUL GIRO</text>
+          </g>
+
+          <!-- quota: giro manica -->
+          <g class="dim">
+            <path d="M700 662H1084M716 656l-16 6 16 6M1068 656l16 6-16 6" />
+            <text class="lbl-sm" x="892" y="652" text-anchor="middle">
+              GIRO MANICA 48 CM
+            </text>
+          </g>
+
+          <!-- ============ 03 · CARRÉ ============ -->
+          <g>
+            <path
+              class="stitch"
+              d="M700 698 C720 697 744 690 758 682 L878 718 C884 730 888 748 890 760 C840 774 770 782 700 782"
+            />
+            <path
+              class="cut"
+              d="M700 690 C722 689 748 682 762 674 L882 710 C890 728 894 748 896 764 C842 780 772 790 700 790 L700 690 Z"
+            />
+            <path class="fold" d="M700 690V790" />
+            <path class="aux" d="M714 706H708V774H714" />
+            <path class="notch" d="M822 692l-3 10M796 786v-10" />
+            <path
+              class="gold"
+              d="M866 724V776M860 736l6-12 6 12M860 764l6 12 6-12"
+            />
+            <text class="lbl" x="714" y="734">03 · CARRÉ</text>
+            <text class="lbl-sm" x="714" y="752">TAGLIARE 2 SUL RIPIEGO</text>
+          </g>
+
+          <!-- ============ 07 · POLSINO ============ -->
+          <g>
+            <path
+              class="cut"
+              d="M920 686 L1096 686 C1106 686 1112 692 1112 702 L1112 734 C1112 744 1106 750 1096 750 L920 750 Z"
+            />
+            <path
+              class="stitch"
+              d="M928 694 L1094 694 C1101 694 1104 698 1104 704 L1104 732 C1104 738 1101 742 1094 742 L928 742 Z"
+            />
+            <path class="slot" d="M1082 712h14" />
+            <g class="drill"><circle cx="938" cy="712" r="3" /></g>
+            <path
+              class="gold"
+              d="M962 700H1042M974 694l-12 6 12 6M1030 694l12 6-12 6"
+            />
+            <text class="lbl-sm" x="950" y="736">07 · POLSINO · TAGL. 4</text>
+          </g>
+
+          <!-- ============ 08 · PATTINA DELL'APERTURA ============ -->
+          <g>
+            <path
+              class="cut"
+              d="M1150 190 L1150 320 L1210 320 L1210 190 L1196 190 L1180 166 L1164 190 Z"
+            />
+            <path
+              class="stitch"
+              d="M1158 198 L1158 312 L1202 312 L1202 198 L1192 198 L1180 180 L1168 198 Z"
+            />
+            <path class="fold" d="M1166 200V320M1194 200V320" />
+            <text class="lbl-sm" transform="translate(1236 320) rotate(-90)">
+              08 · PATTINA · TAGLIARE 2
+            </text>
+          </g>
+
+          <!-- ============ 05 · COLLO ============ -->
+          <g>
+            <path
+              class="cut"
+              d="M1250 156 C1316 152 1378 164 1416 182 L1440 200 L1412 220 C1356 210 1304 214 1250 216 Z"
+            />
+            <path
+              class="stitch"
+              d="M1250 164 C1314 160 1372 172 1408 189 L1424 200 L1406 212 C1354 202 1302 206 1250 208"
+            />
+            <path class="fold" d="M1250 156V216" />
+            <path class="aux" d="M1264 168H1258V206H1264" />
+            <path class="notch" d="M1330 158v9" />
+            <!-- pezzo troppo stretto per scriverci dentro: la dicitura
+             va di fianco, come si fa sul cartamodello vero -->
+            <text class="lbl-sm" x="1250" y="238">
+              05 · COLLO · TAGL. 2 + RINFORZO
+            </text>
+          </g>
+
+          <!-- ============ 06 · LISTINO ============ -->
+          <g>
+            <path
+              class="cut"
+              d="M1250 246 C1316 242 1374 256 1406 274 C1416 280 1420 288 1418 296 C1412 303 1400 305 1390 302 C1332 290 1290 292 1250 296 Z"
+            />
+            <path
+              class="stitch"
+              d="M1250 254 C1314 250 1370 264 1400 281 C1408 286 1411 291 1410 296 C1405 300 1396 301 1389 296 C1334 285 1290 287 1250 288"
+            />
+            <path class="fold" d="M1250 246V296" />
+            <path class="slot" d="M1386 292h12" />
+            <text class="lbl-sm" x="1250" y="322">
+              06 · LISTINO · TAGL. 2 + RINF.
+            </text>
+          </g>
+
+          <!-- ============ CARTIGLIO ============ -->
+          <g>
+            <path class="frame" d="M1130 350H1450V640H1130Z" />
+            <path class="aux" d="M1130 380H1450M1130 508H1450M1130 588H1450" />
+            <text class="lbl-hd" x="1144" y="371">
+              FERRAGATTI · CAMICIA «BOTTONI GRANDI»
+            </text>
+
+            <text class="lbl-sm" x="1144" y="400">MODELLO</text>
+            <text class="lbl-sm" x="1290" y="400">FG-01-CAM</text>
+            <text class="lbl-sm" x="1144" y="418">TAGLIA</text>
+            <text class="lbl-sm" x="1290" y="418">48 IT</text>
+            <text class="lbl-sm" x="1144" y="436">TESSUTO</text>
+            <text class="lbl-sm" x="1290" y="436">SETA 19 MM</text>
+            <text class="lbl-sm" x="1144" y="454">MARGINE</text>
+            <text class="lbl-sm" x="1290" y="454">10 MM · COLLO 7</text>
+            <text class="lbl-sm" x="1144" y="472">PEZZI</text>
+            <text class="lbl-sm" x="1290" y="472">8</text>
+            <text class="lbl-sm" x="1144" y="490">EMISSIONE</text>
+            <text class="lbl-sm" x="1290" y="490">09 · 2026</text>
+
+            <text class="lbl-sm" x="1144" y="528">LEGENDA</text>
+            <path class="cut" d="M1144 544h34" />
+            <text class="lbl-sm" x="1188" y="548">TAGLIO</text>
+            <path class="stitch" d="M1144 566h34" />
+            <text class="lbl-sm" x="1188" y="570">CUCITURA</text>
+            <path class="fold" d="M1292 544h34" />
+            <text class="lbl-sm" x="1336" y="548">CENTRO</text>
+            <path
+              class="gold"
+              d="M1292 566h34M1298 560l-6 6 6 6M1320 560l6 6-6 6"
+            />
+            <text class="lbl-sm" x="1336" y="570">DRITTOFILO</text>
+
+            <!-- scala: un quadro della griglia è 10 cm -->
+            <text class="lbl-sm" x="1144" y="612">SCALA</text>
+            <path class="fill" d="M1204 602h80v8h-80Z M1364 602h80v8h-80Z" />
+            <path class="cut" d="M1204 602h240v8h-240Z" />
+            <text class="lbl-sm" x="1204" y="628">0</text>
+            <text class="lbl-sm" x="1278" y="628">10</text>
+            <text class="lbl-sm" x="1358" y="628">20</text>
+            <text class="lbl-sm" x="1444" y="628" text-anchor="end">30 CM</text>
+          </g>
+
+          <!-- ============ DETTAGLIO A · RIBATTITURA ============
+           La cucitura ribattuta vista in faccia e ingrandita cinque
+           volte: il bordo ripiegato, il vivo, e in mezzo le due file
+           di punti a 6 mm. È il dettaglio di cui parla il testo qui
+           accanto — nove punti per centimetro si contano. -->
+          <g>
+            <path class="frame" d="M1130 680H1450V840H1130Z" />
+            <text class="lbl-hd" x="1144" y="704">
+              DETTAGLIO A · RIBATTITURA
+            </text>
+            <text class="lbl-sm" x="1144" y="722">IN VISTA · SCALA 5:1</text>
+
+            <path class="wash" d="M1144 754H1370V796H1144Z" />
+            <path class="layer" d="M1144 754H1370M1144 796H1370" />
+            <path class="seam" d="M1144 766H1370M1144 784H1370" />
+
+            <path
+              class="dim"
+              d="M1386 766V784M1381 771l5-5 5 5M1381 779l5 5 5-5"
+            />
+            <text class="lbl-sm" x="1398" y="778">6 MM</text>
+            <text class="lbl-sm" x="1144" y="824">
+              9 PUNTI/CM · FILO SETA 50
+            </text>
+          </g>
+        </svg>
+
+        <div class="inner rise">
+          <h2 class="hero-title">
+            La cura del dettaglio sopra i grandi numeri
+          </h2>
+
+          <p class="cta-row">
+            <a class="cta" href="#">Scopri la nostra visione</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+       STORIE — carosello dal giornale
+
+       Cinque carte, una per pezzo del giornale: la copertina è un
+       segnaposto (vedi LEGGIMI in assets/img), il testo sotto è
+       lorem ipsum in attesa dell'attacco vero di ogni pezzo. La
+       rotella qui è già presa dal sipario (snap.js intercetta ogni
+       wheel), quindi i due tasti sopra la pista sono l'unico gesto
+       pensato per scorrerla — site.js li lega a scrollBy sulla
+       pista, sezione STORIE. Ogni carta punta a blog/: le pagine
+       dei singoli pezzi non esistono ancora, vedi la nota di
+       servizio in blog/index.html.
+       ========================================================== -->
+      <section class="band" id="storie" data-tone="light">
+        <div class="stories rise">
+          <h2 class="hero-title">Storie dal laboratorio</h2>
+
+          <div class="stories-track">
+            <article class="story-card">
+              <a class="post-link" href="blog/">
+                <div class="plate-figure">
+                  <span>Copertina — la mano che cuce</span>
+                </div>
+                <h3>La mano che cuce non è una metafora</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nove
+                  punti per centimetro si contano, e chi li fa ha un nome.
+                </p>
+              </a>
+            </article>
+
+            <article class="story-card">
+              <a class="post-link" href="blog/">
+                <div class="plate-figure">
+                  <span>Copertina — un drop all'anno</span>
+                </div>
+                <h3>Perché un drop all'anno, e non quattro</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </a>
+            </article>
+
+            <article class="story-card">
+              <a class="post-link" href="blog/">
+                <div class="plate-figure">
+                  <span>Copertina — diciannove momme</span>
+                </div>
+                <h3>Diciannove momme</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                  enim ad minim veniam, quis nostrud exercitation ullamco.
+                </p>
+              </a>
+            </article>
+
+            <article class="story-card">
+              <a class="post-link" href="blog/">
+                <div class="plate-figure">
+                  <span>Copertina — il rovescio di una cucitura</span>
+                </div>
+                <h3>Il rovescio di una cucitura</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+                  aute irure dolor in reprehenderit in voluptate velit esse.
+                </p>
+              </a>
+            </article>
+
+            <article class="story-card">
+              <a class="post-link" href="blog/">
+                <div class="plate-figure">
+                  <span>Copertina — da dove viene il filo</span>
+                </div>
+                <h3>Da dove viene il filo</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Excepteur sint occaecat cupidatat non proident, sunt in culpa.
+                </p>
+              </a>
+            </article>
+          </div>
+
+          <div class="stories-nav">
+            <button
+              type="button"
+              class="stories-prev"
+              aria-label="Storia precedente"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              class="stories-next"
+              aria-label="Storia successiva"
+            >
+              ›
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+       RESTIAMO IN CONTATTO
+
+       Titolo, campo, due righe di servizio. Niente altro: è la
+       sezione più vuota del sito ed è voluto — l'unica cosa da
+       fare qui è scrivere un indirizzo.
+       ========================================================== -->
+      <section class="band letter" id="lettera" data-tone="light">
+        <div class="letter-inner rise">
+          <h2 class="hero-title">Restiamo in contatto</h2>
+
+          <form class="news-form" id="letter-news" novalidate>
+            <span class="news-field">
+              <label for="letter-email" class="skip">Indirizzo email</label>
+              <input
+                id="letter-email"
+                type="email"
+                autocomplete="email"
+                placeholder="indirizzo email"
+                required
+              />
+              <button type="submit">Iscrivimi</button>
+            </span>
+            <p class="news-note small">
+              Anteprima — l'invio non è ancora collegato.
+            </p>
+          </form>
+          <p class="news-done">Grazie. Vi scriviamo a settembre.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==========================================================
+     PIEDE
+     ========================================================== -->
+    <!-- Il piede è identico su tutte e quattro le pagine: cambia
+     solo il prefisso dei percorsi — qui niente, nelle pagine
+     interne "../". Se si tocca una voce, va toccata in quattro
+     posti: è il prezzo di un sito senza compilazione, ed è un
+     prezzo che si paga volentieri finché le pagine sono quattro. -->
+    <footer id="contatti" data-tone="light">
+      <div class="foot-grid rise">
+        <div class="foot-col">
+          <h3>Contatti</h3>
+          <p>
+            <a href="mailto:atelier@ferragatti.it">atelier@ferragatti.it</a>
+          </p>
+          <p>Viene dal mare<br />città di PESCARA, Italia</p>
+          <p class="dimtext">Risposta entro un giorno lavorativo.</p>
+        </div>
+
+        <div class="foot-col">
+          <h3>Pagine</h3>
+          <ul class="foot-list">
+            <li><a href="collezione/">Collezione</a></li>
+            <li><a href="blog/">Blog</a></li>
+            <li><a href="shop/">Store</a></li>
+          </ul>
+        </div>
+
+        <div class="foot-col">
+          <h3>Riferimenti</h3>
+          <ul class="foot-list">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Cartella stampa</a></li>
+            <li><a href="#">Materiali e provenienze</a></li>
+            <li><a href="#">Spedizioni e resi</a></li>
+            <li><a href="#">Cura della seta</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="legal">
+        <span>
+          © 2026 Ferragatti — Tutti i diritti riservati · Designed by
+          <a href="https://11-studio.it" target="_blank" rel="noopener"
+            >11-studio.it</a
+          >
+        </span>
+        <span>P. IVA da inserire · Privacy · Cookie</span>
+      </p>
+
+      <div class="foot-mark">
+        <svg
+          class="bigmark"
+          viewBox="0 0 1000 104"
+          role="img"
+          aria-label="Ferragatti"
+        >
+          <text x="-5.46" y="98" textLength="1010.92" lengthAdjust="spacing">
+            FERRAGATTI
+          </text>
+        </svg>
+      </div>
+    </footer>
+
+    <script src="assets/js/site.js"></script>
+    <script src="assets/js/snap.js"></script>
+  </body>
+</html>

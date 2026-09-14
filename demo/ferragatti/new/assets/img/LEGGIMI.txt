@@ -1,0 +1,13 @@
+Qui vanno le fotografie.
+
+  collezione-hero.jpg   fondo dell'apertura, orizzontale 16:9 o piu
+                        largo, toni freddi e drammatici — o al posto
+                        suo un <video> nella stessa sezione .hero-media
+  og.jpg                anteprima per i link condivisi, 1200x630
+
+Copertine del carosello STORIE (sezione #storie, index.html): una
+per pezzo del giornale, stesso taglio di .plate-figure (4:5). Vanno
+dentro il rispettivo <div class="plate-figure"> al posto dello
+<span> segnaposto.
+
+Istruzioni nel README alla radice.
