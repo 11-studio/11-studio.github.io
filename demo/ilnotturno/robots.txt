@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /demo/ilnotturno/
-Disallow: /demo/ilnotturno/cerca/
-
-Sitemap: https://11-studio.it/demo/ilnotturno/sitemap.xml
