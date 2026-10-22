@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alimentari Pollio · Avezzano, dal 1919</title>
+  <meta name="description" content="Alimentari Pollio, bottega storica ad Avezzano dal 1919. Prosciutto tagliato a mano, formaggi, vini, pane e prodotti tipici della Marsica. Aperti tutti i giorni.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Vai al contenuto</a>
+
+<!-- Barra di navigazione -->
+<header class="topbar" id="top">
+  <div class="topbar__inner">
+    <div class="topbar__side">
+      <button class="menu-btn" id="menuOpen" aria-label="Apri il menu" aria-controls="sidemenu" aria-expanded="false">
+        <span class="menu-btn__lines" aria-hidden="true"></span>
+        <span class="menu-btn__label">Menu</span>
+      </button>
+      <nav class="topnav" aria-label="Principale">
+        <a href="#storia">La storia</a>
+        <a href="#bottega">La bottega</a>
+      </nav>
+    </div>
+
+    <a href="#top" class="logo" aria-label="Alimentari Pollio, torna all'inizio">
+      <span class="logo__name">Alimentari Pollio</span>
+      <span class="logo__since">Dal 1919</span>
+    </a>
+
+    <div class="topbar__side topbar__side--end">
+      <nav class="topnav" aria-label="Secondaria">
+        <a href="#listino">Shop</a>
+        <a href="#orari">Contatti</a>
+      </nav>
+      <button class="cart-btn" id="cartOpen" aria-controls="cart">
+        Carrello <span class="cart-btn__count">(<span id="cartCount" aria-live="polite">0</span>)</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Menu laterale -->
+<div class="scrim" id="scrim" hidden></div>
+
+<aside class="sidemenu" id="sidemenu" aria-label="Menu" aria-hidden="true">
+  <div class="sidemenu__head">
+    <span class="logo__name">Alimentari Pollio</span>
+    <button class="close-btn" data-close aria-label="Chiudi il menu">Chiudi</button>
+  </div>
+
+  <nav class="sidemenu__nav" aria-label="Sezioni">
+    <a href="#top"><span>(01)</span>Home</a>
+    <a href="#storia"><span>(02)</span>La storia</a>
+    <a href="#bottega"><span>(03)</span>La bottega</a>
+    <a href="#listino"><span>(04)</span>Shop</a>
+    <a href="#recensioni"><span>(05)</span>Dicono di noi</a>
+    <a href="#orari"><span>(06)</span>Orari e contatti</a>
+  </nav>
+
+  <div class="sidemenu__cats">
+    <p class="label">Reparti</p>
+    <a href="#listino" data-jump-cat="salumi">Prosciutti e salumi</a>
+    <a href="#listino" data-jump-cat="formaggi">Formaggi</a>
+    <a href="#listino" data-jump-cat="vini">Vini</a>
+    <a href="#listino" data-jump-cat="dispensa">Dispensa abruzzese</a>
+    <a href="#listino" data-jump-cat="forno">Pane e forno</a>
+  </div>
+
+  <div class="sidemenu__foot" data-today>
+    <p class="label">Oggi</p>
+    <p><span data-today-status>Orari di oggi</span> <span data-today-hours></span></p>
+    <p>Via XX Settembre, Avezzano</p>
+    <a href="https://www.instagram.com/alimentari_pollio/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</aside>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__text">
+      <p class="label label--light">Avezzano · Dal 1919</p>
+      <h1>Quattro generazioni dietro lo stesso bancone.</h1>
+      <p class="hero__lead">Prosciutti tagliati a mano, formaggi selezionati, vini e pane di ogni giorno. Una bottega di famiglia nel cuore della Marsica.</p>
+      <div class="hero__actions">
+        <a href="#listino" class="btn btn--light">Scopri lo shop</a>
+        <a href="#storia" class="btn btn--outline-light">La nostra storia</a>
+      </div>
+    </div>
+
+    <figure class="hero__photo">
+      <img src="img/lorenzo-prosciutto.jpg" alt="Lorenzo Pollio con il grembiule della bottega, davanti a un prosciutto intero e agli scaffali dei vini" width="466" height="770">
+    </figure>
+
+    <div class="hero__bar" data-today>
+      <p><span class="label label--light">Oggi</span> <span data-today-status>Orari di oggi</span> <span data-today-hours></span></p>
+      <p class="hero__bar-addr">Via XX Settembre, Avezzano (AQ)</p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="intro">
+    <p class="intro__text">Da oltre un secolo scegliamo ciò che portiamo sul bancone con la stessa cura: il prosciutto tagliato a coltello, il formaggio che si lascia assaggiare, il vino giusto per la tavola di tutti i giorni.</p>
+    <p class="intro__sign">La famiglia Pollio</p>
+  </section>
+
+  <!-- Storia -->
+  <section class="story" id="storia">
+    <header class="section-head">
+      <p class="label">La storia</p>
+      <h2>Nata dalle macerie del terremoto</h2>
+      <p class="section-lead">Il fondatore tornò dalla guerra in Libia e trovò Avezzano distrutta. Aveva perso la casa e gli affetti. Ripartì da un carretto e da qualche sacco di patate del Fucino.</p>
+    </header>
+
+    <ol class="timeline">
+      <li>
+        <span class="timeline__year">1915</span>
+        <h3>Il terremoto della Marsica</h3>
+        <p>Avezzano viene rasa al suolo. Rientrato dal fronte, il fondatore ricomincia come ambulante, vendendo le patate del Fucino a Roma.</p>
+      </li>
+      <li>
+        <span class="timeline__year">1919</span>
+        <h3>La prima bottega</h3>
+        <p>Apre un piccolo negozio. Segue una parentesi a Buenos Aires, poi il ritorno definitivo ad Avezzano.</p>
+      </li>
+      <li>
+        <span class="timeline__year">II</span>
+        <h3>La seconda generazione</h3>
+        <p>Con il matrimonio la bottega passa alla madre di Eliseo, mentre il fondatore si dedica al commercio del vino all'ingrosso.</p>
+      </li>
+      <li>
+        <span class="timeline__year">Oggi</span>
+        <h3>Eliseo e Lorenzo</h3>
+        <p>Eliseo, pianista per passione, guida la bottega con la moglie da oltre vent'anni. Al bancone c'è Lorenzo, la quarta generazione.</p>
+      </li>
+    </ol>
+
+    <blockquote class="story__quote">
+      <p>«Il nostro punto di forza è la qualità. Non credo che smetterò mai, fin quando potrò.»</p>
+      <cite>Eliseo Pollio</cite>
+    </blockquote>
+  </section>
+
+  <!-- La bottega -->
+  <section class="shopfloor" id="bottega">
+    <figure class="shopfloor__photo">
+      <img src="img/degustazione.jpg" alt="Lorenzo prepara un tagliere di formaggi con uva e cioccolato, accanto a un distillato e un bicchiere" width="466" height="690" loading="lazy">
+      <figcaption>Degustazione in bottega</figcaption>
+    </figure>
+
+    <div class="shopfloor__text">
+      <p class="label label--light">La bottega</p>
+      <h2>Cosa trovate sul bancone</h2>
+      <p class="section-lead">Ogni settimana arriva qualcosa di nuovo. Al bancone vi facciamo assaggiare prima di scegliere.</p>
+
+      <dl class="departments">
+        <div><dt>Prosciutti e salumi</dt><dd>Crudi a lunga stagionatura tagliati a mano, ventricina, salsicce di fegato, mortadella di Campotosto.</dd></div>
+        <div><dt>Formaggi</dt><dd>Pecorini d'Abruzzo, caciocavalli, erborinati e selezioni da tutta Italia.</dd></div>
+        <div><dt>Vini e distillati</dt><dd>Montepulciano, Trebbiano, Cerasuolo e un'ampia cantina a prezzi onesti.</dd></div>
+        <div><dt>Pane e gastronomia</dt><dd>Pane fresco ogni mattina e una gastronomia che cambia con le stagioni.</dd></div>
+        <div><dt>Frutta e dispensa</dt><dd>Frutta di stagione, legumi, zafferano, pasta e conserve del territorio.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Shop demo -->
+  <section class="listino" id="listino">
+    <header class="section-head section-head--row">
+      <div>
+        <p class="label">Shop</p>
+        <h2>Il listino della bottega</h2>
+        <p class="section-lead">Scegliete i prodotti e ritirateli in negozio. I salumi al taglio vengono pesati al momento.</p>
+      </div>
+      <p class="demo-note" role="note">Shop dimostrativo: nessun ordine viene inviato e nessun pagamento è richiesto.</p>
+    </header>
+
+    <div class="tabs" role="group" aria-label="Filtra per reparto">
+      <button class="tab is-active" data-cat="tutti" aria-pressed="true">Tutto</button>
+      <button class="tab" data-cat="salumi" aria-pressed="false">Salumi</button>
+      <button class="tab" data-cat="formaggi" aria-pressed="false">Formaggi</button>
+      <button class="tab" data-cat="vini" aria-pressed="false">Vini</button>
+      <button class="tab" data-cat="dispensa" aria-pressed="false">Dispensa</button>
+      <button class="tab" data-cat="forno" aria-pressed="false">Forno</button>
+    </div>
+
+    <div class="products" id="products" aria-live="polite"></div>
+  </section>
+
+  <!-- Recensioni -->
+  <section class="reviews" id="recensioni">
+    <p class="label">Dicono di noi</p>
+    <div class="reviews__stage">
+      <figure class="review" id="review">
+        <blockquote id="reviewText"></blockquote>
+        <figcaption id="reviewAuthor"></figcaption>
+      </figure>
+    </div>
+    <div class="reviews__nav">
+      <button class="arrow" id="reviewPrev" aria-label="Recensione precedente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <span class="reviews__count" id="reviewCount" aria-live="polite">1 / 5</span>
+      <button class="arrow" id="reviewNext" aria-label="Recensione successiva"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </section>
+
+  <!-- Orari e contatti -->
+  <section class="visit" id="orari">
+    <header class="section-head">
+      <p class="label">Orari e contatti</p>
+      <h2>Vi aspettiamo in bottega</h2>
+      <p class="section-lead">Aperti tutti i giorni dell'anno, festivi compresi.</p>
+    </header>
+
+    <div class="visit__grid">
+      <table class="hours" aria-label="Orari di apertura">
+        <thead><tr><th scope="col">Giorno</th><th scope="col">Mattina</th><th scope="col">Pomeriggio</th></tr></thead>
+        <tbody id="hoursTable"></tbody>
+      </table>
+
+      <div class="visit__info">
+        <div>
+          <p class="label">Indirizzo</p>
+          <p>Via XX Settembre<br>67051 Avezzano (AQ)</p>
+          <a class="link" href="https://www.google.com/maps/search/?api=1&query=Alimentari+Pollio+Via+XX+Settembre+Avezzano" target="_blank" rel="noopener">Indicazioni stradali</a>
+        </div>
+        <div>
+          <p class="label">Telefono</p>
+          <p><a href="tel:+390000000000">0863 000 000</a></p>
+          <p class="muted">Ordini, taglieri e ceste regalo.</p>
+        </div>
+        <div>
+          <p class="label">Instagram</p>
+          <p><a href="https://www.instagram.com/alimentari_pollio/" target="_blank" rel="noopener">@alimentari_pollio</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__brand">
+    <span class="logo__name">Alimentari Pollio</span>
+    <span class="logo__since">Dal 1919</span>
+  </div>
+
+  <div class="footer__inner">
+    <div class="footer__col">
+      <p class="label label--light">Dove siamo</p>
+      <p>Via XX Settembre<br>67051 Avezzano (AQ)</p>
+    </div>
+    <div class="footer__col">
+      <p class="label label--light">Contatti</p>
+      <p><a href="tel:+390000000000">0863 000 000</a><br><a href="mailto:info@alimentaripollio.it">info@alimentaripollio.it</a></p>
+    </div>
+    <div class="footer__col">
+      <p class="label label--light">Orari</p>
+      <p>Lunedì – sabato<br>9:00–13:30 e 17:00–20:30</p>
+      <p>Domenica e festivi<br>10:00–13:30 e 18:00–20:30</p>
+    </div>
+    <div class="footer__col">
+      <p class="label label--light">Seguiteci</p>
+      <p><a href="https://www.instagram.com/alimentari_pollio/" target="_blank" rel="noopener">Instagram</a></p>
+    </div>
+  </div>
+
+  <div class="footer__legal">
+    <p>© <span id="year">2026</span> Alimentari Pollio. P. IVA 00000000000</p>
+    <p><a href="#">Privacy policy</a><a href="#">Cookie policy</a><a href="#">Note legali</a></p>
+  </div>
+</footer>
+
+<!-- Carrello -->
+<aside class="cart" id="cart" aria-label="Carrello" aria-hidden="true">
+  <div class="cart__head">
+    <h2>Carrello</h2>
+    <button class="close-btn" data-close aria-label="Chiudi il carrello">Chiudi</button>
+  </div>
+  <ul class="cart__items" id="cartItems"></ul>
+  <div class="cart__empty">
+    <p>Il carrello è vuoto.</p>
+    <a href="#listino" class="btn btn--dark" data-close>Vai al listino</a>
+  </div>
+  <div class="cart__foot">
+    <div class="cart__total"><span>Totale</span><strong id="cartTotal">€ 0,00</strong></div>
+    <p class="muted">Ritiro in bottega. Per i prodotti al taglio il prezzo finale può variare leggermente.</p>
+    <button class="btn btn--dark btn--block" id="checkoutOpen">Procedi all'ordine</button>
+  </div>
+</aside>
+
+<!-- Checkout demo -->
+<dialog class="checkout" id="checkout" aria-labelledby="checkoutTitle">
+  <form method="dialog" class="checkout__form" id="checkoutForm" novalidate>
+    <div class="checkout__head">
+      <h2 id="checkoutTitle">Conferma l'ordine</h2>
+      <button type="button" class="close-btn" id="checkoutClose">Chiudi</button>
+    </div>
+    <p class="demo-note" role="note">Demo: i dati non vengono inviati né salvati.</p>
+
+    <label class="field">
+      <span>Nome e cognome</span>
+      <input name="nome" autocomplete="name" required>
+    </label>
+    <label class="field">
+      <span>Telefono</span>
+      <input name="tel" type="tel" autocomplete="tel" inputmode="tel" required>
+    </label>
+    <fieldset class="field">
+      <legend>Ritiro in bottega</legend>
+      <div class="radio-row">
+        <label><input type="radio" name="ritiro" value="oggi" checked> Oggi</label>
+        <label><input type="radio" name="ritiro" value="domani"> Domani</label>
+      </div>
+    </fieldset>
+    <label class="field">
+      <span>Note (facoltativo)</span>
+      <textarea name="note" rows="2" placeholder="Es. prosciutto tagliato sottile"></textarea>
+    </label>
+    <p class="form-error" id="formError" role="alert" hidden>Inserite nome e telefono per confermare l'ordine.</p>
+
+    <div class="checkout__summary">
+      <span>Totale</span><strong id="checkoutTotal">€ 0,00</strong>
+    </div>
+    <button type="submit" class="btn btn--dark btn--block">Conferma l'ordine</button>
+  </form>
+
+  <div class="checkout__done" id="checkoutDone" hidden>
+    <p class="label">Ordine confermato</p>
+    <h2>Grazie.</h2>
+    <p>In una bottega vera, ora prepareremmo la vostra spesa. Questa è una demo: nessun ordine è stato inviato.</p>
+    <button type="button" class="btn btn--dark" id="checkoutDoneClose">Torna al sito</button>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
