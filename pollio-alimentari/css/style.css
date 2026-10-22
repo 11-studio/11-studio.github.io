@@ -71,15 +71,9 @@ strong { font-weight: 500; }
 
 /* ---------- Logotipo ---------- */
 .logo { display: flex; flex-direction: column; align-items: center; text-decoration: none; line-height: 1; }
-.logo__name {
-  font-family: var(--serif); font-weight: 500; font-size: 1.45rem;
-  letter-spacing: .2em; text-transform: uppercase; white-space: nowrap;
-}
-.logo__since {
-  display: flex; align-items: center; gap: 10px; margin-top: 6px;
-  font-size: .62rem; letter-spacing: .34em; text-transform: uppercase; color: var(--brass); font-weight: 400;
-}
-.logo__since::before, .logo__since::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .7; }
+.logo img { height: 62px; width: auto; }
+.sidemenu__logo { height: 48px; width: auto; }
+.footer__brand img { width: min(380px, 80vw); height: auto; }
 
 /* ---------- Bottoni ---------- */
 .btn {
@@ -105,7 +99,7 @@ strong { font-weight: 500; }
 /* ---------- Barra in alto ---------- */
 .topbar { position: sticky; top: 0; z-index: 30; background: var(--navy); color: var(--paper); border-bottom: 1px solid var(--line-light); }
 .topbar__inner {
-  max-width: var(--max); margin: 0 auto; padding: 16px var(--gutter);
+  max-width: var(--max); margin: 0 auto; padding: 10px var(--gutter);
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px;
 }
 .topbar__side { display: flex; align-items: center; gap: 36px; }
@@ -139,7 +133,6 @@ strong { font-weight: 500; }
 
 .sidemenu { left: 0; width: min(460px, 92vw); transform: translateX(-100%); background: var(--navy); color: var(--paper); padding: 26px 40px 36px; }
 .sidemenu__head, .cart__head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.sidemenu__head .logo__name { font-size: 1.1rem; }
 .sidemenu__nav { display: flex; flex-direction: column; margin-top: 48px; }
 .sidemenu__nav a {
   display: flex; align-items: baseline; gap: 18px; text-decoration: none;
@@ -295,7 +288,6 @@ main > section > * { max-width: calc(var(--max) - 2 * var(--gutter)); margin-lef
 /* ---------- Footer ---------- */
 .footer { background: var(--navy); color: var(--on-dark); padding: clamp(64px, 8vw, 100px) var(--gutter) 0; font-size: .94rem; }
 .footer__brand { display: flex; flex-direction: column; align-items: center; color: var(--paper); padding-bottom: clamp(48px, 6vw, 72px); }
-.footer__brand .logo__name { font-size: clamp(1.4rem, 1rem + 1.6vw, 2.2rem); letter-spacing: .24em; }
 .footer__inner {
   max-width: calc(var(--max) - 2 * var(--gutter)); margin: 0 auto; padding: 40px 0;
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
@@ -397,8 +389,7 @@ body.no-scroll { overflow: hidden; }
   .topbar__inner { padding: 12px 16px; gap: 10px; grid-template-columns: auto 1fr auto; }
   .topbar .logo { justify-self: center; }
   .menu-btn__label { display: none; }
-  .logo__name { font-size: 1rem; letter-spacing: .14em; }
-  .logo__since { font-size: .56rem; }
+  .logo img { height: 46px; }
   .cart-btn { padding: .55rem .7rem; font-size: .68rem; letter-spacing: .14em; }
   .sidemenu { padding: 22px 24px 30px; }
   .sidemenu__nav a { font-size: 1.85rem; }

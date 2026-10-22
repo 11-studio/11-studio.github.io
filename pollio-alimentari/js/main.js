@@ -330,7 +330,6 @@
   reveal('.reviews > *', true);
   reveal('.hours');
   reveal('.visit__info > div', true);
-  reveal('.footer__brand');
   $$('.timeline, .departments').forEach((el) => { el.dataset.draw = ''; });
 
   const io = new IntersectionObserver((entries) => {
